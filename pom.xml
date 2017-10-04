@@ -81,7 +81,7 @@
 			<artifactId>player</artifactId>
 			<version>1.0.1</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/jl1.0.1.jar</systemPath>
+			<systemPath>${project.basedir}/lib/jl1.0.1.jar</systemPath>
 		</dependency>
 	</dependencies>
 
