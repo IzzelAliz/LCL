@@ -41,7 +41,7 @@
                      </image>
                   </ImageView>
                   <Button fx:id="mybutton1" layoutX="239.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonAction" prefHeight="95.0" prefWidth="214.0" text="测试" />
-                  <Button fx:id="mybutton2" layoutX="608.0" layoutY="120.0" mnemonicParsing="false" onAction="#onButtonAction" prefHeight="200.0" prefWidth="290.0" text="测试" />
+                  <Button fx:id="mybutton2" layoutX="463.0" layoutY="120.0" mnemonicParsing="false" onAction="#onButtonAction" prefHeight="200.0" prefWidth="290.0" text="测试" />
                   <Button fx:id="mybutton3" layoutX="463.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonAction" prefHeight="95.0" prefWidth="140.0" text="测试" />
                   <Button fx:id="mybutton4" layoutX="613.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonAction" prefHeight="95.0" prefWidth="140.0" text="测试" />
                   <Button fx:id="mybutton5" layoutX="127.0" layoutY="120.0" mnemonicParsing="false" onAction="#onButtonAction" prefHeight="200.0" prefWidth="102.0" text="测试" />
