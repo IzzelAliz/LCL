@@ -34,7 +34,28 @@ public class GuiBase {
                 stage.setY(event.getScreenY() - yOffset);
             }
         });
-        this.scene = new Scene(root, 800, 500);
+        this.scene = new Scene(root, x, y);
+    }
+
+    public GuiBase(String fxmlName, Stage stage) throws Exception {
+        this.stage = stage;
+        this.root = FXMLLoader.load(getClass().getResource("/fxml/" + fxmlName + ".fxml"));
+        this.root.setOnMousePressed((MouseEvent event) -> {
+            event.consume();
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+        this.root.setOnMouseDragged((MouseEvent event) -> {
+            event.consume();
+            stage.setX(event.getScreenX() - xOffset);
+
+            if (event.getScreenY() - yOffset < 0) {
+                stage.setY(0);
+            } else {
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
+        this.scene = new Scene(root);
     }
 
     public void show() {
