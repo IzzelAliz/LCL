@@ -1,0 +1,41 @@
+.root {
+    -fx-font-family: "微软雅黑";
+    -fx-font-size: 16px;
+    -fx-background-image: url("images/background2.png");
+    -fx-background-size: stretch stretch;
+    -fx-background-color:transparent;
+    -fx-background-color:rgba(0,0,0,0);
+    -fx-background-position: center center;
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+}
+
+#Spane .scroll-bar:horizontal:hover .track ,
+#Spane .scroll-bar:horizontal:pressed .track ,
+#Spane .scroll-bar:vertical:hover .track,
+#Spane .scroll-bar:vertical:pressed .track{
+-fx-background-color: derive(#434343,20%);
+-fx-opacity: 0.2;
+}
+
+#Spane .scroll-bar .thumb:hover,
+#Spane .scroll-bar .thumb:pressed{
+-fx-background-color: derive(black,50%);
+}
+
+#Spane .increment-button:hover ,#Spane .decrement-button:hover {
+-fx-background-color:derive(gray,100%);
+-fx-border-color:derive(gray,80%);
+-fx-padding:10px;
+}
+
+
+#Spane,#Apane{
+    -fx-background-color:rgba(255,255,255,0);
+    -fx-background-color:transparent;
+    -fx-background:transparent;
+}
+
+#closebtn{
+    -fx-fill:#ff0000;
+}

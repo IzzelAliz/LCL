@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="MainGui" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="/css/MainUI.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.main.LoginCraftLaunchMainUI">
+   <children>
+      <AnchorPane prefHeight="38.0" prefWidth="800.0">
+         <children>
+            <ImageView fitHeight="38.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="769.0515460968018" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="/css/images/hand.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="closebtn" layoutX="690.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="55.0" text="—" />
+            <Button layoutX="745.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="55.0" text="X" />
+            <javafx.scene.shape.SVGPath content="M512 96C281.118 96 96 281.118 96 512c0 230.872 185.118 416 416 416 230.87 0 416-185.128 416-416C928 281.118 742.872 96 512 96zM720.004 661.762l-58.24 58.234L512 570.234l-149.762 149.762-58.242-58.234L453.762 512l-149.766-149.762 58.242-58.232L512 453.762l149.762-149.756 58.24 58.232L570.238 512 720.004 661.762z" fill="white" layoutX="162.0" layoutY="-493.0" scaleX="0.038" scaleY="0.038" scaleZ="0.038" styleClass="closebtn" />
+         </children>
+      </AnchorPane>
+      <ScrollPane fx:id="Spane" layoutY="59.0" prefHeight="443.0" prefWidth="800.0">
+         <content>
+          <AnchorPane fx:id="Apane" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="1035.0" stylesheets="/css/MetroButton.css" translateY="45.0">
+               <children>
+                  <Button fx:id="mybutton21" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonAction" prefHeight="95.0" prefWidth="214.0" text="测试" />
+                  <Button fx:id="mybutton211" layoutX="15.0" layoutY="120.0" mnemonicParsing="false" onAction="#onButtonAction" prefHeight="200.0" prefWidth="102.0" text="测试" />
+                  <ImageView fx:id="myiv" fitHeight="219.0" fitWidth="179.0" layoutX="257.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="/css/images/TestGif.gif" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="mybutton1" layoutX="239.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonAction" prefHeight="95.0" prefWidth="214.0" text="测试" />
+                  <Button fx:id="mybutton2" layoutX="608.0" layoutY="120.0" mnemonicParsing="false" onAction="#onButtonAction" prefHeight="200.0" prefWidth="290.0" text="测试" />
+                  <Button fx:id="mybutton3" layoutX="463.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonAction" prefHeight="95.0" prefWidth="140.0" text="测试" />
+                  <Button fx:id="mybutton4" layoutX="613.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonAction" prefHeight="95.0" prefWidth="140.0" text="测试" />
+                  <Button fx:id="mybutton5" layoutX="127.0" layoutY="120.0" mnemonicParsing="false" onAction="#onButtonAction" prefHeight="200.0" prefWidth="102.0" text="测试" />
+               </children>
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</Pane>
