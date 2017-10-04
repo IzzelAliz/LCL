@@ -1,0 +1,16 @@
+machine:
+  java:
+    version: oraclejdk8
+  notify:
+    branches:
+      only:
+        - master
+dependencies:
+  override:
+    - git config --global user.email "circle@circleci.com"
+    - git config --global user.name "CircleCI"
+    - chmod +x scripts/build.sh
+    - ./scripts/build.sh
+test:
+  post:
+    - yes|mv -f ./target/logincraftlaunch-1.0-SNAPSHOT.jar $CIRCLE_ARTIFACTS/logincraftlaunch-$CIRCLE_BUILD_NUM.jar
