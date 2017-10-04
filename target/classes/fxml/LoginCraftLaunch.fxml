@@ -17,7 +17,7 @@
 
 <Pane fx:id="MainGui" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="/css/MainUI.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.guis.LoginCraftLaunchMainUI">
    <children>
-      <AnchorPane prefHeight="38.0" prefWidth="800.0">
+      <AnchorPane fx:id="TitlePane" prefHeight="38.0" prefWidth="800.0" stylesheets="/css/MetroButton.css">
          <children>
             <SVGPath fx:id="handsvg" content="M65.23884 456.152041h893.521297v111.695918H65.23884V456.152041z" fill="#D9D7CA" layoutX="-111.0" layoutY="-498.0" scaleX="0.897" scaleY="0.39" AnchorPane.bottomAnchor="353.62296295166016" AnchorPane.leftAnchor="-45.76116180419922" AnchorPane.rightAnchor="328.7107849121094" AnchorPane.topAnchor="-41.84796142578125" />
             <SVGPath fx:id="closesvg" content="M830.606452 106.529032 512 425.135484 193.393548 106.529032 106.529032 193.393548 425.083871 512 106.529032 830.606452 193.393548 917.470968 512 598.916129 830.606452 917.470968 917.470968 830.606452 598.864516 512 917.470968 193.393548Z" fill="white" layoutX="259.0" layoutY="-494.0" scaleX="0.03" scaleY="0.03" scaleZ="0.03" />
