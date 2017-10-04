@@ -17,7 +17,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		this.stage = primaryStage;
+		Main.stage = primaryStage;
 
 		// File file = new File("LclConfig");
 		// if(!file.exists()){
@@ -25,7 +25,7 @@ public class Main extends Application {
 		// }
 		GuiBase mainGui = new GuiBase("LoginCraftLaunch", this.stage, 800, 500);
 		mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
-		mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
+		mainGui.getStage().initStyle(StageStyle.UNDECORATED);
 		mainGui.getStage().setAlwaysOnTop(true);
 		mainGui.getStage().setResizable(false);
 		mainGui.getScene().setFill(null);
