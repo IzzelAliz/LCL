@@ -20,9 +20,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+/**
+ * Fuck Kevin
+ * 
+ * @author IzzelAliz
+ */
 public class Json {
 	Json parent;
-	HashMap<String, Json> sub;
 	private JSONObject obj;
 
 	public Json(String json) {
