@@ -10,7 +10,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		this.stage=primaryStage;
+		Main.stage=primaryStage;
 
 		// File file = new File("LclConfig");
 		// if(!file.exists()){

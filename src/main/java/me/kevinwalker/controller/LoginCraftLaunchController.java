@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
  * Created by KevinWalker on 2017/9/16.
  */
 public class LoginCraftLaunchController implements Initializable {
-	private String BackGroundRGB = "#7A7A7A";
+	private String BackGroundRGB = "derive(#7A7A7A,85%)";
 	public static MusicPlayThread musicPlayer = new MusicPlayThread();
 
 	@FXML
