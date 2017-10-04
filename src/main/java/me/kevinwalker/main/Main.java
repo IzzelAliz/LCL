@@ -7,44 +7,31 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import me.kevinwalker.guis.GuiBase;
 
 public class Main extends Application {
 	private double xOffset = 0;
 	private double yOffset = 0;
+	public static Stage stage;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		this.stage=primaryStage;
+
 		// File file = new File("LclConfig");
 		// if(!file.exists()){
 		// file.mkdirs();
 		// }
-		Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginCraftLaunch.fxml"));
-		root.setOnMousePressed((MouseEvent event) -> {
-			event.consume();
-			xOffset = event.getSceneX();
-			yOffset = event.getSceneY();
-		});
-		root.setOnMouseDragged((MouseEvent event) -> {
-			event.consume();
-			primaryStage.setX(event.getScreenX() - xOffset);
-
-			if (event.getScreenY() - yOffset < 0) {
-				primaryStage.setY(0);
-			} else {
-				primaryStage.setY(event.getScreenY() - yOffset);
-			}
-		});
-		primaryStage.setTitle("LoginCraftLaunch-0.0.1Demo");
-		primaryStage.initStyle(StageStyle.TRANSPARENT);
-		primaryStage.setAlwaysOnTop(true);
-		primaryStage.setResizable(false);
-		Scene scene = new Scene(root, 800, 500);
-		scene.setFill(null);
-		primaryStage.setScene(scene);
-		primaryStage.setOnCloseRequest((e) -> {
+		GuiBase mainGui = new GuiBase("LoginCraftLaunch",this.stage,800,500);
+		mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
+		mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
+		mainGui.getStage().setAlwaysOnTop(true);
+		mainGui.getStage().setResizable(false);
+		mainGui.getScene().setFill(null);
+		mainGui.getStage().setOnCloseRequest((e) -> {
 			System.exit(0);
 		});
-		primaryStage.show();
+		mainGui.show();
 	}
 
 	public static void main(String[] args) throws Exception {
