@@ -13,6 +13,6 @@ public class MusicPlayThread extends Thread {
 
     @Override
     public void run() {
-        this.music.play();
+        music.play();
     }
 }
