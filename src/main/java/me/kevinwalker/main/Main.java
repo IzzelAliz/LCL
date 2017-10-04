@@ -11,11 +11,6 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Main.stage=primaryStage;
-
-		// File file = new File("LclConfig");
-		// if(!file.exists()){
-		// file.mkdirs();
-		// }
 		GuiBase mainGui = new GuiBase("LoginCraftLaunch",this.stage,800,500);
 		mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
 		mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
