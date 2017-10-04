@@ -1,5 +1,12 @@
 package me.kevinwalker.main;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -41,5 +48,31 @@ public class Main extends Application {
 		// System.out.println("玩家"+i+":"+sr.getPlayers().getSample().get(i).getName());
 		// }
 		// }
+	}
+	
+	public static void setupLogger() {
+		try {
+			if (!new File(getBaseDir(), "log.txt").exists())
+				new File(getBaseDir(), "log.txt").createNewFile();
+			System.setOut(new PrintStream(new File(getBaseDir(), "log.txt")));
+			System.setErr(new PrintStream(new File(getBaseDir(), "log.txt")));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static File getBaseDir() {
+		try {
+			File file = new File(URLDecoder
+					.decode(Main.class.getProtectionDomain().getCodeSource().getLocation().toString(), "utf-8")
+					.substring(6));
+			return file.getParentFile();
+		} catch (UnsupportedEncodingException e) {
+			return null;
+		}
 	}
 }
