@@ -31,6 +31,7 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) throws Exception {
+		setupLogger();
 		launch(args);
 		// ServerListPing slp = new ServerListPing();
 		// InetSocketAddress sadd0 = new InetSocketAddress("dx.mc11.icraft.cc", 37190);
