@@ -1,7 +1,7 @@
 .root {
     -fx-font-family: "微软雅黑";
     -fx-font-size: 16px;
-    -fx-background-image: url("images/background.png");
+    -fx-background-image: url("images/background2.png");
     -fx-background-size: stretch stretch;
     -fx-background-color:transparent;
     -fx-background-color:rgba(0,0,0,0);
@@ -37,26 +37,5 @@
 }
 
 #closebtn{
-    -fx-padding: 5 22 5 22;
-    -fx-border-color: rgba(0,0,0,0);
-    -fx-border-width: 1;
-    -fx-border:none;
-    -fx-background-color: blue;
-    -fx-font-family: "微软雅黑";
-    -fx-font-size: 11pt;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
-    -fx-background-color:rgba(0,0,0,0);
-}
-
-#closebtn:hover{
-    -fx-background-color: rgba(255,130,71,0.85);
-    -fx-border-color: rgba(255,130,71,1);
-    -fx-border-width: 1;
-}
-
-#closebtn:pressed{
-    -fx-background-color: rgba(255,130,71,1);
-    -fx-scale-x: 0.95;
-    -fx-scale-y: 0.95;
-    -fx-scale-z: 0.95;
+    -fx-fill:#ff0000;
 }

@@ -14,10 +14,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-//        File file = new File("LclConfig");
-//        if(!file.exists()){
-//            file.mkdirs();
-//        }
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginCraftLaunch.fxml"));
         root.setOnMousePressed((MouseEvent event) -> {
             event.consume();
@@ -36,17 +32,17 @@ public class Main extends Application {
         });
         primaryStage.setTitle("LoginCraftLaunch-0.0.1Demo");
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.setAlwaysOnTop(true);
         primaryStage.setResizable(false);
-        Scene scene = new Scene(root, 800, 500);
+        Scene scene = new Scene(root,800,500);
         scene.setFill(null);
+//        scene.getStylesheets().add(getClass().getResource("/css/MainUI.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
     public static void main(String[] args) throws Exception {
         launch(args);
-//        ServerListPing slp = new ServerListPing();
+//        ServerListPing17 slp = new ServerListPing17();
 //        InetSocketAddress sadd0 = new InetSocketAddress("dx.mc11.icraft.cc", 37190);
 //        InetSocketAddress sadd1 = new InetSocketAddress("218.93.208.142", 10648);
 //        InetSocketAddress sadd2 = new InetSocketAddress("four.mengcraft.com", 13433);
@@ -54,7 +50,7 @@ public class Main extends Application {
 //        InetSocketAddress sadd = new InetSocketAddress("103.37.45.108", 7160);
 //
 //        slp.setAddress(sadd);
-//        ServerListPing.StatusResponse sr = slp.fetchData();
+//        ServerListPing17.StatusResponse sr = slp.fetchData();
 //        System.out.println("最大在线" + sr.getPlayers().getMax());
 //        System.out.println("在线" + sr.getPlayers().getOnline());
 //        if(sr.getPlayers().getSample()!= null) {
