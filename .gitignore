@@ -21,4 +21,4 @@ hs_err_pid*
 /target/
 .classpath
 
-!/lib
+!/lib/*.jar
