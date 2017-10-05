@@ -10,8 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
-import me.kevinwalker.guis.GuiBase;
 import me.kevinwalker.main.Main;
+import me.kevinwalker.threads.MusicPlayThread;
 import me.kevinwalker.utils.Util;
 
 import java.io.File;
@@ -25,6 +25,9 @@ import java.util.ResourceBundle;
  */
 public class LoginCraftLaunchController implements Initializable {
     private java.awt.Color BackGroundRGB = new java.awt.Color(122, 122, 122);
+    public static MusicPlayThread musicPlayThread;
+    private static File bgm;
+    public static boolean musicPlay = true;
 
     @FXML
     private ImageView background;
@@ -57,12 +60,12 @@ public class LoginCraftLaunchController implements Initializable {
      */
     void mouseAction() {
         music.setOnAction(oa -> {
-            if (Main.musicPlay) {
-                Main.musicPlayThread.suspend();
-                Main.musicPlay = false;
+            if (musicPlay) {
+                musicPlayThread.suspend();
+                musicPlay = false;
             } else {
-                Main.musicPlay = true;
-                Main.musicPlayThread.resume();
+                musicPlay = true;
+                musicPlayThread.resume();
             }
         });
 
@@ -130,6 +133,17 @@ public class LoginCraftLaunchController implements Initializable {
         onGuiOpen(serverInformation);
         onGuiOpen(author);
         onGuiOpen(update);
+
+        //播放音乐
+        bgm = new File(Main.getBaseDir(), "LclConfig/" + Main.json.getString("bgm"));
+        if (bgm.exists()) {
+            musicPlayThread = new MusicPlayThread(bgm.getPath());
+        } else {
+            File musicFile = new File(Main.getBaseDir(), "LclConfig/bgm.mp3");
+            Util.saveResource("css/music/bgm.mp3", musicFile);
+            musicPlayThread = new MusicPlayThread(musicFile.getPath());
+        }
+        musicPlayThread.start();
 
         //设置标题栏颜色
         handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",0.9);");
