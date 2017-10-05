@@ -16,12 +16,8 @@ import me.kevinwalker.threads.MusicPlayThread;
 import me.kevinwalker.utils.Util;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLDecoder;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -68,6 +64,9 @@ public class LoginCraftLaunchController implements Initializable {
             }
         });
 
+        login.setOnAction(oa -> {
+        });
+
         setting.setOnAction(oa -> {
             try {
                 new GuiBase("Setting", Main.stage, 800, 530).show();
@@ -97,7 +96,7 @@ public class LoginCraftLaunchController implements Initializable {
     void GuiSetStyle() {
 
         //设置背景颜色
-        File file = new File("LclConfig/background.png");
+        File file = new File(Main.getBaseDir(), "LclConfig/background.png");
         if (file.exists()) {
             try {
                 Util.zoomImage("LclConfig/background.png", "LclConfig/background.png", 800, 530);
@@ -126,18 +125,14 @@ public class LoginCraftLaunchController implements Initializable {
         onGuiOpen(update);
 
         //播放音乐
-        URL url = null;
-        try {
-            url=this.getClass().getResource("/css/music/bgm.mp3");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        File bgm = new File(url.getFile());
+        File bgm = new File(Main.getBaseDir(), "LclConfig/" + Main.json.getString("bgm"));
+        System.out.println(Main.json.asMap().get("bgm"));
         if (bgm.exists()) {
             musicPlayer = new MusicPlayThread(bgm.getPath());
         } else {
-            java.net.URL fileURL = this.getClass().getResource("/css/music/bgm.mp3");
-            musicPlayer = new MusicPlayThread(fileURL.getPath());
+            File musicFile = new File(Main.getBaseDir(), "LclConfig/bgm.mp3");
+            Util.saveResource("css/music/bgm.mp3", musicFile);
+            musicPlayer = new MusicPlayThread(musicFile.getPath());
         }
         musicPlayer.start();
 

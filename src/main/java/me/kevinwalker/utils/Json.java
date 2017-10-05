@@ -1,24 +1,16 @@
 package me.kevinwalker.utils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.RandomAccessFile;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-import java.util.function.Consumer;
-import java.util.stream.Stream;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
+import java.io.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 /**
  * Fuck KevinWalker
@@ -28,21 +20,30 @@ import org.json.JSONTokener;
 public class Json {
 	Json parent;
 	private JSONObject obj;
+	File file;
 
 	public Json(String json) {
 		obj = new JSONObject(new JSONTokener(json));
 	}
 
 	public Json(File json) {
-		obj = new JSONObject(new JSONTokener(Files.toString(json, "utf-8")));
+		String jsonString = Files.toString(json, "utf-8");
+		if(!(jsonString==null||jsonString.length()==0)){
+			obj = new JSONObject(new JSONTokener(jsonString));
+		}else{
+			obj = new JSONObject(new JSONTokener("{}"));
+		}
+		this.file=json;
 	}
 
 	public Json(InputStream in) {
+
 		obj = new JSONObject(new JSONTokener(Files.toString(in, "utf-8")));
 	}
 
 	public Json(File json, String charset) {
 		obj = new JSONObject(new JSONTokener(Files.toString(json, charset)));
+		this.file=json;
 	}
 
 	public Json(InputStream in, String charset) {
@@ -110,6 +111,19 @@ public class Json {
 
 	public <T> JsonArray<T> getArray(String key, Class<T> clazz) {
 		return new JsonArray<T>(obj.getJSONArray(key), clazz).setParent(this);
+	}
+
+	public void save() {
+		OutputStream out = null;
+		try {
+			out = new FileOutputStream(file);
+			out.write(this.toString().getBytes());
+			out.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Json getParent() {

@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import me.kevinwalker.guis.GuiBase;
+import me.kevinwalker.utils.Json;
 import me.kevinwalker.utils.Util;
 
 import java.io.*;
@@ -11,6 +12,8 @@ import java.net.URLDecoder;
 
 public class Main extends Application {
     public static Stage stage;
+    public static Json json = new Json(new File(Main.getBaseDir(),"LclConfig/config.json"));
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -28,8 +31,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws Exception {
-        File file = new File("LclConfig");
-        File config = new File("LclConfig/config.json");
+        File file = new File(getBaseDir(),"LclConfig");
+        File config = new File(getBaseDir(),"LclConfig/config.json");
         if (!file.exists()) {
             file.mkdirs();
             if (!config.exists()) {
@@ -58,10 +61,10 @@ public class Main extends Application {
 
     public static void setupLogger() {
         try {
-            if (!new File(getBaseDir(), "log.txt").exists())
-                new File(getBaseDir(), "log.txt").createNewFile();
-            System.setOut(new PrintStream(new File(getBaseDir(), "log.txt")));
-            System.setErr(new PrintStream(new File(getBaseDir(), "log.txt")));
+            if (!new File(getBaseDir(), "LclConfig/log.txt").exists())
+                new File(getBaseDir(), "LclConfig/log.txt").createNewFile();
+            System.setOut(new PrintStream(new File(getBaseDir(), "LclConfig/log.txt")));
+            System.setErr(new PrintStream(new File(getBaseDir(), "LclConfig/log.txt")));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

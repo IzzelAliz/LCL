@@ -53,8 +53,8 @@ public class Util {
 	 */
 	public static void zoomImage(String src, String dest, int w, int h) throws Exception {
 		double wr = 0, hr = 0;
-		File srcFile = new File(src);
-		File destFile = new File(dest);
+		File srcFile = new File(Main.getBaseDir(),src);
+		File destFile = new File(Main.getBaseDir(),dest);
 
 		BufferedImage bufImg = ImageIO.read(srcFile); //读取图片
 		java.awt.Image Itemp = bufImg.getScaledInstance(w, h, bufImg.SCALE_SMOOTH);//设置缩放目标图片模板
