@@ -16,8 +16,10 @@ import me.kevinwalker.threads.MusicPlayThread;
 import me.kevinwalker.utils.Util;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -122,7 +124,15 @@ public class LoginCraftLaunchController implements Initializable {
         onGuiOpen(update);
 
         //播放音乐
-        File bgm = new File("LclConfig/bgm.mp3");
+        URL url = null;
+        try {
+            url = new URL("jar:file:/" + URLDecoder.decode(Main.class.getProtectionDomain().getCodeSource().getLocation().toString().substring(6), "utf-8") + "!/css/music/bgm.mp3");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        File bgm = new File(url.getFile());
         if (bgm.exists()) {
             musicPlayer = new MusicPlayThread(bgm.getPath());
         } else {

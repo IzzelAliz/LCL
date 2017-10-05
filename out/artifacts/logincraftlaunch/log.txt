@@ -1,2 +1,0 @@
-Ê®ÔÂ 05, 2017 5:01:28 ÏÂÎç com.sun.javafx.css.parser.CSSParser declaration
-WARNING: CSS Error parsing jar:file:/C:/Users/Administrator/Desktop/forge/logincraftlaunch/LCL/out/artifacts/logincraftlaunch/logincraftlaunch-35.jar!/css/MetroButton.css: Expected '<font-weight>' while parsing '-fx-font-weight' at [10,21]
