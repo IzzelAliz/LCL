@@ -124,16 +124,16 @@ public class LoginCraftLaunchController implements Initializable {
         onGuiOpen(author);
         onGuiOpen(update);
 
-//        //播放音乐
-//        File bgm = new File(Main.getBaseDir(), "LclConfig/" + Main.json.getString("bgm"));
-//        if (bgm.exists()) {
-//            musicPlayer = new MusicPlayThread(bgm.getPath());
-//        } else {
-//            File musicFile = new File(Main.getBaseDir(), "LclConfig/bgm.mp3");
-//            Util.saveResource("css/music/bgm.mp3", musicFile);
-//            musicPlayer = new MusicPlayThread(musicFile.getPath());
-//        }
-//        musicPlayer.start();
+        //播放音乐
+        File bgm = new File(Main.getBaseDir(), "LclConfig/" + Main.json.getString("bgm"));
+        if (bgm.exists()) {
+            musicPlayer = new MusicPlayThread(bgm.getPath());
+        } else {
+            File musicFile = new File(Main.getBaseDir(), "LclConfig/bgm.mp3");
+            Util.saveResource("css/music/bgm.mp3", musicFile);
+            musicPlayer = new MusicPlayThread(musicFile.getPath());
+        }
+        musicPlayer.start();
 
         //设置标题栏颜色
         handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",0.9);");

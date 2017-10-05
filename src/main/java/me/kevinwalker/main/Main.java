@@ -6,13 +6,15 @@ import javafx.stage.StageStyle;
 import me.kevinwalker.guis.GuiBase;
 import me.kevinwalker.utils.Json;
 import me.kevinwalker.utils.Util;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.io.*;
 import java.net.URLDecoder;
 
 public class Main extends Application {
     public static Stage stage;
-    public static Json json = new Json(new File(Main.getBaseDir(),"LclConfig/config.json"));
+    public static JSONObject json = new JSONObject(new JSONTokener(Json.Files.toString(new File(getBaseDir(),"LclConfig/config.json"), "utf-8")));
 
 
     @Override
