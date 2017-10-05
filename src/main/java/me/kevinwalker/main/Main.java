@@ -32,9 +32,9 @@ public class Main extends Application {
         File config = new File("LclConfig/config.json");
         if (!file.exists()) {
             file.mkdirs();
-        }
-        if (!config.exists()) {
-            Util.saveResource("resources/config.json", new File(getBaseDir(),"LclConfig/config.json"));
+            if (!config.exists()) {
+                Util.saveResource("config.json", new File(getBaseDir(),"LclConfig/config.json"));
+            }
         }
         setupLogger();
         launch(args);
