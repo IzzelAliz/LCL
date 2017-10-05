@@ -53,6 +53,15 @@ public class Json {
 		this.obj = obj;
 	}
 
+	public String toString() {
+		return obj.toString();
+	}
+
+	public Json set(String key, Object value) {
+		obj.put(key, value);
+		return this;
+	}
+
 	public HashMap<String, Object> asMap() {
 		HashMap<String, Object> map = new HashMap<>();
 		obj.keySet().stream().map(s -> map.put(s, obj.get(s)));
