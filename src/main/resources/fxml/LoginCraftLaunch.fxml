@@ -39,7 +39,14 @@
                   <Button fx:id="getResources" layoutX="630.0" layoutY="10.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="230.0" text="资源获取" />
                   <Button fx:id="bulletin" layoutX="270.0" layoutY="130.0" mnemonicParsing="false" prefHeight="230.0" prefWidth="350.0" text="公告" />
                   <Button fx:id="custom" layoutX="750.0" layoutY="131.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="自定义" />
-                  <Button fx:id="setting" layoutX="270.0" layoutY="10.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="230.0" text="设置" />
+                  <Button fx:id="setting" alignment="CENTER" contentDisplay="TOP" layoutX="270.0" layoutY="10.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="230.0" text="设置" textOverrun="CLIP">
+                     <graphic>
+                        <ImageView fx:id="settingImg" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/css/images/setting.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                   <Button fx:id="author" layoutX="630.0" layoutY="131.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="关于" />
                   <Button fx:id="login" layoutX="30.0" layoutY="131.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="230.0" text="正版登录" />
                   <Button fx:id="serverInformation" layoutX="30.0" layoutY="250.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="230.0" text="服务器信息" />

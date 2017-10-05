@@ -9,14 +9,14 @@
     -fx-background-insets: 0.0 0.0 0.0 0.0, 0.0, 1.0, 2.0;
 }
 
-.button:hover {
+.button:hover{
     -fx-background-color: rgba(58.0, 58.0, 58.0, 0.24);
     -fx-scale-x: 1.02;
     -fx-scale-y: 1.02;
     -fx-scale-z: 1.02;
 }
 
-.button:pressed, .button:default:hover:pressed {
+.button:pressed, .button:default:hover:pressed ,#imageview:pressed{
   -fx-background-color: #F8F8FF;
   -fx-text-fill: #1d1d1d;
   -fx-border-color: #e2e2e2;
@@ -66,6 +66,4 @@
     -fx-text-fill: #e2e2e2;
       -fx-border-color: #778899;
       -fx-border-width: 2.0;
-}
-#title{
 }

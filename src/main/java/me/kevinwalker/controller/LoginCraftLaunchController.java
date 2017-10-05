@@ -80,6 +80,7 @@ public class LoginCraftLaunchController implements Initializable {
         onGuiOpen(serverInformation);
         onGuiOpen(author);
         onGuiOpen(update);
+        buttonSetStyle();
         musicPlayer.start();
 
         handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",85%);");
@@ -99,6 +100,10 @@ public class LoginCraftLaunchController implements Initializable {
                 e.printStackTrace();
             }
         });
+    }
+
+    public void buttonSetStyle(){
+
     }
 
     public void onCloseButtonAction(ActionEvent event) {

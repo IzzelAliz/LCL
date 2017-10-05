@@ -22,7 +22,7 @@ import org.json.JSONTokener;
 
 /**
  * Fuck Kevin
- * 
+ *
  * @author IzzelAliz
  */
 public class Json {
