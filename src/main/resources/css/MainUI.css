@@ -13,8 +13,17 @@
 #Spane .scroll-bar:horizontal:pressed .track ,
 #Spane .scroll-bar:vertical:hover .track,
 #Spane .scroll-bar:vertical:pressed .track{
--fx-background-color: derive(#434343,20%);
+-fx-background-color: derive(#434343,0.2);
 -fx-opacity: 0.2;
+}
+
+#Spane .scroll-bar .track{
+-fx-background-color:rgba(238, 233, 234,0.5);
+}
+
+#Spane .scroll-bar .thumb{
+-fx-background-color: derive(#424242,0.5);
+-fx-border-color:derive(gray,0.5);
 }
 
 #Spane .scroll-bar .thumb:hover,

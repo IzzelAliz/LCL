@@ -1,20 +1,18 @@
 package me.kevinwalker.controller;
 
+import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
+import javafx.util.Duration;
 import me.kevinwalker.guis.GuiBase;
 import me.kevinwalker.main.Main;
 import me.kevinwalker.threads.MusicPlayThread;
-import me.kevinwalker.utils.ColorTranslated;
-import me.kevinwalker.utils.GetMainColor;
 import me.kevinwalker.utils.Util;
 
 import java.io.File;
@@ -34,7 +32,7 @@ public class LoginCraftLaunchController implements Initializable {
     private ImageView background;
 
     @FXML
-    private Label title;
+    private ImageView settingImg;
 
     @FXML
     private Pane MainGui;
@@ -49,7 +47,14 @@ public class LoginCraftLaunchController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //设置界面
         GuiSetStyle();
+        mouseAction();
+        mouseMoved();
+    }
 
+    /**
+     * 鼠标点击设置
+     */
+    void mouseAction() {
         //启动按钮点击
         launch.setOnAction(oa -> {
             try {
@@ -69,31 +74,34 @@ public class LoginCraftLaunchController implements Initializable {
     }
 
     /**
+     * 鼠标悬停动画设置
+     */
+    void mouseMoved() {
+        setting.setOnMouseMoved(omm -> {
+            RotateTransition rotateTransition =
+                    new RotateTransition(Duration.millis(2000), settingImg);
+            rotateTransition.setByAngle(180f);
+            rotateTransition.setCycleCount(2);
+            rotateTransition.setAutoReverse(true);
+            rotateTransition.play();
+        });
+    }
+
+    /**
      * 界面配置
      */
-    public void GuiSetStyle() {
+    void GuiSetStyle() {
 
         //设置背景颜色
         File file = new File("LclConfig/background.png");
-        try {
-            Util.zoomImage("LclConfig/background.png", "LclConfig/background.png", 800, 530);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            background.setImage(new Image(file.toURI().toURL().toString(), true));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
         if (file.exists()) {
-            this.BackGroundRGB = GetMainColor.getImagePixel(file);
             try {
-                Image image = new Image(file.toURI().toURL().toString(), true);
-                background.setFitWidth(800);
-                background.setFitHeight(530);
-                background.setImage(image);
-                String color = ColorTranslated.toHexFromColor(ColorTranslated.Color2Contrary2(ColorTranslated.Color2Contrary2(this.BackGroundRGB)));
-                title.setTextFill(Color.web(color));
+                Util.zoomImage("LclConfig/background.png", "LclConfig/background.png", 800, 530);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                background.setImage(new Image(file.toURI().toURL().toString(), true));
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -124,8 +132,7 @@ public class LoginCraftLaunchController implements Initializable {
         musicPlayer.start();
 
         //设置标题栏颜色
-        handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",85%);");
-
+        handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",0.9);");
     }
 
     public void onCloseButtonAction(ActionEvent event) {

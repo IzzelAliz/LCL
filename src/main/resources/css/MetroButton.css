@@ -13,12 +13,12 @@
 .button:hover{
     -fx-background-color: rgba(58.0, 58.0, 58.0, 0.24);
     -fx-text-fill: #FFFFFF;
-    -fx-scale-x: 1.02;
-    -fx-scale-y: 1.02;
-    -fx-scale-z: 1.02;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+    -fx-scale-z: 1.03;
 }
 
-.button:pressed, .button:default:hover:pressed ,#imageview:pressed{
+.button:pressed, .button:default:hover:pressed, #imageview:pressed{
   -fx-background-color: #F8F8FF;
   -fx-text-fill: #1d1d1d;
   -fx-border-color: #e2e2e2;

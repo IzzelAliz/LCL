@@ -10,16 +10,21 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
 
 import me.kevinwalker.main.Main;
 
 import javax.imageio.ImageIO;
 
 public class Util {
-
+	/**
+	 * 江内部文件挪到外部
+	 * @param path 内部路径
+	 * @param target 生成路径
+	 */
 	public static void saveResource(String path, File target) {
 		try {
-			URL url = new URL("jar:file:/"+Main.getBaseDir().getAbsolutePath()+"!/"+path);
+			URL url = new URL("jar:file:/"+URLDecoder.decode(Main.class.getProtectionDomain().getCodeSource().getLocation().toString().substring(6), "utf-8")+"!/"+path);
 			InputStream in = url.openStream();
 			byte[] buffer = new byte[1024];
 			int length = -1;

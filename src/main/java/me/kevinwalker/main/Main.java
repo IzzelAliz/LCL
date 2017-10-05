@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import me.kevinwalker.guis.GuiBase;
+import me.kevinwalker.utils.Util;
 
 import java.io.*;
 import java.net.URLDecoder;
@@ -28,8 +29,12 @@ public class Main extends Application {
 
     public static void main(String[] args) throws Exception {
         File file = new File("LclConfig");
+        File config = new File("LclConfig/config.json");
         if (!file.exists()) {
             file.mkdirs();
+        }
+        if (!config.exists()) {
+            Util.saveResource("resources/config.json", new File(getBaseDir(),"LclConfig/config.json"));
         }
         setupLogger();
         launch(args);
@@ -58,10 +63,8 @@ public class Main extends Application {
             System.setOut(new PrintStream(new File(getBaseDir(), "log.txt")));
             System.setErr(new PrintStream(new File(getBaseDir(), "log.txt")));
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
