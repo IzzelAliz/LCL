@@ -24,7 +24,7 @@
          <children>
             <SVGPath fx:id="handsvg" content="M65.23884 456.152041h893.521297v111.695918H65.23884V456.152041z" fill="#D9D7CA" layoutX="-111.0" layoutY="-498.0" scaleX="0.898" scaleY="0.35" AnchorPane.bottomAnchor="353.62296295166016" AnchorPane.leftAnchor="-45.76116180419922" AnchorPane.rightAnchor="328.7107849121094" AnchorPane.topAnchor="-41.84796142578125" />
             <SVGPath fx:id="closesvg" content="M830.606452 106.529032 512 425.135484 193.393548 106.529032 106.529032 193.393548 425.083871 512 106.529032 830.606452 193.393548 917.470968 512 598.916129 830.606452 917.470968 917.470968 830.606452 598.864516 512 917.470968 193.393548Z" fill="white" layoutX="259.0" layoutY="-496.0" scaleX="0.028" scaleY="0.028" scaleZ="0.028" />
-            <Button fx:id="closebtn" ellipsisString="" layoutX="742.0" layoutY="-2.0" mnemonicParsing="false" onAction="#onCloseButtonAction" prefHeight="35.0" prefWidth="58.0" />
+            <Button fx:id="closebtn" ellipsisString="" layoutX="742.0" layoutY="-2.0" mnemonicParsing="false" onAction="#onCloseButtonAction" prefHeight="35.0" prefWidth="58.0" stylesheets="/css/GuiMain.css"/>
             <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" prefHeight="35.0" prefWidth="436.0" text="LoginCraftLaunch-Demo" textFill="WHITE">
                <font>
                   <Font size="17.0" />
@@ -76,6 +76,24 @@
          <font>
             <Font size="25.0" />
          </font>
+      </Button>
+      <Button fx:id="music" layoutX="715.0" layoutY="45.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/css/images/music.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="leave" layoutX="-10.0" layoutY="45.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" stylesheets="/css/GuiMain.css">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/css/images/leave.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </Pane>

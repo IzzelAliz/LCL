@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 /**
  * Created by KevinWalker on 2017/10/4.
  */
@@ -16,9 +18,13 @@ public class GuiBase {
     private Scene scene;
     private Stage stage;
 
-    public GuiBase(String fxmlName, Stage stage, int x, int y) throws Exception {
+    public GuiBase(String fxmlName, Stage stage, int x, int y){
         this.stage = stage;
-        this.root = FXMLLoader.load(getClass().getResource("/fxml/" + fxmlName + ".fxml"));
+        try {
+            this.root = FXMLLoader.load(getClass().getResource("/fxml/" + fxmlName + ".fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         this.root.setOnMousePressed((MouseEvent event) -> {
             event.consume();
             xOffset = event.getSceneX();

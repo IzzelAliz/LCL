@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import me.kevinwalker.guis.GuiBase;
+import me.kevinwalker.threads.MusicPlayThread;
 import me.kevinwalker.utils.Json;
 import me.kevinwalker.utils.Util;
 import org.json.JSONObject;
@@ -13,35 +14,56 @@ import java.io.*;
 import java.net.URLDecoder;
 
 public class Main extends Application {
-    public static Stage stage;
-    public static JSONObject json = new JSONObject(new JSONTokener(Json.Files.toString(new File(getBaseDir(),"LclConfig/config.json"), "utf-8")));
+    public static JSONObject json = new JSONObject(new JSONTokener(Json.Files.toString(new File(getBaseDir(), "LclConfig/config.json"), "utf-8")));
+    public static GuiBase mainGui;
+    public static MusicPlayThread musicPlayThread;
+    private static File bgm;
+    public static boolean musicPlay = true;
 
-
+    public static GuiBase author;
+    public static GuiBase setting;
+    
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Main.stage = primaryStage;
-        GuiBase mainGui = new GuiBase("LoginCraftLaunch", this.stage, 800, 530);
+        mainGui = new GuiBase("LoginCraftLaunch", primaryStage, 800, 530);
         mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
         mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
         mainGui.getStage().setAlwaysOnTop(true);
         mainGui.getStage().setResizable(false);
         mainGui.getScene().setFill(null);
+
         mainGui.getStage().setOnCloseRequest((e) -> {
             System.exit(0);
         });
+        GuiMain(primaryStage);
         mainGui.show();
     }
 
+    void GuiMain(Stage stage) {
+        Main.author = new GuiBase("Author", stage, 800, 530);
+        Main.setting = new GuiBase("Setting", stage, 800, 530);
+    }
+
     public static void main(String[] args) throws Exception {
-        File file = new File(getBaseDir(),"LclConfig");
-        File config = new File(getBaseDir(),"LclConfig/config.json");
+        File file = new File(getBaseDir(), "LclConfig");
+        File config = new File(getBaseDir(), "LclConfig/config.json");
         if (!file.exists()) {
             file.mkdirs();
             if (!config.exists()) {
-                Util.saveResource("config.json", new File(getBaseDir(),"LclConfig/config.json"));
+                Util.saveResource("config.json", new File(getBaseDir(), "LclConfig/config.json"));
             }
         }
         setupLogger();
+        //播放音乐
+        Main.bgm = new File(Main.getBaseDir(), "LclConfig/" + Main.json.getString("bgm"));
+        if (Main.bgm.exists()) {
+            Main.musicPlayThread = new MusicPlayThread(Main.bgm.getPath());
+        } else {
+            File musicFile = new File(Main.getBaseDir(), "LclConfig/bgm.mp3");
+            Util.saveResource("css/music/bgm.mp3", musicFile);
+            Main.musicPlayThread = new MusicPlayThread(musicFile.getPath());
+        }
+        musicPlayThread.start();
         launch(args);
         // ServerListPing slp = new ServerListPing();
         // InetSocketAddress sadd0 = new InetSocketAddress("dx.mc11.icraft.cc", 37190);

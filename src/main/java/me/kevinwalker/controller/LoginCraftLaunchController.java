@@ -12,7 +12,6 @@ import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
 import me.kevinwalker.guis.GuiBase;
 import me.kevinwalker.main.Main;
-import me.kevinwalker.threads.MusicPlayThread;
 import me.kevinwalker.utils.Util;
 
 import java.io.File;
@@ -26,10 +25,12 @@ import java.util.ResourceBundle;
  */
 public class LoginCraftLaunchController implements Initializable {
     private java.awt.Color BackGroundRGB = new java.awt.Color(122, 122, 122);
-    public MusicPlayThread musicPlayer;
 
     @FXML
     private ImageView background;
+
+    @FXML
+    private Button music;
 
     @FXML
     private ImageView settingImg;
@@ -55,21 +56,27 @@ public class LoginCraftLaunchController implements Initializable {
      * 鼠标点击设置
      */
     void mouseAction() {
-        //启动按钮点击
-        launch.setOnAction(oa -> {
+        music.setOnAction(oa -> {
+            if (Main.musicPlay) {
+                Main.musicPlayThread.suspend();
+                Main.musicPlay = false;
+            } else {
+                Main.musicPlay = true;
+                Main.musicPlayThread.resume();
+            }
+        });
+
+        author.setOnAction(oa -> {
             try {
-                musicPlayer.stop();
+                Main.author.show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
 
-        login.setOnAction(oa -> {
-        });
-
         setting.setOnAction(oa -> {
             try {
-                new GuiBase("Setting", Main.stage, 800, 530).show();
+                Main.setting.show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -124,17 +131,6 @@ public class LoginCraftLaunchController implements Initializable {
         onGuiOpen(author);
         onGuiOpen(update);
 
-        //播放音乐
-        File bgm = new File(Main.getBaseDir(), "LclConfig/" + Main.json.getString("bgm"));
-        if (bgm.exists()) {
-            musicPlayer = new MusicPlayThread(bgm.getPath());
-        } else {
-            File musicFile = new File(Main.getBaseDir(), "LclConfig/bgm.mp3");
-            Util.saveResource("css/music/bgm.mp3", musicFile);
-            musicPlayer = new MusicPlayThread(musicFile.getPath());
-        }
-        musicPlayer.start();
-
         //设置标题栏颜色
         handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",0.9);");
     }
@@ -147,10 +143,19 @@ public class LoginCraftLaunchController implements Initializable {
         int red;
         int green;
         int blue;
+//        int red2;
+//        int green2;
+//        int blue2;
         Random random = new Random();
+//        Random random2 = new Random();
         red = random.nextInt(150) + 50;
         green = random.nextInt(130) + 50;
         blue = random.nextInt(120) + 50;
-        button.setStyle("-fx-background-color: rgba(" + red + "," + green + "," + blue + ",0.9);-fx-border-color: rgba(" + red + "," + green + "," + blue + ",0.9);-fx-border-width: 1;");
+//        red2 = random.nextInt(150) + 50;
+//        green2 = random.nextInt(130) + 50;
+//        blue2 = random.nextInt(120) + 50;
+        button.setStyle("-fx-background-color: rgba(" + red + "," + green + "," + blue + ",0.8);-fx-border-color: rgba(" + red + "," + green + "," + blue + ",0.9);-fx-border-width: 1;");
+//        button.setStyle("-fx-background-color: linear-gradient(to right,"+ ColorTranslated.toHex(red,green,blue)+","+ColorTranslated.toHex(red2,green2,blue2)+");-fx-opacity:0.9;");
+//        button.setStyle("-fx-background-color: linear-gradient(to right,#00fffc,#fff600);-fx-opacity:0.8");
     }
 }

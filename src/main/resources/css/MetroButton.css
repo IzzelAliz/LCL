@@ -16,6 +16,7 @@
     -fx-scale-x: 1.03;
     -fx-scale-y: 1.03;
     -fx-scale-z: 1.03;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 .button:pressed, .button:default:hover:pressed, #imageview:pressed{
