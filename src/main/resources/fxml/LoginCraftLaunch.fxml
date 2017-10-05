@@ -65,5 +65,17 @@
             </AnchorPane>
          </content>
       </ScrollPane>
+      <Button fx:id="namebtn" layoutX="250.0" layoutY="32.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="300.0">
+         <graphic>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="330.0" text="KevinWalker" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="33.0" />
+               </font>
+            </Label>
+         </graphic>
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

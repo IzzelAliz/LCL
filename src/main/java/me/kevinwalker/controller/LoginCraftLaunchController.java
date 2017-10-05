@@ -126,7 +126,6 @@ public class LoginCraftLaunchController implements Initializable {
 
         //播放音乐
         File bgm = new File(Main.getBaseDir(), "LclConfig/" + Main.json.getString("bgm"));
-        System.out.println(Main.json.asMap().get("bgm"));
         if (bgm.exists()) {
             musicPlayer = new MusicPlayThread(bgm.getPath());
         } else {
