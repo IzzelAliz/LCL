@@ -21,7 +21,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 /**
- * Fuck Kevin
+ * Fuck KevinWalker
  *
  * @author IzzelAliz
  */

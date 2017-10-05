@@ -5,12 +5,14 @@
     -fx-background-color: transparent;
     -fx-font-family: "微软雅黑";
     -fx-font-size: 11.0pt;
-    -fx-text-fill: #e2e2e2;
+    -fx-text-fill: #FFFFFF;
     -fx-background-insets: 0.0 0.0 0.0 0.0, 0.0, 1.0, 2.0;
+    -fx-font-weight: 1000
 }
 
 .button:hover{
     -fx-background-color: rgba(58.0, 58.0, 58.0, 0.24);
+    -fx-text-fill: #FFFFFF;
     -fx-scale-x: 1.02;
     -fx-scale-y: 1.02;
     -fx-scale-z: 1.02;
