@@ -52,12 +52,12 @@ public class AuthorController implements Initializable {
     /**
      * 界面配置
      */
-    void GuiSetStyle() {
+    void GuiSetStyle(){
         //设置背景
-        File file = new File(Main.getBaseDir(), "LclConfig/background.png");
+        File file = new File(Main.getBaseDir(), "LclConfig/"+Main.json.getString("background"));
         if (file.exists()) {
             try {
-                Util.zoomImage("LclConfig/background.png", "LclConfig/background.png", 800, 530);
+                Util.zoomImage("LclConfig/"+Main.json.getString("background"), "LclConfig/"+Main.json.getString("background"), 800, 530);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -67,11 +67,8 @@ public class AuthorController implements Initializable {
                 e.printStackTrace();
             }
         } else {
-            MainGui.setStyle("-fx-background-image: url(/css/images/background.png)");
+            MainGui.setStyle("-fx-background-image: url(/css/images/background.jpg)");
         }
-
-        bulletin.setStyle("-fx-background-image: url(/css/images/bulletin.png)");
-
         //设置标题栏
         handsvg.setStyle("-fx-fill:rgba(122,122,122,0.9);");
     }
