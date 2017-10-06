@@ -77,11 +77,9 @@
 			<version>20170516</version>
 		</dependency>
 		<dependency>
-			<groupId>javazoom.jl</groupId>
-			<artifactId>player</artifactId>
+			<groupId>javazoom</groupId>
+			<artifactId>jlayer</artifactId>
 			<version>1.0.1</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/jl1.0.1.jar</systemPath>
 		</dependency>
 	</dependencies>
 
