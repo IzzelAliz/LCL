@@ -58,8 +58,7 @@ public class Main extends Application {
         if (!config.exists()) {
             Util.saveResource("config.json", new File(getBaseDir(), "LclConfig/config.json"));
         }
-        json = new JSONObject(
-                new JSONTokener(Files.toString(new File(getBaseDir(), "LclConfig/config.json"), "utf-8")));
+        json = new JSONObject(new JSONTokener(Files.toString(new File(getBaseDir(), "LclConfig/config.json"), "utf-8")));
         launch(args);
         // ServerListPing slp = new ServerListPing();
         // InetSocketAddress sadd0 = new InetSocketAddress("dx.mc11.icraft.cc", 37190);
