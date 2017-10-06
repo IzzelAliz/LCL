@@ -3,6 +3,7 @@ package me.kevinwalker.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -20,6 +21,9 @@ import java.util.ResourceBundle;
  */
 public class GetResourcesController implements Initializable {
     @FXML
+    private ScrollPane ResourcesPane;
+
+    @FXML
     private AnchorPane MainGui;
 
     @FXML
@@ -30,6 +34,7 @@ public class GetResourcesController implements Initializable {
 
     @FXML
     private Button closebtn,leave;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -70,5 +75,12 @@ public class GetResourcesController implements Initializable {
 
         //设置标题栏
         handsvg.setStyle("-fx-fill:rgba(122,122,122,0.9);");
+    }
+
+    /**
+     * 帖子解析按钮配置
+     */
+    void Button(){
+
     }
 }
