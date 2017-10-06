@@ -50,7 +50,7 @@
 									<include>org.to2mbn</include>
 									<include>org.json</include>
 									<include>com.google.code.gson</include>
-									<include>javazoom.jl</include>
+									<include>javazoom</include>
 								</includes>
 							</artifactSet>
 							<createDependencyReducedPom>false</createDependencyReducedPom>
