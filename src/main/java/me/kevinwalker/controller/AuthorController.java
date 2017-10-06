@@ -26,16 +26,17 @@ public class AuthorController implements Initializable {
     private SVGPath handsvg;
 
     @FXML
-    private ImageView background;
+    private ImageView background, bulletin;
 
     @FXML
-    private Button closebtn,leave;
+    private Button closebtn, leave;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         mouseAction();
         GuiSetStyle();
     }
+
     /**
      * 鼠标点击设置
      */
@@ -47,6 +48,7 @@ public class AuthorController implements Initializable {
             Main.mainGui.show();
         });
     }
+
     /**
      * 界面配置
      */
@@ -67,6 +69,8 @@ public class AuthorController implements Initializable {
         } else {
             MainGui.setStyle("-fx-background-image: url(/css/images/background.png)");
         }
+
+        bulletin.setStyle("-fx-background-image: url(/css/images/bulletin.png)");
 
         //设置标题栏
         handsvg.setStyle("-fx-fill:rgba(122,122,122,0.9);");
