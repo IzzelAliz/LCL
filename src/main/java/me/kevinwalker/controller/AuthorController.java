@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
  */
 public class AuthorController implements Initializable {
     @FXML
-    private AnchorPane MainGui;
+    private AnchorPane mainGui;
 
     @FXML
     private SVGPath handsvg;
@@ -67,7 +67,7 @@ public class AuthorController implements Initializable {
                 e.printStackTrace();
             }
         } else {
-            MainGui.setStyle("-fx-background-image: url(/css/images/background.jpg)");
+            mainGui.setStyle("-fx-background-image: url(/css/images/background.jpg)");
         }
         //设置标题栏
         handsvg.setStyle("-fx-fill:rgba(122,122,122,0.9);");
