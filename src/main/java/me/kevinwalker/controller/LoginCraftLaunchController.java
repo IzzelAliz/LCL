@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -31,6 +32,9 @@ public class LoginCraftLaunchController implements Initializable {
 
     @FXML
     private ImageView background, settingImg, musicImages;
+
+    @FXML
+    private Label name;
 
     @FXML
     private Pane MainGui;
@@ -149,7 +153,8 @@ public class LoginCraftLaunchController implements Initializable {
         }
         musicPlayThread.start();
 
-        //设置标题栏颜色
+        //设置标题栏
+        name.setText(Main.json.getString("name"));
 //        handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",0.9);");
           handsvg.setStyle("-fx-fill:rgba(122,122,122,0.9);");
 

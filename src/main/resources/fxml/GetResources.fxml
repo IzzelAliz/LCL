@@ -25,6 +25,30 @@
                 <Font size="17.0" />
             </font>
         </Label>
+      <TabPane layoutX="47.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="473.0" prefWidth="739.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Mod资源">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0" />
+            </content>
+          </Tab>
+          <Tab text="服务端插件资源">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab text="皮肤资源">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="材质资源">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
         <Button fx:id="leave" layoutX="-10.0" layoutY="45.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" stylesheets="/css/GuiMain.css">
             <graphic>
                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -34,19 +58,5 @@
                 </ImageView>
             </graphic>
         </Button>
-      <TabPane layoutX="47.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="473.0" prefWidth="739.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Untitled Tab 1">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0" />
-            </content>
-          </Tab>
-          <Tab text="Untitled Tab 2">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
     </children>
 </AnchorPane>
