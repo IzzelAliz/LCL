@@ -34,10 +34,19 @@
                 </ImageView>
             </graphic>
         </Button>
-      <ScrollPane layoutX="91.0" layoutY="39.0" prefHeight="475.0" prefWidth="695.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="640.0" />
-        </content>
-      </ScrollPane>
+      <TabPane layoutX="47.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="473.0" prefWidth="739.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Untitled Tab 1">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0" />
+            </content>
+          </Tab>
+          <Tab text="Untitled Tab 2">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
     </children>
 </AnchorPane>
