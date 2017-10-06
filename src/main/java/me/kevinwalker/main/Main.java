@@ -11,11 +11,11 @@ import org.json.JSONTokener;
 
 import java.io.*;
 import java.net.URLDecoder;
+import java.nio.ByteBuffer;
 
 public class Main extends Application {
     public static JSONObject json;
     public static GuiBase mainGui;
-
     public static GuiBase author;
     public static GuiBase setting;
 
@@ -50,7 +50,7 @@ public class Main extends Application {
         if (!config.exists()) {
             Util.saveResource("config.json", new File(getBaseDir(), "LclConfig/config.json"));
         }
-        json = new JSONObject(new JSONTokener(Json.Files.toString(new File(getBaseDir(), "LclConfig/config.json"), "utf-8")));
+        json = new JSONObject(new JSONTokener(Files.toString(new File(getBaseDir(), "LclConfig/config.json"), "utf-8")));
         launch(args);
         // ServerListPing slp = new ServerListPing();
         // InetSocketAddress sadd0 = new InetSocketAddress("dx.mc11.icraft.cc", 37190);
@@ -90,6 +90,41 @@ public class Main extends Application {
                     .substring(6));
             return file.getParentFile();
         } catch (UnsupportedEncodingException e) {
+            return null;
+        }
+    }
+
+    public static class Files {
+        public static String toString(InputStream in, String charset) {
+            ByteBuffer bb = ByteBuffer.allocate(1024);
+            int length = -1;
+            byte[] buffer = new byte[1024];
+            try {
+                while ((length = in.read(buffer)) != -1)
+                    bb.put(buffer);
+                return new String(bb.array(), charset);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        public static String toString(File file, String charset) {
+            try {
+                if (!file.exists())
+                    return null;
+                RandomAccessFile rf = new RandomAccessFile(file, "r");
+                rf.seek(0);
+                long length = rf.length();
+                byte[] content = new byte[(int) length];
+                rf.readFully(content);
+                rf.close();
+                return new String(content, charset);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return null;
         }
     }

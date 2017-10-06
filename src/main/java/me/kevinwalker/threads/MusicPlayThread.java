@@ -9,13 +9,13 @@ public class MusicPlayThread extends Thread {
     private GameMusic music;
 
     public MusicPlayThread(String file) {
-        while (true) {
-            music = new GameMusic(file);
-        }
+        music = new GameMusic(file);
     }
 
     @Override
     public void run() {
-        music.play();
+        while (true) {
+            music.play();
+        }
     }
 }

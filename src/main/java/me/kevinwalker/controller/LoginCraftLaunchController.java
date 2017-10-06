@@ -30,7 +30,7 @@ public class LoginCraftLaunchController implements Initializable {
     public static boolean musicPlay = true;
 
     @FXML
-    private ImageView background,settingImg,musicImages;
+    private ImageView background, settingImg, musicImages;
 
     @FXML
     private Pane MainGui;
@@ -39,7 +39,7 @@ public class LoginCraftLaunchController implements Initializable {
     private SVGPath handsvg;
 
     @FXML
-    private Button launch, setting, bulletin, login, resourceManagement, custom, getResources, serverInformation, author, update,music;
+    private Button launch, setting, bulletin, login, resourceManagement, custom, getResources, serverInformation, author, update, music;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -135,8 +135,8 @@ public class LoginCraftLaunchController implements Initializable {
         if (bgm.exists()) {
             musicPlayThread = new MusicPlayThread(bgm.getPath());
         } else {
+            Util.saveResource("css/music/bgm.mp3", new File(Main.getBaseDir(), "LclConfig/bgm.mp3"));
             File musicFile = new File(Main.getBaseDir(), "LclConfig/bgm.mp3");
-            Util.saveResource("css/music/bgm.mp3", musicFile);
             musicPlayThread = new MusicPlayThread(musicFile.getPath());
         }
         musicPlayThread.start();
