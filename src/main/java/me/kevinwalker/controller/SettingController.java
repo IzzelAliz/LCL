@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 public class SettingController implements Initializable {
 
     @FXML
-    private AnchorPane MainGui;
+    private AnchorPane mainGui;
 
     @FXML
     private SVGPath handsvg;
@@ -35,7 +35,7 @@ public class SettingController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         mouseAction();
-        GuiSetStyle();
+        guiSetStyle();
     }
 
     /**
@@ -53,7 +53,7 @@ public class SettingController implements Initializable {
     /**
      * 界面配置
      */
-    void GuiSetStyle() {
+    void guiSetStyle() {
         //设置背景
         File file = new File(Main.getBaseDir(), "LclConfig/"+Main.json.getString("background"));
         if (file.exists()) {
@@ -68,7 +68,7 @@ public class SettingController implements Initializable {
                 e.printStackTrace();
             }
         } else {
-            MainGui.setStyle("-fx-background-image: url(/css/images/background.jpg)");
+            mainGui.setStyle("-fx-background-image: url(/css/images/background.jpg)");
         }
         //设置标题栏
         handsvg.setStyle("-fx-fill:rgba(122,122,122,0.9);");

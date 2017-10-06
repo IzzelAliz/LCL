@@ -48,7 +48,7 @@ public class LoginCraftLaunchController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //设置界面
-        GuiSetStyle();
+        guiSetStyle();
         mouseAction();
         mouseMoved();
     }
@@ -111,7 +111,7 @@ public class LoginCraftLaunchController implements Initializable {
     /**
      * 界面配置
      */
-    void GuiSetStyle() {
+    void guiSetStyle() {
 
         //设置背景
         File file = new File(Main.getBaseDir(), "LclConfig/"+Main.json.getString("background"));

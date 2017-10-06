@@ -34,7 +34,7 @@ public class AuthorController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         mouseAction();
-        GuiSetStyle();
+        guiSetStyle();
     }
 
     /**
@@ -52,7 +52,7 @@ public class AuthorController implements Initializable {
     /**
      * 界面配置
      */
-    void GuiSetStyle(){
+    void guiSetStyle(){
         //设置背景
         File file = new File(Main.getBaseDir(), "LclConfig/"+Main.json.getString("background"));
         if (file.exists()) {

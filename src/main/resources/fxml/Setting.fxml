@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0"
+<AnchorPane fx:id="mainGui" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0"
             prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="me.kevinwalker.controller.AuthorController">
+            fx:controller="me.kevinwalker.controller.SettingController">
     <children>
         <ImageView fx:id="background" fitHeight="530.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
         </ImageView>
