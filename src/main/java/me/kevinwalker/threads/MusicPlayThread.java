@@ -9,7 +9,9 @@ public class MusicPlayThread extends Thread {
     private GameMusic music;
 
     public MusicPlayThread(String file) {
-        music = new GameMusic(file);
+        while (true) {
+            music = new GameMusic(file);
+        }
     }
 
     @Override

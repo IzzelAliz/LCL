@@ -30,13 +30,7 @@ public class LoginCraftLaunchController implements Initializable {
     public static boolean musicPlay = true;
 
     @FXML
-    private ImageView background;
-
-    @FXML
-    private Button music;
-
-    @FXML
-    private ImageView settingImg;
+    private ImageView background,settingImg,musicImages;
 
     @FXML
     private Pane MainGui;
@@ -45,7 +39,7 @@ public class LoginCraftLaunchController implements Initializable {
     private SVGPath handsvg;
 
     @FXML
-    private Button launch, setting, bulletin, login, resourceManagement, custom, getResources, serverInformation, author, update;
+    private Button launch, setting, bulletin, login, resourceManagement, custom, getResources, serverInformation, author, update,music;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,9 +57,11 @@ public class LoginCraftLaunchController implements Initializable {
             if (musicPlay) {
                 musicPlayThread.suspend();
                 musicPlay = false;
+                musicImages.setStyle("-fx-image: url(/css/images/music_close.png)");
             } else {
-                musicPlay = true;
                 musicPlayThread.resume();
+                musicImages.setStyle("-fx-image: url(/css/images/music.png)");
+                musicPlay = true;
             }
         });
 
@@ -134,16 +130,16 @@ public class LoginCraftLaunchController implements Initializable {
         onGuiOpen(author);
         onGuiOpen(update);
 
-//        //播放音乐
-//        bgm = new File(Main.getBaseDir(), "LclConfig/" + Main.json.getString("bgm"));
-//        if (bgm.exists()) {
-//            musicPlayThread = new MusicPlayThread(bgm.getPath());
-//        } else {
-//            File musicFile = new File(Main.getBaseDir(), "LclConfig/bgm.mp3");
-//            Util.saveResource("css/music/bgm.mp3", musicFile);
-//            musicPlayThread = new MusicPlayThread(musicFile.getPath());
-//        }
-//        musicPlayThread.start();
+        //播放音乐
+        bgm = new File(Main.getBaseDir(), "LclConfig/" + Main.json.getString("bgm"));
+        if (bgm.exists()) {
+            musicPlayThread = new MusicPlayThread(bgm.getPath());
+        } else {
+            File musicFile = new File(Main.getBaseDir(), "LclConfig/bgm.mp3");
+            Util.saveResource("css/music/bgm.mp3", musicFile);
+            musicPlayThread = new MusicPlayThread(musicFile.getPath());
+        }
+        musicPlayThread.start();
 
         //设置标题栏颜色
         handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",0.9);");
