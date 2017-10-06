@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import me.kevinwalker.guis.GuiBase;
-import me.kevinwalker.utils.Json;
 import me.kevinwalker.utils.Util;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -18,6 +17,7 @@ public class Main extends Application {
     public static GuiBase mainGui;
     public static GuiBase author;
     public static GuiBase setting;
+    public static GuiBase getResources;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -38,6 +38,7 @@ public class Main extends Application {
     void GuiMain(Stage stage) {
         Main.author = new GuiBase("Author", stage, 800, 530);
         Main.setting = new GuiBase("Setting", stage, 800, 530);
+        Main.getResources = new GuiBase("GetResources", stage, 800, 530);
     }
 
     public static void main(String[] args) throws Exception {

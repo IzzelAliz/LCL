@@ -16,10 +16,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Created by KevinWalker on 2017/10/4.
+ * Created by KevinWalker on 2017/10/6.
  */
-public class SettingController implements Initializable {
-
+public class GetResourcesController implements Initializable {
     @FXML
     private AnchorPane MainGui;
 
@@ -30,14 +29,13 @@ public class SettingController implements Initializable {
     private ImageView background;
 
     @FXML
-    private Button closebtn, leave;
+    private Button closebtn,leave;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         mouseAction();
         GuiSetStyle();
     }
-
     /**
      * 鼠标点击设置
      */
@@ -49,7 +47,6 @@ public class SettingController implements Initializable {
             Main.mainGui.show();
         });
     }
-
     /**
      * 界面配置
      */
@@ -70,6 +67,7 @@ public class SettingController implements Initializable {
         } else {
             MainGui.setStyle("-fx-background-image: url(/css/images/background.png)");
         }
+
         //设置标题栏
         handsvg.setStyle("-fx-fill:rgba(122,122,122,0.9);");
     }

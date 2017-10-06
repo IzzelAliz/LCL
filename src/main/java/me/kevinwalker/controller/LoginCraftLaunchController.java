@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
  * Created by KevinWalker on 2017/9/16.
  */
 public class LoginCraftLaunchController implements Initializable {
-    private java.awt.Color BackGroundRGB = new java.awt.Color(122, 122, 122);
+//    private java.awt.Color BackGroundRGB = new java.awt.Color(122, 122, 122);
     public static MusicPlayThread musicPlayThread;
     private static File bgm;
     public static boolean musicPlay = true;
@@ -80,6 +80,14 @@ public class LoginCraftLaunchController implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        getResources.setOnAction(oa -> {
+            try {
+                Main.getResources.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     /**
@@ -101,7 +109,7 @@ public class LoginCraftLaunchController implements Initializable {
      */
     void GuiSetStyle() {
 
-        //设置背景颜色
+        //设置背景
         File file = new File(Main.getBaseDir(), "LclConfig/background.png");
         if (file.exists()) {
             try {
@@ -142,7 +150,9 @@ public class LoginCraftLaunchController implements Initializable {
         musicPlayThread.start();
 
         //设置标题栏颜色
-        handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",0.9);");
+//        handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",0.9);");
+          handsvg.setStyle("-fx-fill:rgba(122,122,122,0.9);");
+
     }
 
     public void onCloseButtonAction(ActionEvent event) {
