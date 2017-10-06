@@ -143,9 +143,14 @@ public class McbbsParser {
                         if (span.attr("class").equals("num"))
                             tp.reply = Integer.parseInt(span.text().trim());
                         if (span.attr("class").equals("icon_tu")) tp.picture = true;
-                        if (span.attr("class").equals("icon_top")) tp.digest = true;
+                        if (span.attr("class").equals("icon_top")) {
+                            if (span.select("img").attr("src").contains("digest"))
+                                tp.digest = true;
+                            else tp.top = true;
+                        }
                     });
-                    list.add(tp);
+                    if (!tp.top)
+                        list.add(tp);
                 });
             });
         } catch (Exception e) {
@@ -164,6 +169,6 @@ public class McbbsParser {
         public String title, url, author;
         public int reply;
         public Color color = new Color(0.0D, 0.0D, 0.0D, 1.0D);
-        public boolean picture = false, digest = false;
+        public boolean picture = false, digest = false, top = false;
     }
 }
