@@ -24,7 +24,7 @@ public class GetResourcesController implements Initializable {
     private ScrollPane ResourcesPane;
 
     @FXML
-    private AnchorPane MainGui;
+    private AnchorPane mainGui;
 
     @FXML
     private SVGPath handsvg;
@@ -70,7 +70,7 @@ public class GetResourcesController implements Initializable {
                 e.printStackTrace();
             }
         } else {
-            MainGui.setStyle("-fx-background-image: url(/css/images/background.jpg)");
+            mainGui.setStyle("-fx-background-image: url(/css/images/background.jpg)");
         }
 
         //设置标题栏
