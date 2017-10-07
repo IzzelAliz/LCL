@@ -59,6 +59,8 @@ public class GetResourcesController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         mouseAction();
         GuiSetStyle();
+        image = new Image(GetResourcesController.class.getResourceAsStream("/css/images/loading.gif"));
+        iv = new ImageView(image);
     }
 
     /**
@@ -105,6 +107,9 @@ public class GetResourcesController implements Initializable {
 
     }
 
+    Image image;
+    ImageView iv ;
+
     boolean mod = false, plugin = false, skin = false, texture = false;
 
     @FXML
@@ -113,31 +118,39 @@ public class GetResourcesController implements Initializable {
         if (mod)
             new Thread(new Runnable() {
                 int i = 0;
-
                 @Override
                 public void run() {
+                    Platform.runLater(() -> {
+                        modPane.setAlignment(Pos.CENTER);
+                        GridPane.setConstraints(iv, 0, 0);
+                        modPane.getChildren().add(iv);
+                    });
                     List<McbbsParser.ThreadPost> list = new ArrayList<>();
                     list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_MOD.value(), McbbsParser.PARAM.PAGE.page(1)));
                     list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_MOD.value(), McbbsParser.PARAM.PAGE.page(2)));
+                    Platform.runLater(() -> {
+                        modPane.setAlignment(Pos.BASELINE_LEFT);
+                        modPane.getChildren().clear();
+                    });
                     list.stream().forEach(thread -> {
                         Platform.runLater(() -> {
                             HBox box = new HBox();
                             box.setMaxWidth(680.0D);
                             box.setPrefWidth(680.0D);
-                            box.setPrefHeight(20.0D);
-                            Rectangle rectangle = new Rectangle(30.0D, 40.0D);
+                            box.setPrefHeight(40.0D);
+                            Rectangle rectangle = new Rectangle(20.0D, 40.0D);
                             FadeTransition ft = new FadeTransition(Duration.millis(1000), box);
                             ft.setFromValue(0);
                             ft.setToValue(1.0);
                             ft.setCycleCount(1);
                             ft.setAutoReverse(true);
                             if (thread.digest) {
-                                rectangle.setFill(new Color(Color.CYAN.getRed(), Color.CYAN.getGreen(), Color.CYAN.getBlue(), 0.5));
+                                rectangle.setFill(new Color(Color.BLUEVIOLET.getRed(), Color.BLUEVIOLET.getGreen(), Color.BLUEVIOLET.getBlue(), 0.5));
                             } else {
                                 if (thread.reply > 300)
-                                    rectangle.setFill(new Color(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue(), 0.5));
+                                    rectangle.setFill(new Color(Color.ORANGERED.getRed(), Color.ORANGERED.getGreen(), Color.ORANGERED.getBlue(), 0.5));
                                 else if (thread.reply > 200)
-                                    rectangle.setFill(new Color(Color.LEMONCHIFFON.getRed(), Color.LEMONCHIFFON.getGreen(), Color.LEMONCHIFFON.getBlue(), 0.5));
+                                    rectangle.setFill(new Color(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue(), 0.5));
                                 else if (thread.reply > 100)
                                     rectangle.setFill(new Color(Color.YELLOW.getRed(), Color.YELLOW.getGreen(), Color.YELLOW.getBlue(), 0.5));
                                 else
@@ -171,28 +184,37 @@ public class GetResourcesController implements Initializable {
 
                 @Override
                 public void run() {
+                    Platform.runLater(() -> {
+                        pluginPane.setAlignment(Pos.CENTER);
+                        GridPane.setConstraints(iv, 0, 0);
+                        pluginPane.getChildren().add(iv);
+                    });
                     List<McbbsParser.ThreadPost> list = new ArrayList<>();
                     list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_PLUGIN.value(), McbbsParser.PARAM.PAGE.page(1)));
                     list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_PLUGIN.value(), McbbsParser.PARAM.PAGE.page(2)));
+                    Platform.runLater(() -> {
+                        pluginPane.setAlignment(Pos.BASELINE_LEFT);
+                        pluginPane.getChildren().clear();
+                    });
                     list.stream().forEach(thread -> {
                         Platform.runLater(() -> {
                             HBox box = new HBox();
                             box.setMaxWidth(680.0D);
                             box.setPrefWidth(680.0D);
-                            box.setPrefHeight(20.0D);
-                            Rectangle rectangle = new Rectangle(30.0D, 40.0D);
+                            box.setPrefHeight(40.0D);
+                            Rectangle rectangle = new Rectangle(20.0D, 40.0D);
                             FadeTransition ft = new FadeTransition(Duration.millis(1000), box);
                             ft.setFromValue(0);
                             ft.setToValue(1.0);
                             ft.setCycleCount(1);
                             ft.setAutoReverse(true);
                             if (thread.digest) {
-                                rectangle.setFill(new Color(Color.CYAN.getRed(), Color.CYAN.getGreen(), Color.CYAN.getBlue(), 0.5));
+                                rectangle.setFill(new Color(Color.BLUEVIOLET.getRed(), Color.BLUEVIOLET.getGreen(), Color.BLUEVIOLET.getBlue(), 0.5));
                             } else {
                                 if (thread.reply > 300)
-                                    rectangle.setFill(new Color(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue(), 0.5));
+                                    rectangle.setFill(new Color(Color.ORANGERED.getRed(), Color.ORANGERED.getGreen(), Color.ORANGERED.getBlue(), 0.5));
                                 else if (thread.reply > 200)
-                                    rectangle.setFill(new Color(Color.LEMONCHIFFON.getRed(), Color.LEMONCHIFFON.getGreen(), Color.LEMONCHIFFON.getBlue(), 0.5));
+                                    rectangle.setFill(new Color(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue(), 0.5));
                                 else if (thread.reply > 100)
                                     rectangle.setFill(new Color(Color.YELLOW.getRed(), Color.YELLOW.getGreen(), Color.YELLOW.getBlue(), 0.5));
                                 else
@@ -225,28 +247,37 @@ public class GetResourcesController implements Initializable {
 
                 @Override
                 public void run() {
+                    Platform.runLater(() -> {
+                        skinPane.setAlignment(Pos.CENTER);
+                        GridPane.setConstraints(iv, 0, 0);
+                        skinPane.getChildren().add(iv);
+                    });
                     List<McbbsParser.ThreadPost> list = new ArrayList<>();
                     list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_SKIN.value(), McbbsParser.PARAM.PAGE.page(1)));
                     list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_SKIN.value(), McbbsParser.PARAM.PAGE.page(2)));
+                    Platform.runLater(() -> {
+                        skinPane.setAlignment(Pos.BASELINE_LEFT);
+                        skinPane.getChildren().clear();
+                    });
                     list.stream().forEach(thread -> {
                         Platform.runLater(() -> {
                             HBox box = new HBox();
                             box.setMaxWidth(680.0D);
                             box.setPrefWidth(680.0D);
-                            box.setPrefHeight(20.0D);
-                            Rectangle rectangle = new Rectangle(30.0D, 40.0D);
+                            box.setPrefHeight(40.0D);
+                            Rectangle rectangle = new Rectangle(20.0D, 40.0D);
                             FadeTransition ft = new FadeTransition(Duration.millis(1000), box);
                             ft.setFromValue(0);
                             ft.setToValue(1.0);
                             ft.setCycleCount(1);
                             ft.setAutoReverse(true);
                             if (thread.digest) {
-                                rectangle.setFill(new Color(Color.CYAN.getRed(), Color.CYAN.getGreen(), Color.CYAN.getBlue(), 0.5));
+                                rectangle.setFill(new Color(Color.BLUEVIOLET.getRed(), Color.BLUEVIOLET.getGreen(), Color.BLUEVIOLET.getBlue(), 0.5));
                             } else {
                                 if (thread.reply > 300)
-                                    rectangle.setFill(new Color(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue(), 0.5));
+                                    rectangle.setFill(new Color(Color.ORANGERED.getRed(), Color.ORANGERED.getGreen(), Color.ORANGERED.getBlue(), 0.5));
                                 else if (thread.reply > 200)
-                                    rectangle.setFill(new Color(Color.LEMONCHIFFON.getRed(), Color.LEMONCHIFFON.getGreen(), Color.LEMONCHIFFON.getBlue(), 0.5));
+                                    rectangle.setFill(new Color(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue(), 0.5));
                                 else if (thread.reply > 100)
                                     rectangle.setFill(new Color(Color.YELLOW.getRed(), Color.YELLOW.getGreen(), Color.YELLOW.getBlue(), 0.5));
                                 else
@@ -279,28 +310,37 @@ public class GetResourcesController implements Initializable {
 
                 @Override
                 public void run() {
+                    Platform.runLater(() -> {
+                        texturePane.setAlignment(Pos.CENTER);
+                        GridPane.setConstraints(iv, 0, 0);
+                        texturePane.getChildren().add(iv);
+                    });
                     List<McbbsParser.ThreadPost> list = new ArrayList<>();
                     list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_TEXTURE.value(), McbbsParser.PARAM.PAGE.page(1)));
                     list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_TEXTURE.value(), McbbsParser.PARAM.PAGE.page(2)));
+                    Platform.runLater(() -> {
+                        texturePane.setAlignment(Pos.BASELINE_LEFT);
+                        texturePane.getChildren().clear();
+                    });
                     list.stream().forEach(thread -> {
                         Platform.runLater(() -> {
                             HBox box = new HBox();
                             box.setMaxWidth(680.0D);
                             box.setPrefWidth(680.0D);
-                            box.setPrefHeight(20.0D);
-                            Rectangle rectangle = new Rectangle(30.0D, 40.0D);
+                            box.setPrefHeight(40.0D);
+                            Rectangle rectangle = new Rectangle(20.0D, 40.0D);
                             FadeTransition ft = new FadeTransition(Duration.millis(1000), box);
                             ft.setFromValue(0);
                             ft.setToValue(1.0);
                             ft.setCycleCount(1);
                             ft.setAutoReverse(true);
                             if (thread.digest) {
-                                rectangle.setFill(new Color(Color.CYAN.getRed(), Color.CYAN.getGreen(), Color.CYAN.getBlue(), 0.5));
+                                rectangle.setFill(new Color(Color.BLUEVIOLET.getRed(), Color.BLUEVIOLET.getGreen(), Color.BLUEVIOLET.getBlue(), 0.5));
                             } else {
                                 if (thread.reply > 300)
-                                    rectangle.setFill(new Color(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue(), 0.5));
+                                    rectangle.setFill(new Color(Color.ORANGERED.getRed(), Color.ORANGERED.getGreen(), Color.ORANGERED.getBlue(), 0.5));
                                 else if (thread.reply > 200)
-                                    rectangle.setFill(new Color(Color.LEMONCHIFFON.getRed(), Color.LEMONCHIFFON.getGreen(), Color.LEMONCHIFFON.getBlue(), 0.5));
+                                    rectangle.setFill(new Color(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue(), 0.5));
                                 else if (thread.reply > 100)
                                     rectangle.setFill(new Color(Color.YELLOW.getRed(), Color.YELLOW.getGreen(), Color.YELLOW.getBlue(), 0.5));
                                 else
