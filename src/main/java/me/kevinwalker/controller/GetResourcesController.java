@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.SVGPath;
+import me.kevinwalker.guis.net.McbbsParser;
 import me.kevinwalker.main.Main;
 import me.kevinwalker.utils.Util;
 
@@ -33,7 +34,10 @@ public class GetResourcesController implements Initializable {
     private ImageView background;
 
     @FXML
-    private Button closebtn,leave;
+    private Button closebtn, leave;
+
+    @FXML
+    private ScrollPane pluginPane, modPane, texturePane, skinPane;
 
 
     @Override
@@ -41,6 +45,7 @@ public class GetResourcesController implements Initializable {
         mouseAction();
         GuiSetStyle();
     }
+
     /**
      * 鼠标点击设置
      */
@@ -52,15 +57,16 @@ public class GetResourcesController implements Initializable {
             Main.mainGui.show();
         });
     }
+
     /**
      * 界面配置
      */
     void GuiSetStyle() {
         //设置背景
-        File file = new File(Main.getBaseDir(), "LclConfig/"+Main.json.getString("background"));
+        File file = new File(Main.getBaseDir(), "LclConfig/" + Main.json.getString("background"));
         if (file.exists()) {
             try {
-                Util.zoomImage("LclConfig/"+Main.json.getString("background"), "LclConfig/"+Main.json.getString("background"), 800, 530);
+                Util.zoomImage("LclConfig/" + Main.json.getString("background"), "LclConfig/" + Main.json.getString("background"), 800, 530);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -80,7 +86,30 @@ public class GetResourcesController implements Initializable {
     /**
      * 帖子解析按钮配置
      */
-    void Button(){
+    void Button() {
 
+    }
+
+    boolean mod = false, plugin = false, skin = false, texture = false;
+
+    @FXML
+    void onModSelect() {
+        mod = !mod;
+        McbbsParser.parse();
+    }
+
+    @FXML
+    void onPluginSelect() {
+        plugin = !plugin;
+    }
+
+    @FXML
+    void onSkinSelect() {
+        skin = !skin;
+    }
+
+    @FXML
+    void onTextureSelect() {
+        texture = !texture;
     }
 }

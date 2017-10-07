@@ -44,13 +44,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println(LauncherUpdate.check());
-        McbbsParser.parse(McbbsParser.PARAM.FORUM_MOD.value(), McbbsParser.PARAM.PAGE.page(1)).stream().forEach(c -> {
-            System.out.println(c.title);
-            System.out.println(c.author);
-            System.out.println(c.url);
-            System.out.println(c.reply);
-        });
         // setupLogger();
         File file = new File(getBaseDir(), "LclConfig");
         File config = new File(getBaseDir(), "LclConfig/config.json");

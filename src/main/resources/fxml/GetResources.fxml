@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 
-<AnchorPane fx:id="mainGui" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.controller.GetResourcesController">
+<AnchorPane fx:id="mainGui" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.controller.GetResourcesController">
     <children>
         <ImageView fx:id="background" fitHeight="530.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
         </ImageView>
@@ -25,26 +23,26 @@
                 <Font size="17.0" />
             </font>
         </Label>
-      <TabPane layoutX="47.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="473.0" prefWidth="739.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="47.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="473.0" prefWidth="739.0" side="BOTTOM" stylesheets="/css/GetResource.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Mod资源">
+          <Tab onSelectionChanged="#onModSelect" text="Mod资源">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0" />
+              <ScrollPane fx:id="modPane" hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0" />
             </content>
           </Tab>
-          <Tab text="服务端插件资源">
+          <Tab onSelectionChanged="#onPluginSelect" text="服务端插件资源">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <ScrollPane fx:id="pluginPane" hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
-            <Tab text="皮肤资源">
+            <Tab onSelectionChanged="#onSkinSelect" text="皮肤资源">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <ScrollPane fx:id="skinPane" hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
-            <Tab text="材质资源">
+            <Tab onSelectionChanged="#onTextureSelect" text="材质资源">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <ScrollPane fx:id="texturePane" hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
         </tabs>
