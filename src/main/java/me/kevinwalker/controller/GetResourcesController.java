@@ -143,7 +143,7 @@ public class GetResourcesController implements Initializable {
             new FetchTask(skinPane, new String[]{McbbsParser.PARAM.FORUM_SKIN.value(), McbbsParser.PARAM.PAGE.page(1)}
                     , new String[]{McbbsParser.PARAM.FORUM_SKIN.value(), McbbsParser.PARAM.PAGE.page(2)}).start();
         else
-            texturePane.getChildren().clear();
+            skinPane.getChildren().clear();
     }
 
     @FXML
