@@ -3,6 +3,7 @@ package me.kevinwalker.main;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import me.kevinwalker.client.LauncherUpdate;
 import me.kevinwalker.guis.GuiBase;
 import me.kevinwalker.guis.net.McbbsParser;
 import me.kevinwalker.utils.Util;
@@ -43,6 +44,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        System.out.println(LauncherUpdate.check());
         McbbsParser.parse(McbbsParser.PARAM.FORUM_MOD.value(), McbbsParser.PARAM.PAGE.page(1)).stream().forEach(c -> {
             System.out.println(c.title);
             System.out.println(c.author);

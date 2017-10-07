@@ -8,17 +8,20 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLDecoder;
 
 public class Util {
 
+    /**
+     * 江jar内文件加载为 byte[] 格式
+     *
+     * @param path 不带第一个斜杠的路径
+     * @return byte[]
+     */
+
     public static byte[] loadResource(String path) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        URL url = null;
         try {
-            url = new URL("jar:file:/" + URLDecoder.decode(Main.class.getProtectionDomain().getCodeSource().getLocation().toString().substring(6), "utf-8") + "!/" + path);
-            InputStream in = url.openStream();
+            InputStream in = Util.class.getClassLoader().getResourceAsStream(path);
             byte[] buffer = new byte[1024];
             int length = -1;
             while ((length = in.read(buffer)) != -1) {
@@ -44,8 +47,7 @@ public class Util {
      */
     public static void saveResource(String path, File target) {
         try {
-            URL url = new URL("jar:file:/" + URLDecoder.decode(Main.class.getProtectionDomain().getCodeSource().getLocation().toString().substring(6), "utf-8") + "!/" + path);
-            InputStream in = url.openStream();
+            InputStream in = Util.class.getClassLoader().getResourceAsStream(path);
             byte[] buffer = new byte[1024];
             int length = -1;
             OutputStream out = new FileOutputStream(target);
