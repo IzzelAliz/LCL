@@ -3,7 +3,6 @@ package me.kevinwalker.controller;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -24,7 +23,7 @@ import java.util.ResourceBundle;
 /**
  * Created by KevinWalker on 2017/9/16.
  */
-public class LoginCraftLaunchController implements Initializable {
+public class LoginCraftLaunchController extends MainController{
 //    private java.awt.Color BackGroundRGB = new java.awt.Color(122, 122, 122);
     public static MusicPlayThread musicPlayThread;
     private static File bgm;
@@ -52,6 +51,7 @@ public class LoginCraftLaunchController implements Initializable {
         mouseAction();
         mouseMoved();
     }
+
 
     /**
      * 鼠标点击设置

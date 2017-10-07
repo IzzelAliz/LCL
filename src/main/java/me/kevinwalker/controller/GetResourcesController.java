@@ -3,7 +3,6 @@ package me.kevinwalker.controller;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -36,7 +35,7 @@ import java.util.ResourceBundle;
 /**
  * Created by KevinWalker on 2017/10/6.
  */
-public class GetResourcesController implements Initializable {
+public class GetResourcesController extends MainController {
     @FXML
     private ScrollPane ResourcesPane;
 
