@@ -54,6 +54,8 @@
                                     <include>org.apache.httpcomponents</include>
                                     <include>org.jsoup</include>
                                     <include>net.lingala.zip4j</include>
+                                    <include>commons-logging</include>
+                                    <include>commons-codec</include>
                                 </includes>
                             </artifactSet>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
