@@ -26,7 +26,6 @@ public class Main extends Application {
         mainGui = new GuiBase("LoginCraftLaunch", primaryStage, 800, 530);
         mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
         mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
-        mainGui.getStage().setAlwaysOnTop(true);
         mainGui.getStage().setResizable(false);
         mainGui.getScene().setFill(null);
 
