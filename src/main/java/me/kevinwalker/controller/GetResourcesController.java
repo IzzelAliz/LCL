@@ -50,7 +50,7 @@ public class GetResourcesController implements Initializable {
     private Button closebtn, leave;
 
     @FXML
-    private ScrollPane pluginPane, texturePane, skinPane;
+    private GridPane pluginPane, texturePane, skinPane;
 
     @FXML
     private GridPane modPane;
@@ -147,7 +147,7 @@ public class GetResourcesController implements Initializable {
                             Text text = new Text();
                             text.setText("  " + thread.title);
                             text.setFill(thread.color);
-                            text.setFont(Font.font("微软雅黑", FontWeight.SEMI_BOLD, 15));
+                            text.setFont(Font.font("微软雅黑", FontWeight.BOLD, 15));
                             box.getChildren().add(text);
                             box.setAlignment(Pos.CENTER_LEFT);
                             GridPane.setConstraints(box, 0, i++);
@@ -159,21 +159,168 @@ public class GetResourcesController implements Initializable {
             }).start();
         else
             modPane.getChildren().clear();
-        ;
+
     }
 
     @FXML
     void onPluginSelect() {
         plugin = !plugin;
+        if (plugin)
+            new Thread(new Runnable() {
+                int i = 0;
+
+                @Override
+                public void run() {
+                    List<McbbsParser.ThreadPost> list = new ArrayList<>();
+                    list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_PLUGIN.value(), McbbsParser.PARAM.PAGE.page(1)));
+                    list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_PLUGIN.value(), McbbsParser.PARAM.PAGE.page(2)));
+                    list.stream().forEach(thread -> {
+                        Platform.runLater(() -> {
+                            HBox box = new HBox();
+                            box.setMaxWidth(680.0D);
+                            box.setPrefWidth(680.0D);
+                            box.setPrefHeight(20.0D);
+                            Rectangle rectangle = new Rectangle(30.0D, 40.0D);
+                            FadeTransition ft = new FadeTransition(Duration.millis(1000), box);
+                            ft.setFromValue(0);
+                            ft.setToValue(1.0);
+                            ft.setCycleCount(1);
+                            ft.setAutoReverse(true);
+                            if (thread.digest) {
+                                rectangle.setFill(new Color(Color.CYAN.getRed(), Color.CYAN.getGreen(), Color.CYAN.getBlue(), 0.5));
+                            } else {
+                                if (thread.reply > 300)
+                                    rectangle.setFill(new Color(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue(), 0.5));
+                                else if (thread.reply > 200)
+                                    rectangle.setFill(new Color(Color.LEMONCHIFFON.getRed(), Color.LEMONCHIFFON.getGreen(), Color.LEMONCHIFFON.getBlue(), 0.5));
+                                else if (thread.reply > 100)
+                                    rectangle.setFill(new Color(Color.YELLOW.getRed(), Color.YELLOW.getGreen(), Color.YELLOW.getBlue(), 0.5));
+                                else
+                                    rectangle.setFill(new Color(0.99, 0.99, 0.99, 0.5));
+                            }
+                            box.getChildren().add(rectangle);
+                            Text text = new Text();
+                            text.setText("  " + thread.title);
+                            text.setFill(thread.color);
+                            text.setFont(Font.font("微软雅黑", FontWeight.BOLD, 15));
+                            box.getChildren().add(text);
+                            box.setAlignment(Pos.CENTER_LEFT);
+                            GridPane.setConstraints(box, 0, i++);
+                            pluginPane.getChildren().add(box);
+                            ft.play();
+                        });
+                    });
+                }
+            }).start();
+        else
+            pluginPane.getChildren().clear();
     }
 
     @FXML
     void onSkinSelect() {
         skin = !skin;
+        if (skin)
+            new Thread(new Runnable() {
+                int i = 0;
+
+                @Override
+                public void run() {
+                    List<McbbsParser.ThreadPost> list = new ArrayList<>();
+                    list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_SKIN.value(), McbbsParser.PARAM.PAGE.page(1)));
+                    list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_SKIN.value(), McbbsParser.PARAM.PAGE.page(2)));
+                    list.stream().forEach(thread -> {
+                        Platform.runLater(() -> {
+                            HBox box = new HBox();
+                            box.setMaxWidth(680.0D);
+                            box.setPrefWidth(680.0D);
+                            box.setPrefHeight(20.0D);
+                            Rectangle rectangle = new Rectangle(30.0D, 40.0D);
+                            FadeTransition ft = new FadeTransition(Duration.millis(1000), box);
+                            ft.setFromValue(0);
+                            ft.setToValue(1.0);
+                            ft.setCycleCount(1);
+                            ft.setAutoReverse(true);
+                            if (thread.digest) {
+                                rectangle.setFill(new Color(Color.CYAN.getRed(), Color.CYAN.getGreen(), Color.CYAN.getBlue(), 0.5));
+                            } else {
+                                if (thread.reply > 300)
+                                    rectangle.setFill(new Color(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue(), 0.5));
+                                else if (thread.reply > 200)
+                                    rectangle.setFill(new Color(Color.LEMONCHIFFON.getRed(), Color.LEMONCHIFFON.getGreen(), Color.LEMONCHIFFON.getBlue(), 0.5));
+                                else if (thread.reply > 100)
+                                    rectangle.setFill(new Color(Color.YELLOW.getRed(), Color.YELLOW.getGreen(), Color.YELLOW.getBlue(), 0.5));
+                                else
+                                    rectangle.setFill(new Color(0.99, 0.99, 0.99, 0.5));
+                            }
+                            box.getChildren().add(rectangle);
+                            Text text = new Text();
+                            text.setText("  " + thread.title);
+                            text.setFill(thread.color);
+                            text.setFont(Font.font("微软雅黑", FontWeight.BOLD, 15));
+                            box.getChildren().add(text);
+                            box.setAlignment(Pos.CENTER_LEFT);
+                            GridPane.setConstraints(box, 0, i++);
+                            skinPane.getChildren().add(box);
+                            ft.play();
+                        });
+                    });
+                }
+            }).start();
+        else
+            skinPane.getChildren().clear();
     }
 
     @FXML
     void onTextureSelect() {
         texture = !texture;
+        if (texture)
+            new Thread(new Runnable() {
+                int i = 0;
+
+                @Override
+                public void run() {
+                    List<McbbsParser.ThreadPost> list = new ArrayList<>();
+                    list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_TEXTURE.value(), McbbsParser.PARAM.PAGE.page(1)));
+                    list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_TEXTURE.value(), McbbsParser.PARAM.PAGE.page(2)));
+                    list.stream().forEach(thread -> {
+                        Platform.runLater(() -> {
+                            HBox box = new HBox();
+                            box.setMaxWidth(680.0D);
+                            box.setPrefWidth(680.0D);
+                            box.setPrefHeight(20.0D);
+                            Rectangle rectangle = new Rectangle(30.0D, 40.0D);
+                            FadeTransition ft = new FadeTransition(Duration.millis(1000), box);
+                            ft.setFromValue(0);
+                            ft.setToValue(1.0);
+                            ft.setCycleCount(1);
+                            ft.setAutoReverse(true);
+                            if (thread.digest) {
+                                rectangle.setFill(new Color(Color.CYAN.getRed(), Color.CYAN.getGreen(), Color.CYAN.getBlue(), 0.5));
+                            } else {
+                                if (thread.reply > 300)
+                                    rectangle.setFill(new Color(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue(), 0.5));
+                                else if (thread.reply > 200)
+                                    rectangle.setFill(new Color(Color.LEMONCHIFFON.getRed(), Color.LEMONCHIFFON.getGreen(), Color.LEMONCHIFFON.getBlue(), 0.5));
+                                else if (thread.reply > 100)
+                                    rectangle.setFill(new Color(Color.YELLOW.getRed(), Color.YELLOW.getGreen(), Color.YELLOW.getBlue(), 0.5));
+                                else
+                                    rectangle.setFill(new Color(0.99, 0.99, 0.99, 0.5));
+                            }
+                            box.getChildren().add(rectangle);
+                            Text text = new Text();
+                            text.setText("  " + thread.title);
+                            text.setFill(thread.color);
+                            text.setFont(Font.font("微软雅黑", FontWeight.BOLD, 15));
+                            box.getChildren().add(text);
+                            box.setAlignment(Pos.CENTER_LEFT);
+                            GridPane.setConstraints(box, 0, i++);
+                            texturePane.getChildren().add(box);
+                            ft.play();
+                        });
+                    });
+                }
+            }).start();
+        else
+            texturePane.getChildren().clear();
     }
 }

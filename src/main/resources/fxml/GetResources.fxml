@@ -30,24 +30,36 @@
             <content>
               <ScrollPane hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0">
                      <content>
-                        <GridPane fx:id="modPane" maxWidth="680.0" minWidth="700.0" prefHeight="444.0" prefWidth="680.0">
+                        <GridPane fx:id="modPane" maxWidth="700.0" minWidth="700.0" prefHeight="444.0" prefWidth="700.0">
                         </GridPane>
                      </content></ScrollPane>
             </content>
           </Tab>
           <Tab onSelectionChanged="#onPluginSelect" text="服务端插件资源">
             <content>
-              <ScrollPane fx:id="pluginPane" hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <ScrollPane hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0">
+                     <content>
+                        <GridPane fx:id="pluginPane" maxWidth="700.0" minWidth="700.0" prefHeight="444.0" prefWidth="700.0">
+                        </GridPane>
+                     </content></ScrollPane>
             </content>
           </Tab>
             <Tab onSelectionChanged="#onSkinSelect" text="皮肤资源">
               <content>
-                <ScrollPane fx:id="skinPane" hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <ScrollPane hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0">
+                     <content>
+                        <GridPane fx:id="skinPane" maxWidth="700.0" minWidth="700.0" prefHeight="444.0" prefWidth="700.0">
+                        </GridPane>
+                     </content></ScrollPane>
               </content>
             </Tab>
             <Tab onSelectionChanged="#onTextureSelect" text="材质资源">
               <content>
-                <ScrollPane fx:id="texturePane" hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <ScrollPane hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0">
+                     <content>
+                        <GridPane fx:id="texturePane" maxWidth="700.0" minWidth="700.0" prefHeight="444.0" prefWidth="700.0">
+                        </GridPane>
+                     </content></ScrollPane>
               </content>
             </Tab>
         </tabs>
