@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -49,13 +50,17 @@ public class GetResourcesController extends MainController {
     private ImageView background;
 
     @FXML
-    private Button closebtn, leave;
+    private Button closebtn, leave, refresh;
 
     @FXML
     private GridPane pluginPane, texturePane, skinPane;
 
     @FXML
     private GridPane modPane;
+
+    @FXML
+    private CheckBox latest, digest, hot, view;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -115,22 +120,52 @@ public class GetResourcesController extends MainController {
     boolean mod = false, plugin = false, skin = false, texture = false;
 
     @FXML
+    void onRefresh() {
+        if (mod) {
+            onModSelect();
+            onModSelect();
+        }
+        if (plugin) {
+            onPluginSelect();
+            onPluginSelect();
+        }
+        if (skin) {
+            onSkinSelect();
+            onSkinSelect();
+        }
+        if (texture) {
+            onTextureSelect();
+            onTextureSelect();
+        }
+    }
+
+    String getFilters() {
+        StringBuilder sb = new StringBuilder();
+        if (digest.isSelected()) sb.append("&").append(McbbsParser.PARAM.FILTER_DIGEST.value());
+        if (hot.isSelected()) sb.append("&").append(McbbsParser.PARAM.FILTER_HEAT.value());
+        if (view.isSelected()) sb.append("&").append(McbbsParser.PARAM.FILTER_VIEW.value());
+        if (latest.isSelected()) sb.append("&").append(McbbsParser.PARAM.FILTER_LATEST.value());
+        if (sb.length() > 0)
+            return sb.toString();
+        return "";
+    }
+
+    @FXML
     void onModSelect() {
         mod = !mod;
-        if (mod)
-            new FetchTask(modPane, new String[]{McbbsParser.PARAM.FORUM_MOD.value(), McbbsParser.PARAM.PAGE.page(1)}
-                    , new String[]{McbbsParser.PARAM.FORUM_MOD.value(), McbbsParser.PARAM.PAGE.page(2)}).start();
-        else
+        if (mod) {
+            new FetchTask(modPane, new String[]{McbbsParser.PARAM.FORUM_MOD.value(), McbbsParser.PARAM.PAGE.page(1) + getFilters()}
+                    , new String[]{McbbsParser.PARAM.FORUM_MOD.value(), McbbsParser.PARAM.PAGE.page(2) + getFilters()}).start();
+        } else
             modPane.getChildren().clear();
-
     }
 
     @FXML
     void onPluginSelect() {
         plugin = !plugin;
         if (plugin)
-            new FetchTask(pluginPane, new String[]{McbbsParser.PARAM.FORUM_PLUGIN.value(), McbbsParser.PARAM.PAGE.page(1)}
-                    , new String[]{McbbsParser.PARAM.FORUM_PLUGIN.value(), McbbsParser.PARAM.PAGE.page(2)}).start();
+            new FetchTask(pluginPane, new String[]{McbbsParser.PARAM.FORUM_PLUGIN.value(), McbbsParser.PARAM.PAGE.page(1) + getFilters()}
+                    , new String[]{McbbsParser.PARAM.FORUM_PLUGIN.value(), McbbsParser.PARAM.PAGE.page(2) + getFilters()}).start();
         else
             pluginPane.getChildren().clear();
     }
@@ -139,8 +174,8 @@ public class GetResourcesController extends MainController {
     void onSkinSelect() {
         skin = !skin;
         if (skin)
-            new FetchTask(skinPane, new String[]{McbbsParser.PARAM.FORUM_SKIN.value(), McbbsParser.PARAM.PAGE.page(1)}
-                    , new String[]{McbbsParser.PARAM.FORUM_SKIN.value(), McbbsParser.PARAM.PAGE.page(2)}).start();
+            new FetchTask(skinPane, new String[]{McbbsParser.PARAM.FORUM_SKIN.value(), McbbsParser.PARAM.PAGE.page(1) + getFilters()}
+                    , new String[]{McbbsParser.PARAM.FORUM_SKIN.value(), McbbsParser.PARAM.PAGE.page(2) + getFilters()}).start();
         else
             skinPane.getChildren().clear();
     }
@@ -149,8 +184,8 @@ public class GetResourcesController extends MainController {
     void onTextureSelect() {
         texture = !texture;
         if (texture)
-            new FetchTask(texturePane, new String[]{McbbsParser.PARAM.FORUM_TEXTURE.value(), McbbsParser.PARAM.PAGE.page(1)}
-                    , new String[]{McbbsParser.PARAM.FORUM_TEXTURE.value(), McbbsParser.PARAM.PAGE.page(2)}).start();
+            new FetchTask(texturePane, new String[]{McbbsParser.PARAM.FORUM_TEXTURE.value(), McbbsParser.PARAM.PAGE.page(1) + getFilters()}
+                    , new String[]{McbbsParser.PARAM.FORUM_TEXTURE.value(), McbbsParser.PARAM.PAGE.page(2) + getFilters()}).start();
         else
             texturePane.getChildren().clear();
     }

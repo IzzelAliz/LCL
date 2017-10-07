@@ -30,13 +30,39 @@
                 <Font size="17.0" />
             </font>
         </Label>
-      <TabPane layoutX="92.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="473.0" prefWidth="700.0" side="BOTTOM" stylesheets="/css/GetResource.css" tabClosingPolicy="UNAVAILABLE">
+		<HBox alignment="CENTER" layoutX="92.0" layoutY="45.0" maxWidth="700.0" minWidth="700.0" prefHeight="30.0" prefWidth="700.0" spacing="5.0" style="-fx-background-color: rgba(0.2,0.2,0.2,0.1);">
+         <children>
+            <CheckBox fx:id="latest" mnemonicParsing="false" text="最新">
+               <font>
+                  <Font name="Microsoft YaHei" size="12.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="digest" mnemonicParsing="false" text="精华">
+               <font>
+                  <Font name="Microsoft YaHei" size="12.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="hot" layoutX="70.0" layoutY="10.0" mnemonicParsing="false" text="热门">
+               <font>
+                  <Font name="Microsoft YaHei" size="12.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="view" layoutX="130.0" layoutY="10.0" mnemonicParsing="false" text="查看量">
+               <font>
+                  <Font name="Microsoft YaHei" size="12.0" />
+               </font>
+            </CheckBox>
+            <Button fx:id="refresh" mnemonicParsing="false" onMouseClicked="#onRefresh" text="刷新">
+            </Button>
+         </children>
+      </HBox>
+      <TabPane layoutX="92.0" layoutY="75.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="443.0" prefWidth="700.0" side="BOTTOM" stylesheets="/css/GetResource.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab onSelectionChanged="#onModSelect" text="Mod资源">
             <content>
               <ScrollPane hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0">
                      <content>
-                        <GridPane fx:id="modPane" maxWidth="700.0" minWidth="700.0" prefHeight="444.0" prefWidth="700.0">
+                        <GridPane fx:id="modPane" maxWidth="700.0" minWidth="700.0" prefHeight="414.0" prefWidth="700.0">
                         </GridPane>
                      </content></ScrollPane>
             </content>
@@ -45,7 +71,7 @@
             <content>
               <ScrollPane hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0">
                      <content>
-                        <GridPane fx:id="pluginPane" maxWidth="700.0" minWidth="700.0" prefHeight="444.0" prefWidth="700.0">
+                        <GridPane fx:id="pluginPane" maxWidth="700.0" minWidth="700.0" prefHeight="414.0" prefWidth="700.0">
                         </GridPane>
                      </content></ScrollPane>
             </content>
@@ -54,7 +80,7 @@
               <content>
               <ScrollPane hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0">
                      <content>
-                        <GridPane fx:id="skinPane" maxWidth="700.0" minWidth="700.0" prefHeight="444.0" prefWidth="700.0">
+                        <GridPane fx:id="skinPane" maxWidth="700.0" minWidth="700.0" prefHeight="414.0" prefWidth="700.0">
                         </GridPane>
                      </content></ScrollPane>
               </content>
@@ -63,7 +89,7 @@
               <content>
               <ScrollPane hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0">
                      <content>
-                        <GridPane fx:id="texturePane" maxWidth="700.0" minWidth="700.0" prefHeight="444.0" prefWidth="700.0">
+                        <GridPane fx:id="texturePane" maxWidth="700.0" minWidth="700.0" prefHeight="414.0" prefWidth="700.0">
                         </GridPane>
                      </content></ScrollPane>
               </content>
