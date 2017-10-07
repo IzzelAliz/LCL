@@ -1,5 +1,7 @@
 package me.kevinwalker.client;
 
+import me.kevinwalker.main.Main;
+import me.kevinwalker.utils.AsyncDownload;
 import me.kevinwalker.utils.Util;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -10,12 +12,36 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import java.io.File;
 import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 
 public class LauncherUpdate {
 
+    static String url;
+
+    public static void download() {
+        AsyncDownload.download(url, new File(Main.getBaseDir(), "update.jar"), 4, new AsyncDownload.Callback() {
+            @Override
+            public void log(String msg) {
+            }
+            @Override
+            public void setProgress(double progress) {
+            }
+            @Override
+            public void setTooltip(String tooltip) {
+            }
+            @Override
+            public void setSpeed(String speed) {
+            }
+            @Override
+            public void success(HashMap<String, Object> obj) {
+            }
+            @Override
+            public void fail(HashMap<String, Object> obj) {
+            }
+        });
+    }
 
     public static boolean check() {
         String latest = null;
@@ -30,6 +56,7 @@ public class LauncherUpdate {
                 String json = EntityUtils.toString(response.getEntity());
                 JSONObject obj = new JSONObject(new JSONTokener(json));
                 latest = obj.getString("latest");
+                url = "http://lcl.ilummc.com/" + obj.getString("link");
             }
         } catch (IOException e) {
             e.printStackTrace();

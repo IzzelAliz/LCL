@@ -22,5 +22,6 @@ hs_err_pid*
 .classpath
 
 !/lib/*.jar
+!/jars/*.jar
 
 /bin
