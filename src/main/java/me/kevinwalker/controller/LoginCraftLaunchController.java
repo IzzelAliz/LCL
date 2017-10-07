@@ -1,8 +1,10 @@
 package me.kevinwalker.controller;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -10,11 +12,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
+import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
-import me.kevinwalker.threads.MusicPlayThread;
 import me.kevinwalker.utils.Util;
+import me.kevinwalker.utils.ZipUtils;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
@@ -23,14 +27,11 @@ import java.util.ResourceBundle;
 /**
  * Created by KevinWalker on 2017/9/16.
  */
-public class LoginCraftLaunchController extends MainController{
-//    private java.awt.Color BackGroundRGB = new java.awt.Color(122, 122, 122);
-    public static MusicPlayThread musicPlayThread;
-    private static File bgm;
+public class LoginCraftLaunchController implements Initializable {
     public static boolean musicPlay = true;
 
     @FXML
-    private ImageView background, settingImg, musicImages;
+    private ImageView background, musicImages;
 
     @FXML
     private Label name;
@@ -42,7 +43,10 @@ public class LoginCraftLaunchController extends MainController{
     private SVGPath handsvg;
 
     @FXML
-    private Button launch, setting, bulletin, login, resourceManagement, custom, getResources, serverInformation, author, update, music;
+    private Button skin, setting, login, resourceManagement, custom, getResources, serverInformation, author, update, music;
+
+    @FXML
+    private ImageView settingImg,skinImg,getResourcesImg,customImg,authorImg,loginImg,serverInformationImg,resourceManagementImg,updateImg,bulletinImg;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,6 +54,7 @@ public class LoginCraftLaunchController extends MainController{
         guiSetStyle();
         mouseAction();
         mouseMoved();
+        setButtomImg();
     }
 
 
@@ -59,11 +64,11 @@ public class LoginCraftLaunchController extends MainController{
     void mouseAction() {
         music.setOnAction(oa -> {
             if (musicPlay) {
-                musicPlayThread.suspend();
+                Main.musicPlayThread.suspend();
                 musicPlay = false;
                 musicImages.setStyle("-fx-image: url(/css/images/music_close.png)");
             } else {
-                musicPlayThread.resume();
+                Main.musicPlayThread.resume();
                 musicImages.setStyle("-fx-image: url(/css/images/music.png)");
                 musicPlay = true;
             }
@@ -71,6 +76,12 @@ public class LoginCraftLaunchController extends MainController{
 
         author.setOnAction(oa -> {
             try {
+                FadeTransition fadeTransition=new FadeTransition(Duration.millis(1000), Main.author.getRoot());
+                fadeTransition.setFromValue(0.2f);
+                fadeTransition.setToValue(1f);
+                fadeTransition.setCycleCount(1);
+                fadeTransition.setAutoReverse(true);
+                fadeTransition.play();
                 Main.author.show();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -79,6 +90,12 @@ public class LoginCraftLaunchController extends MainController{
 
         setting.setOnAction(oa -> {
             try {
+                FadeTransition fadeTransition=new FadeTransition(Duration.millis(1000), Main.setting.getRoot());
+                fadeTransition.setFromValue(0.2f);
+                fadeTransition.setToValue(1f);
+                fadeTransition.setCycleCount(1);
+                fadeTransition.setAutoReverse(true);
+                fadeTransition.play();
                 Main.setting.show();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -87,7 +104,27 @@ public class LoginCraftLaunchController extends MainController{
 
         getResources.setOnAction(oa -> {
             try {
+                FadeTransition fadeTransition=new FadeTransition(Duration.millis(1000), Main.getResources.getRoot());
+                fadeTransition.setFromValue(0.2f);
+                fadeTransition.setToValue(1f);
+                fadeTransition.setCycleCount(1);
+                fadeTransition.setAutoReverse(true);
+                fadeTransition.play();
                 Main.getResources.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        skin.setOnAction(oa -> {
+            try {
+                FadeTransition fadeTransition=new FadeTransition(Duration.millis(1000), Main.skin.getRoot());
+                fadeTransition.setFromValue(0.2f);
+                fadeTransition.setToValue(1f);
+                fadeTransition.setCycleCount(1);
+                fadeTransition.setAutoReverse(true);
+                fadeTransition.play();
+                Main.skin.show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -114,10 +151,10 @@ public class LoginCraftLaunchController extends MainController{
     void guiSetStyle() {
 
         //设置背景
-        File file = new File(Main.getBaseDir(), "LclConfig/"+Main.json.getString("background"));
+        File file = new File(Main.getBaseDir(), "LclConfig/"+ConfigController.json.getString("background"));
         if (file.exists()) {
             try {
-                Util.zoomImage("LclConfig/"+Main.json.getString("background"), "LclConfig/"+Main.json.getString("background"), 800, 530);
+                Util.zoomImage("LclConfig/"+ ConfigController.json.getString("background"), "LclConfig/"+ConfigController.json.getString("background"), 800, 530);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -130,10 +167,10 @@ public class LoginCraftLaunchController extends MainController{
             MainGui.setStyle("-fx-background-image: url(/css/images/background.jpg)");
         }
 
+
         //设置随机按钮颜色部分
-        onGuiOpen(launch);
+        onGuiOpen(skin);
         onGuiOpen(setting);
-        onGuiOpen(bulletin);
         onGuiOpen(login);
         onGuiOpen(resourceManagement);
         onGuiOpen(custom);
@@ -142,22 +179,29 @@ public class LoginCraftLaunchController extends MainController{
         onGuiOpen(author);
         onGuiOpen(update);
 
-        //播放音乐
-        bgm = new File(Main.getBaseDir(), "LclConfig/" + Main.json.getString("bgm"));
-        if (bgm.exists()) {
-            musicPlayThread = new MusicPlayThread(bgm.getPath());
-        } else {
-            Util.saveResource("css/music/bgm.mp3", new File(Main.getBaseDir(), "LclConfig/bgm.mp3"));
-            File musicFile = new File(Main.getBaseDir(), "LclConfig/bgm.mp3");
-            musicPlayThread = new MusicPlayThread(musicFile.getPath());
-        }
-        musicPlayThread.start();
-
         //设置标题栏
-        name.setText(Main.json.getString("name"));
+        name.setText(ConfigController.json.getString("name"));
 //        handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",0.9);");
           handsvg.setStyle("-fx-fill:rgba(122,122,122,0.9);");
 
+    }
+
+    public void setButtomImg(){
+        ZipUtils zipFile = new ZipUtils(ConfigController.json.getString("skin"));
+        settingImg.setImage(new Image(zipFile.getInputStream("settingImg.png")));
+        skinImg.setImage(new Image(zipFile.getInputStream("skinImg.png")));
+        getResourcesImg.setImage(new Image(zipFile.getInputStream("getResourcesImg.png")));
+        customImg.setImage(new Image(zipFile.getInputStream("customImg.png")));
+        authorImg.setImage(new Image(zipFile.getInputStream("authorImg.png")));
+        loginImg.setImage(new Image(zipFile.getInputStream("loginImg.png")));
+        serverInformationImg.setImage(new Image(zipFile.getInputStream("serverInformationImg.png")));
+        resourceManagementImg.setImage(new Image(zipFile.getInputStream("resourceManagementImg.png")));
+        updateImg.setImage(new Image(zipFile.getInputStream("updateImg.png")));
+        try {
+            zipFile.inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onCloseButtonAction(ActionEvent event) {
@@ -183,4 +227,5 @@ public class LoginCraftLaunchController extends MainController{
 //        button.setStyle("-fx-background-color: linear-gradient(to right,"+ ColorTranslated.toHex(red,green,blue)+","+ColorTranslated.toHex(red2,green2,blue2)+");-fx-opacity:0.9;");
 //        button.setStyle("-fx-background-color: linear-gradient(to right,#00fffc,#fff600);-fx-opacity:0.8;");
     }
+
 }

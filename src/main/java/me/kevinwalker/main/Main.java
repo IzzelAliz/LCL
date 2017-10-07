@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import me.kevinwalker.guis.GuiBase;
+import me.kevinwalker.threads.MusicPlayThread;
 import me.kevinwalker.utils.Util;
+import me.kevinwalker.utils.ZipUtils;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -13,24 +15,37 @@ import java.net.URLDecoder;
 import java.nio.ByteBuffer;
 
 public class Main extends Application {
-    public static JSONObject json;
+    public static MusicPlayThread musicPlayThread;
+    private static File bgm;
+    public static Stage primaryStage;
     public static GuiBase mainGui;
     public static GuiBase author;
     public static GuiBase setting;
     public static GuiBase getResources;
+    public static GuiBase skin;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Main.primaryStage=primaryStage;
         mainGui = new GuiBase("LoginCraftLaunch", primaryStage, 800, 530);
         mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
         mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
         mainGui.getStage().setResizable(false);
         mainGui.getScene().setFill(null);
-
         mainGui.getStage().setOnCloseRequest((e) -> {
             System.exit(0);
         });
         GuiMain(primaryStage);
+        //播放音乐
+        bgm = new File(Main.getBaseDir(), "LclConfig/" + ConfigController.json.getString("bgm"));
+        if (bgm.exists()) {
+            musicPlayThread = new MusicPlayThread(bgm.getPath());
+        } else {
+            Util.saveResource("css/music/bgm.mp3", new File(Main.getBaseDir(), "LclConfig/bgm.mp3"));
+            File musicFile = new File(Main.getBaseDir(), "LclConfig/bgm.mp3");
+            musicPlayThread = new MusicPlayThread(musicFile.getPath());
+        }
+        musicPlayThread.start();
         mainGui.show();
     }
 
@@ -38,20 +53,12 @@ public class Main extends Application {
         Main.author = new GuiBase("Author", stage, 800, 530);
         Main.setting = new GuiBase("Setting", stage, 800, 530);
         Main.getResources = new GuiBase("GetResources", stage, 800, 530);
+        Main.skin = new GuiBase("Skin", stage, 800, 530);
     }
 
     public static void main(String[] args) {
-        // setupLogger();
-        File file = new File(getBaseDir(), "LclConfig");
-        File config = new File(getBaseDir(), "LclConfig/config.json");
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        if (!config.exists()) {
-            Util.saveResource("config.json", new File(getBaseDir(), "LclConfig/config.json"));
-        }
-        json = new JSONObject(
-                new JSONTokener(Files.toString(new File(getBaseDir(), "LclConfig/config.json"), "utf-8")));
+        setupLogger();
+        new ConfigController();
         launch(args);
         // ServerListPing slp = new ServerListPing();
         // InetSocketAddress sadd0 = new InetSocketAddress("dx.mc11.icraft.cc", 37190);

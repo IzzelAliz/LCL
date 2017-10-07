@@ -41,16 +41,7 @@ public class GetResourcesController extends MainController {
     private ScrollPane ResourcesPane;
 
     @FXML
-    private AnchorPane mainGui;
-
-    @FXML
-    private SVGPath handsvg;
-
-    @FXML
-    private ImageView background;
-
-    @FXML
-    private Button closebtn, leave, refresh;
+    private Button refresh;
 
     @FXML
     private GridPane pluginPane, texturePane, skinPane;
@@ -64,54 +55,9 @@ public class GetResourcesController extends MainController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        mouseAction();
-        GuiSetStyle();
+        super.initialize(location, resources);
         image = new Image(GetResourcesController.class.getResourceAsStream("/css/images/loading.gif"));
         iv = new ImageView(image);
-    }
-
-    /**
-     * 鼠标点击设置
-     */
-    void mouseAction() {
-        closebtn.setOnAction(oa -> {
-            System.exit(0);
-        });
-        leave.setOnAction(oa -> {
-            Main.mainGui.show();
-        });
-    }
-
-    /**
-     * 界面配置
-     */
-    void GuiSetStyle() {
-        //设置背景
-        File file = new File(Main.getBaseDir(), "LclConfig/" + Main.json.getString("background"));
-        if (file.exists()) {
-            try {
-                Util.zoomImage("LclConfig/" + Main.json.getString("background"), "LclConfig/" + Main.json.getString("background"), 800, 530);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                background.setImage(new Image(file.toURI().toURL().toString(), true));
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            mainGui.setStyle("-fx-background-image: url(/css/images/background.jpg)");
-        }
-
-        //设置标题栏
-        handsvg.setStyle("-fx-fill:rgba(122,122,122,0.9);");
-    }
-
-    /**
-     * 帖子解析按钮配置
-     */
-    void Button() {
-
     }
 
     static Image image;
