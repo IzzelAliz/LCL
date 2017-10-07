@@ -88,7 +88,7 @@ public class McbbsParser {
         }
     }
 
-    public static List<ThreadPost> parse(String... param) {
+    public static List<ThreadPost> parse(String[] param) {
         HttpClientBuilder builder = HttpClientBuilder.create();
         try (CloseableHttpClient client = builder.build()) {
             String url = "http://www.mcbbs.net/forum.php?";
