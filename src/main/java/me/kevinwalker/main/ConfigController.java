@@ -19,6 +19,7 @@ public class ConfigController {
         configFile = new File(Main.getBaseDir(), "LclConfig/config.json");
         File skin = new File(Main.getBaseDir(), "LclConfig/skin");
         File defaultSkin = new File(Main.getBaseDir(), "LclConfig/skin");
+
         if (!file.exists()) {
             file.mkdirs();
         }
