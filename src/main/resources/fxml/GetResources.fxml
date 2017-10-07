@@ -8,6 +8,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
@@ -23,11 +24,15 @@
                 <Font size="17.0" />
             </font>
         </Label>
-      <TabPane layoutX="47.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="473.0" prefWidth="739.0" side="BOTTOM" stylesheets="/css/GetResource.css" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="86.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="473.0" prefWidth="700.0" side="BOTTOM" stylesheets="/css/GetResource.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab onSelectionChanged="#onModSelect" text="Mod资源">
             <content>
-              <ScrollPane fx:id="modPane" hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0" />
+              <ScrollPane hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0">
+                     <content>
+                        <GridPane fx:id="modPane" maxWidth="680.0" minWidth="700.0" prefHeight="444.0" prefWidth="680.0">
+                        </GridPane>
+                     </content></ScrollPane>
             </content>
           </Tab>
           <Tab onSelectionChanged="#onPluginSelect" text="服务端插件资源">

@@ -1,13 +1,24 @@
 package me.kevinwalker.controller;
 
+import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 import me.kevinwalker.guis.net.McbbsParser;
 import me.kevinwalker.main.Main;
 import me.kevinwalker.utils.Util;
@@ -15,6 +26,8 @@ import me.kevinwalker.utils.Util;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -37,8 +50,10 @@ public class GetResourcesController implements Initializable {
     private Button closebtn, leave;
 
     @FXML
-    private ScrollPane pluginPane, modPane, texturePane, skinPane;
+    private ScrollPane pluginPane, texturePane, skinPane;
 
+    @FXML
+    private GridPane modPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -95,7 +110,56 @@ public class GetResourcesController implements Initializable {
     @FXML
     void onModSelect() {
         mod = !mod;
-        McbbsParser.parse();
+        if (mod)
+            new Thread(new Runnable() {
+                int i = 0;
+
+                @Override
+                public void run() {
+                    List<McbbsParser.ThreadPost> list = new ArrayList<>();
+                    list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_MOD.value(), McbbsParser.PARAM.PAGE.page(1)));
+                    list.addAll(McbbsParser.parse(McbbsParser.PARAM.FORUM_MOD.value(), McbbsParser.PARAM.PAGE.page(2)));
+                    list.stream().forEach(thread -> {
+                        Platform.runLater(() -> {
+                            HBox box = new HBox();
+                            box.setMaxWidth(680.0D);
+                            box.setPrefWidth(680.0D);
+                            box.setPrefHeight(20.0D);
+                            Rectangle rectangle = new Rectangle(30.0D, 40.0D);
+                            FadeTransition ft = new FadeTransition(Duration.millis(1000), box);
+                            ft.setFromValue(0);
+                            ft.setToValue(1.0);
+                            ft.setCycleCount(1);
+                            ft.setAutoReverse(true);
+                            if (thread.digest) {
+                                rectangle.setFill(new Color(Color.CYAN.getRed(), Color.CYAN.getGreen(), Color.CYAN.getBlue(), 0.5));
+                            } else {
+                                if (thread.reply > 300)
+                                    rectangle.setFill(new Color(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue(), 0.5));
+                                else if (thread.reply > 200)
+                                    rectangle.setFill(new Color(Color.LEMONCHIFFON.getRed(), Color.LEMONCHIFFON.getGreen(), Color.LEMONCHIFFON.getBlue(), 0.5));
+                                else if (thread.reply > 100)
+                                    rectangle.setFill(new Color(Color.YELLOW.getRed(), Color.YELLOW.getGreen(), Color.YELLOW.getBlue(), 0.5));
+                                else
+                                    rectangle.setFill(new Color(0.99, 0.99, 0.99, 0.5));
+                            }
+                            box.getChildren().add(rectangle);
+                            Text text = new Text();
+                            text.setText("  " + thread.title);
+                            text.setFill(thread.color);
+                            text.setFont(Font.font("微软雅黑", FontWeight.SEMI_BOLD, 15));
+                            box.getChildren().add(text);
+                            box.setAlignment(Pos.CENTER_LEFT);
+                            GridPane.setConstraints(box, 0, i++);
+                            modPane.getChildren().add(box);
+                            ft.play();
+                        });
+                    });
+                }
+            }).start();
+        else
+            modPane.getChildren().clear();
+        ;
     }
 
     @FXML
