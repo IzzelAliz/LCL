@@ -47,6 +47,7 @@ public class SkinController extends MainController {
         for(String name : skinList) {
             chooseSkin.getItems().add(name);
         }
+
         skinBtn.setOnAction(oa -> {
             ConfigController.json.put("skin",chooseSkin.getValue());
             ConfigController.saveJson();
