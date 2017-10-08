@@ -24,7 +24,7 @@ public class ConfigController {
             file.mkdirs();
         }
         if (!skin.exists()) {
-            file.mkdirs();
+            skin.mkdirs();
         }
         if (!configFile.exists()) {
             Util.saveResource("config.json", new File(Main.getBaseDir(), "LclConfig/config.json"));
