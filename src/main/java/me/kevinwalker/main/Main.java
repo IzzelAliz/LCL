@@ -1,6 +1,7 @@
 package me.kevinwalker.main;
 
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import me.kevinwalker.guis.GuiBase;
@@ -29,6 +30,7 @@ public class Main extends Application {
         Main.primaryStage=primaryStage;
         mainGui = new GuiBase("LoginCraftLaunch", primaryStage, 800, 530);
         mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
+        mainGui.getStage().getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));
         mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
         mainGui.getStage().setResizable(false);
         mainGui.getScene().setFill(null);

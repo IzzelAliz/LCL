@@ -101,7 +101,11 @@
       </Button>
       <Button fx:id="music" layoutX="715.0" layoutY="45.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
          <graphic>
-            <ImageView fx:id="musicImages" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true"/>
+            <ImageView fx:id="musicImages" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/css/images/music.png"/>
+               </image>
+            </ImageView>
          </graphic>
       </Button>
       <Button fx:id="leave" layoutX="-10.0" layoutY="45.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" stylesheets="/css/GuiMain.css">
