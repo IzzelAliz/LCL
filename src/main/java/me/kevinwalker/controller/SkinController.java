@@ -15,10 +15,13 @@ import me.kevinwalker.utils.ZipUtils;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static me.kevinwalker.utils.ZipUtils.inputStream;
 
 /**
  * Created by KevinWalker on 2017/10/7.
@@ -38,7 +41,7 @@ public class SkinController extends MainController {
     /**
      * 界面配置
      */
-    void guisettings() {
+    private void guisettings() {
         LoginCraftLaunchController.onGuiOpen(skinBtn);
 
         //选择控件获取文件名List
@@ -56,23 +59,24 @@ public class SkinController extends MainController {
         });
 
         ZipUtils zipFile = new ZipUtils(ConfigController.json.getString("skin"));
-        previewImg.setImage(new Image(zipFile.getInputStream("preview.png")));
-        try {
-            zipFile.inputStream.close();
+        try(InputStream inputStream = zipFile.getInputStream("preview.png")) {
+            previewImg.setImage(new Image(inputStream));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        chooseSkin.valueProperty().addListener(new ChangeListener<String>() {
-            @Override public void changed(ObservableValue ov, String t, String t1) {
-                ZipUtils zipFile2 = new ZipUtils((String)chooseSkin.getValue());
-                previewImg.setImage(new Image(zipFile.getInputStream("preview.png")));
-                try {
-                    zipFile2.inputStream.close();
+
+        chooseSkin.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                ZipUtils zipFile = new ZipUtils(chooseSkin.getValue().toString());
+                try(InputStream inputStream = zipFile.getInputStream("preview.png")) {
+                    previewImg.setImage(new Image(inputStream));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
+
     }
 
     /**

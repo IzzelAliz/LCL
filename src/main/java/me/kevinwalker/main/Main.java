@@ -23,7 +23,6 @@ public class Main extends Application {
     public static GuiBase author;
     public static GuiBase setting;
     public static GuiBase getResources;
-    public static GuiBase skin;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -55,11 +54,10 @@ public class Main extends Application {
         Main.author = new GuiBase("Author", stage, 800, 530);
         Main.setting = new GuiBase("Setting", stage, 800, 530);
         Main.getResources = new GuiBase("GetResources", stage, 800, 530);
-        Main.skin = new GuiBase("Skin", stage, 800, 530);
     }
 
     public static void main(String[] args) {
-        setupLogger();
+//        setupLogger();
         new ConfigController();
         launch(args);
         // ServerListPing slp = new ServerListPing();

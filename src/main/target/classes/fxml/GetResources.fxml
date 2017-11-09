@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.*?>
+<AnchorPane fx:id="mainGui" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="800.0" stylesheets="/css/MetroUI.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.controller.GetResourcesController">
+    <children>
+        <ImageView fx:id="background" fitHeight="530.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+        </ImageView>
+        <SVGPath fx:id="handsvg" content="M65.23884 456.152041h893.521297v111.695918H65.23884V456.152041z" fill="#D9D7CA" layoutX="-111.0" layoutY="-498.0" scaleX="0.898" scaleY="0.35" AnchorPane.bottomAnchor="353.62296295166016" AnchorPane.leftAnchor="-45.76116180419922" AnchorPane.rightAnchor="328.7107849121094" AnchorPane.topAnchor="-41.84796142578125" />
+        <SVGPath fx:id="closesvg" content="M830.606452 106.529032 512 425.135484 193.393548 106.529032 106.529032 193.393548 425.083871 512 106.529032 830.606452 193.393548 917.470968 512 598.916129 830.606452 917.470968 917.470968 830.606452 598.864516 512 917.470968 193.393548Z" fill="white" layoutX="259.0" layoutY="-496.0" scaleX="0.028" scaleY="0.028" scaleZ="0.028" />
+        <Button fx:id="closebtn" ellipsisString="" layoutX="742.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="58.0" stylesheets="/css/GuiMain.css" />
+        <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" prefHeight="35.0" prefWidth="436.0" text="LoginCraftLaunch-Demo" textFill="WHITE">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Label>
+		<HBox alignment="CENTER" layoutX="92.0" layoutY="45.0" maxWidth="700.0" minWidth="700.0" prefHeight="34.0" prefWidth="700.0" spacing="5.0" style="-fx-background-color: rgba(0.2,0.2,0.2,0.1);" AnchorPane.topAnchor="40.0">
+         <children>
+            <CheckBox fx:id="latest" mnemonicParsing="false" text="最新">
+               <font>
+                  <Font name="Microsoft YaHei" size="12.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="digest" mnemonicParsing="false" text="精华">
+               <font>
+                  <Font name="Microsoft YaHei" size="12.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="hot" layoutX="70.0" layoutY="10.0" mnemonicParsing="false" text="热门">
+               <font>
+                  <Font name="Microsoft YaHei" size="12.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="view" layoutX="130.0" layoutY="10.0" mnemonicParsing="false" text="查看量">
+               <font>
+                  <Font name="Microsoft YaHei" size="12.0" />
+               </font>
+            </CheckBox>
+            <Button fx:id="refresh" mnemonicParsing="false" onMouseClicked="#onRefresh" text="刷新">
+            </Button>
+         </children>
+      </HBox>
+      <TabPane layoutX="92.0" layoutY="75.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="443.0" prefWidth="700.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab onSelectionChanged="#onModSelect" text="Mod资源">
+            <content>
+              <ScrollPane hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0">
+                     <content>
+                        <GridPane fx:id="modPane" maxWidth="700.0" minWidth="700.0" prefHeight="414.0" prefWidth="700.0">
+                        </GridPane>
+                     </content></ScrollPane>
+            </content>
+          </Tab>
+          <Tab onSelectionChanged="#onPluginSelect" text="服务端插件资源">
+            <content>
+              <ScrollPane hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0">
+                     <content>
+                        <GridPane fx:id="pluginPane" maxWidth="700.0" minWidth="700.0" prefHeight="414.0" prefWidth="700.0">
+                        </GridPane>
+                     </content></ScrollPane>
+            </content>
+          </Tab>
+            <Tab onSelectionChanged="#onSkinSelect" text="皮肤资源">
+              <content>
+              <ScrollPane hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0">
+                     <content>
+                        <GridPane fx:id="skinPane" maxWidth="700.0" minWidth="700.0" prefHeight="414.0" prefWidth="700.0">
+                        </GridPane>
+                     </content></ScrollPane>
+              </content>
+            </Tab>
+            <Tab onSelectionChanged="#onTextureSelect" text="材质资源">
+              <content>
+              <ScrollPane hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="739.0">
+                     <content>
+                        <GridPane fx:id="texturePane" maxWidth="700.0" minWidth="700.0" prefHeight="414.0" prefWidth="700.0">
+                        </GridPane>
+                     </content></ScrollPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+        <Button fx:id="leave" layoutX="-10.0" layoutY="45.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" stylesheets="/css/GuiMain.css">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="/css/images/leave.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+    </children>
+</AnchorPane>
