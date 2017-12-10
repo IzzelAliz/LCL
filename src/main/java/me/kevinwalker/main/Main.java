@@ -26,7 +26,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Main.primaryStage=primaryStage;
+        Main.primaryStage = primaryStage;
         mainGui = new GuiBase("LoginCraftLaunch", primaryStage, 800, 530);
         mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
         mainGui.getStage().getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));

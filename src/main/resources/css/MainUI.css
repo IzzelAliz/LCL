@@ -2,19 +2,19 @@
     -fx-font-family: "微软雅黑";
     -fx-font-size: 16px;
     -fx-background-size: stretch stretch;
-    -fx-background-color:transparent;
-    -fx-background-color:rgba(0,0,0,0);
+    -fx-background-color: transparent;
+    -fx-background-color: rgba(0, 0, 0, 0);
     -fx-background-position: center center;
     -fx-background-radius: 25;
     -fx-border-radius: 25;
 }
 
-.scroll-bar .track{
-    -fx-background-color:#f0f0f0;
+.scroll-bar .track {
+    -fx-background-color: #f0f0f0;
     -fx-background-insets: 0;
 }
 
-.scroll-bar .thumb{
+.scroll-bar .thumb {
     -fx-background-color: #cdcdcd;
     -fx-border-width: 0;
     -fx-background-radius: 0;
@@ -22,56 +22,55 @@
 }
 
 .scroll-bar .thumb:hover,
-.scroll-bar .thumb:pressed{
+.scroll-bar .thumb:pressed {
     -fx-background-color: #a6a6a6;
 }
 
 .scroll-bar .increment-button,
-.scroll-bar .decrement-button{
+.scroll-bar .decrement-button {
     -fx-background-color: #f0f0f0;
-    -fx-padding:7px 4px;
+    -fx-padding: 7px 4px;
     -fx-border-width: 0;
     -fx-background-insets: 0;
 }
 
 .scroll-bar .increment-button:hover,
-.scroll-bar .decrement-button:hover{
+.scroll-bar .decrement-button:hover {
     -fx-background-color: #dadada;
     -fx-border-width: 0;
 }
 
 .scroll-bar .increment-button:pressed,
-.scroll-bar .decrement-button:pressed{
+.scroll-bar .decrement-button:pressed {
     -fx-background-color: #7b7b7b;
     -fx-border-width: 0;
 }
 
-#Spane .increment-button:hover ,#Spane .decrement-button:hover {
--fx-background-color:derive(gray,100%);
--fx-border-color:derive(gray,80%);
--fx-padding:10px;
+.scroll-pane.increment-button:hover, .scroll-pane .decrement-button:hover {
+    -fx-background-color: derive(gray, 100%);
+    -fx-border-color: derive(gray, 80%);
+    -fx-padding: 10px;
 }
 
-
-#Spane,#Apane{
-    -fx-background-color:rgba(255,255,255,0);
-    -fx-background-color:transparent;
-    -fx-background:transparent;
+.scroll-pane, #Apane {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background: rgba(255, 255, 255, 0.15)
 }
 
-#namebtn{
-    -fx-background-color: rgba(122, 122, 122,0.8);
-    -fx-border-color: rgba(122, 122, 122,0.8);
+#namebtn {
+    -fx-background-color: rgba(122, 122, 122, 0.8);
+    -fx-border-color: rgba(122, 122, 122, 0.8);
     -fx-border-width: 1;
     -fx-background-radius: 8;
     -fx-border-radius: 8;
 }
 
-#namebtn:hover{
-    -fx-background-color: rgba(122, 122, 122,0.9);
-    -fx-border-color: rgba(122, 122, 122,0.9);
+#namebtn:hover {
+    -fx-background-color: rgba(122, 122, 122, 0.9);
+    -fx-border-color: rgba(122, 122, 122, 0.9);
     -fx-border-width: 1;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
     -fx-background-radius: 8;
     -fx-border-radius: 8;
     -fx-scale-x: 1.01;
@@ -79,7 +78,7 @@
     -fx-scale-z: 1.01;
 }
 
-#music{
+#music {
     -fx-padding: 5.0 22.0 5.0 22.0;
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2.0;
@@ -89,7 +88,8 @@
     -fx-text-fill: #FFFFFF;
     -fx-background-insets: 0.0 0.0 0.0 0.0, 0.0, 1.0, 2.0;
 }
-#music:hover{
+
+#music:hover {
     -fx-padding: 5.0 22.0 5.0 22.0;
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2.0;
@@ -102,7 +102,8 @@
     -fx-scale-y: 1.01;
     -fx-scale-z: 1.01;
 }
-#music:pressed{
+
+#music:pressed {
     -fx-padding: 5.0 22.0 5.0 22.0;
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2.0;

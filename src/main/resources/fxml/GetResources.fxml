@@ -44,7 +44,7 @@
             </Button>
          </children>
       </HBox>
-      <TabPane layoutX="92.0" layoutY="75.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="443.0" prefWidth="700.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="92.0" layoutY="75.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="443.0" prefWidth="700.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" stylesheets="/css/MainUI.css">
         <tabs>
           <Tab onSelectionChanged="#onModSelect" text="Mod资源">
             <content>

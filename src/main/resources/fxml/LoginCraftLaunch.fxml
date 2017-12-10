@@ -103,7 +103,7 @@
          <graphic>
             <ImageView fx:id="musicImages" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/css/images/music.png"/>
+                  <Image url="/css/images/music.png" />
                </image>
             </ImageView>
          </graphic>

@@ -1,12 +1,16 @@
 package me.kevinwalker.controller;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.RowConstraints;
 import me.kevinwalker.guis.GuiBase;
 import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
@@ -21,66 +25,64 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static me.kevinwalker.utils.ZipUtils.inputStream;
-
 /**
  * Created by KevinWalker on 2017/10/7.
  */
 public class SkinController extends MainController {
     List<String> skinList;
 
-    @FXML ImageView previewImg;
-    @FXML Button skinBtn;
-    @FXML ComboBox chooseSkin;
+    @FXML
+    AnchorPane skinPane;
+    @FXML
+    ScrollPane pane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
         guisettings();
     }
+
     /**
      * 界面配置
      */
     private void guisettings() {
-        LoginCraftLaunchController.onGuiOpen(skinBtn);
-
         //选择控件获取文件名List
-        skinList = getFileList(new File(Main.getBaseDir(),"LclConfig/skin"));
-        chooseSkin.setValue(ConfigController.json.getString("skin"));
-        for(String name : skinList) {
-            chooseSkin.getItems().add(name);
-        }
-
-        skinBtn.setOnAction(oa -> {
-            ConfigController.json.put("skin",chooseSkin.getValue());
-            ConfigController.saveJson();
-            Main.mainGui = new GuiBase("LoginCraftLaunch", Main.primaryStage, 800, 530);
-            Main.mainGui.show();
-        });
-
-        ZipUtils zipFile = new ZipUtils(ConfigController.json.getString("skin"));
-        try(InputStream inputStream = zipFile.getInputStream("preview.png")) {
-            previewImg.setImage(new Image(inputStream));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        chooseSkin.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                ZipUtils zipFile = new ZipUtils(chooseSkin.getValue().toString());
-                try(InputStream inputStream = zipFile.getInputStream("preview.png")) {
-                    previewImg.setImage(new Image(inputStream));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        skinList = getFileList(new File(Main.getBaseDir(), "LclConfig/skin"));
+        Button skinButton[] = new Button[skinList.size()];
+        ImageView image[] = new ImageView[skinList.size()];
+        skinPane.setPrefHeight(skinList.size() * 205);
+        for (int i = 0; i < skinList.size(); i++) {
+            ZipUtils zipFile = new ZipUtils(skinList.get(i));
+            try (InputStream inputStream = zipFile.getInputStream("preview.png")) {
+                image[i] = new ImageView(new Image(inputStream));
+                skinButton[i] = new Button(skinList.get(i), image[i]);
+                image[i].setFitWidth(80);
+                image[i].setFitHeight(80);
+                skinButton[i].setPrefSize(700, 100);
+                skinButton[i].setMinSize(700, 100);
+                skinButton[i].setMaxSize(700, 100);
+                skinButton[i].setLayoutX(8);
+                skinButton[i].setLayoutY(i * (100 + 5));
+                skinButton[i].setContentDisplay(ContentDisplay.LEFT);
+                skinButton[i].setAlignment(Pos.BASELINE_LEFT);
+                skinPane.getChildren().add(skinButton[i]);
+                LoginCraftLaunchController.onGuiOpen(skinButton[i]);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        });
-
+            final int num = i;
+            skinButton[i].setOnAction(oa -> {
+                ConfigController.json.put("skin",skinButton[num].getText());
+                ConfigController.saveJson();
+                Main.mainGui = new GuiBase("LoginCraftLaunch", Main.primaryStage, 800, 530);
+                Main.mainGui.show();
+            });
+        }
     }
 
     /**
      * 获取材质文件
+     *
      * @param file 文件位置
      * @return 文件名List
      */
@@ -100,7 +102,7 @@ public class SkinController extends MainController {
                 }
             });
             for (int i = 0; i < directoryList.length; i++) {
-                result.add(directoryList[i].getName().substring(0,directoryList[i].getName().length()-4));
+                result.add(directoryList[i].getName().substring(0, directoryList[i].getName().length() - 4));
             }
         }
         return result;
