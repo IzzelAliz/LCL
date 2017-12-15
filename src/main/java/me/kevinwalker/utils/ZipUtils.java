@@ -18,7 +18,6 @@ public class ZipUtils {
     public ZipUtils(String file) {
         try {
             File fileskin = new File(Main.getBaseDir(), "LclConfig/skin/"+file+".zip");
-//            zFile = new ZipFile(new File(Main.getBaseDir(), "LclConfig/skin/" + file + ".zip"));
             zFile = new ZipFile(fileskin);
         } catch (ZipException e) {
             e.printStackTrace();
