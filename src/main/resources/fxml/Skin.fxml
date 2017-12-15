@@ -35,7 +35,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <ScrollPane layoutX="64.0" layoutY="45.0" prefHeight="472.0" prefWidth="710.0" AnchorPane.rightAnchor="0.0" stylesheets="/css/MainUI.css">
+        <ScrollPane layoutX="64.0" layoutY="45.0" prefHeight="472.0" prefWidth="690.0" AnchorPane.rightAnchor="0.0" stylesheets="/css/MainUI.css">
             <content>
                 <AnchorPane fx:id="skinPane" minHeight="0.0" minWidth="0.0" prefHeight="449.0" prefWidth="640.0"/>
             </content>
