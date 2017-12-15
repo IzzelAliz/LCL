@@ -1,5 +1,7 @@
 package me.kevinwalker.controller;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -8,6 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.RowConstraints;
 import me.kevinwalker.guis.GuiBase;
 import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
@@ -27,18 +30,16 @@ import java.util.ResourceBundle;
  */
 public class SkinController extends MainController {
     List<String> skinList;
-    private boolean list = true;
 
     @FXML
     AnchorPane skinPane;
     @FXML
-    Button open;
+    ScrollPane pane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
         guisettings();
-        LoginCraftLaunchController.onGuiOpen(open);
     }
 
     /**
@@ -57,25 +58,15 @@ public class SkinController extends MainController {
                 skinButton[i] = new Button(skinList.get(i), image[i]);
                 image[i].setFitWidth(80);
                 image[i].setFitHeight(80);
-                skinButton[i].setPrefSize(330, 100);
-                skinButton[i].setMinSize(330, 100);
-                skinButton[i].setMaxSize(330, 100);
-                if(this.list) {
-                    skinButton[i].setLayoutX(8);
-                }else{
-                    skinButton[i].setLayoutX(15+330);
-                }
-                if(this.list) {
-                    skinButton[i].setLayoutY((i-i/2) * (100 + 5));
-
-                }else{
-                    skinButton[i].setLayoutY(((i-1)-(i-1)/2) * (100 + 5));
-                }
+                skinButton[i].setPrefSize(700, 100);
+                skinButton[i].setMinSize(700, 100);
+                skinButton[i].setMaxSize(700, 100);
+                skinButton[i].setLayoutX(8);
+                skinButton[i].setLayoutY(i * (100 + 5));
                 skinButton[i].setContentDisplay(ContentDisplay.LEFT);
                 skinButton[i].setAlignment(Pos.BASELINE_LEFT);
                 skinPane.getChildren().add(skinButton[i]);
                 LoginCraftLaunchController.onGuiOpen(skinButton[i]);
-                this.list = !this.list;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -85,13 +76,6 @@ public class SkinController extends MainController {
                 ConfigController.saveJson();
                 Main.mainGui = new GuiBase("LoginCraftLaunch", Main.primaryStage, 800, 530);
                 Main.mainGui.show();
-            });
-            open.setOnAction(oa -> {
-                try {
-                    java.awt.Desktop.getDesktop().open(new File(Main.getBaseDir(), "LclConfig/skin"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             });
         }
     }

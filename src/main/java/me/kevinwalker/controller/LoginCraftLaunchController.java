@@ -53,6 +53,7 @@ public class LoginCraftLaunchController implements Initializable {
         //设置界面
         guiSetStyle();
         mouseAction();
+        mouseMoved();
         setButtomImg();
     }
 
@@ -129,6 +130,45 @@ public class LoginCraftLaunchController implements Initializable {
                 e.printStackTrace();
             }
         });
+    }
+
+    /**
+     * 鼠标悬停动画设置
+     */
+    void mouseMoved() {
+        setting.setOnMouseMoved(omm -> {
+            rotateTransition(settingImg);
+        });
+
+        update.setOnMouseMoved(omm -> {
+            rotateTransition(updateImg);
+        });
+
+
+        skin.setOnMouseMoved(omm -> {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(1000), skinImg);
+            scaleTransition.setToX(1.3f);
+            scaleTransition.setToY(1.3f);
+            scaleTransition.setCycleCount(1);
+            scaleTransition.setAutoReverse(true);
+            ScaleTransition scaleTransition2 = new ScaleTransition(Duration.millis(1000), skinImg);
+            scaleTransition2.setToX(1f);
+            scaleTransition2.setToY(1f);
+            scaleTransition2.setCycleCount(1);
+            scaleTransition2.setAutoReverse(true);
+            SequentialTransition sequentialTransition = new SequentialTransition(scaleTransition, scaleTransition2);
+            sequentialTransition.setCycleCount(1);
+            sequentialTransition.play();
+        });
+    }
+
+    private void rotateTransition(Node node) {
+        RotateTransition rotateTransitionSetting =
+                new RotateTransition(Duration.millis(1000), node);
+        rotateTransitionSetting.setByAngle(180f);
+        rotateTransitionSetting.setCycleCount(1);
+        rotateTransitionSetting.setAutoReverse(true);
+        rotateTransitionSetting.play();
     }
 
     /**
