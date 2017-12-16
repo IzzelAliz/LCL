@@ -91,11 +91,11 @@ public class McbbsParser {
     public static List<ThreadPost> parse(String[] param) {
         HttpClientBuilder builder = HttpClientBuilder.create();
         try (CloseableHttpClient client = builder.build()) {
-            String url = "http://www.mcbbs.net/forum.php?";
+            StringBuilder url = new StringBuilder("http://www.mcbbs.net/forum.php?");
             for (String para : param)
-                url += para + "&";
-            url += "mod=forumdisplay&mobile=2";
-            HttpGet get = new HttpGet(url);
+                url.append(para).append("&");
+            url.append("mod=forumdisplay&mobile=2");
+            HttpGet get = new HttpGet(url.toString());
             RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(2000).setSocketTimeout(2000).build();
             get.setConfig(requestConfig);
             get.setHeader("User-Agent",
@@ -139,7 +139,7 @@ public class McbbsParser {
                         style = style.substring(0, style.indexOf(";"));
                         tp.color = Color.web(style, 1.0D);
                     }
-                    li.getElementsByTag("span").stream().forEach(span -> {
+                    li.getElementsByTag("span").forEach(span -> {
                         if (span.attr("class").equals("num"))
                             tp.reply = Integer.parseInt(span.text().trim());
                         if (span.attr("class").equals("icon_tu")) tp.picture = true;
