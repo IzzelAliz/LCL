@@ -111,10 +111,10 @@ public class McbbsParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return new ArrayList<>();
     }
 
-    static List<ThreadPost> parseXml(String xml) {
+    private static List<ThreadPost> parseXml(String xml) {
         List<ThreadPost> list = new ArrayList<>();
         try {
             Document document = Jsoup.parse(xml);
@@ -122,12 +122,12 @@ public class McbbsParser {
             Document html = Jsoup.parse(htmle.toString());
             Elements bodye = html.select("body");
             Document body = Jsoup.parse(bodye.toString());
-            body.getElementsByClass("threadlist").stream().forEach(div -> {
+            body.getElementsByClass("threadlist").forEach(div -> {
                 if (div == null) {
                     System.out.println("0");
                     return;
                 }
-                div.select("ul").select("li").stream().forEach(li -> {
+                div.select("ul").select("li").forEach(li -> {
                     ThreadPost tp = new ThreadPost();
                     tp.url = parseUrl(li.select("a").attr("href"));
                     tp.author = li.select("a").select("span").text().trim();
@@ -159,7 +159,7 @@ public class McbbsParser {
         return list;
     }
 
-    static String parseUrl(String mobile) {
+    private static String parseUrl(String mobile) {
         String tid = mobile.substring(mobile.indexOf("tid=") + 4);
         tid = tid.substring(0, tid.indexOf("&"));
         return "http://www.mcbbs.net/thread-" + tid + "-1-1.html";

@@ -4,7 +4,6 @@ import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -13,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
 import me.kevinwalker.guis.GuiBase;
+import me.kevinwalker.guis.Transition;
 import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
 import me.kevinwalker.utils.Util;
@@ -73,68 +73,28 @@ public class LoginCraftLaunchController implements Initializable {
             }
         });
 
-        author.setOnAction(oa -> {
-            try {
-                FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), Main.author.getRoot());
-                fadeTransition.setFromValue(0.2f);
-                fadeTransition.setToValue(1f);
-                fadeTransition.setCycleCount(1);
-                fadeTransition.setAutoReverse(true);
-                fadeTransition.play();
-                Main.author.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        author.setOnMouseClicked(event -> {
+            Transition.lollipopTransition(author, Main.author, event.getSceneX(), event.getSceneY(), 1000);
         });
 
-        setting.setOnAction(oa -> {
-            try {
-                FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), Main.setting.getRoot());
-                fadeTransition.setFromValue(0.2f);
-                fadeTransition.setToValue(1f);
-                fadeTransition.setCycleCount(1);
-                fadeTransition.setAutoReverse(true);
-                fadeTransition.play();
-                Main.setting.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        setting.setOnMouseClicked(event -> {
+            Transition.lollipopTransition(setting, Main.setting, event.getSceneX(), event.getSceneY(), 1000);
         });
 
-        getResources.setOnAction(oa -> {
-            try {
-                FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), Main.getResources.getRoot());
-                fadeTransition.setFromValue(0.2f);
-                fadeTransition.setToValue(1f);
-                fadeTransition.setCycleCount(1);
-                fadeTransition.setAutoReverse(true);
-                fadeTransition.play();
-                Main.getResources.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        getResources.setOnMouseClicked(event -> {
+            Transition.lollipopTransition(getResources, Main.getResources, event.getSceneX(), event.getSceneY(),
+                    1000);
         });
-
-        skin.setOnAction(oa -> {
-            try {
-                GuiBase skin = new GuiBase("Skin", Main.primaryStage, 800, 530);
-                FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), skin.getRoot());
-                fadeTransition.setFromValue(0.2f);
-                fadeTransition.setToValue(1f);
-                fadeTransition.setCycleCount(1);
-                fadeTransition.setAutoReverse(true);
-                fadeTransition.play();
-                skin.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        skin.setOnMouseClicked(event -> {
+            Transition.lollipopTransition(skin, new GuiBase("Skin", Main.primaryStage, 800, 530),
+                    event.getSceneX(), event.getSceneY(), 1000);
         });
     }
 
     /**
      * 界面配置
      */
-    void guiSetStyle() {
+    private void guiSetStyle() {
 
         //设置背景
         File file = new File(Main.getBaseDir(), "LclConfig/" + ConfigController.json.getString("background"));
