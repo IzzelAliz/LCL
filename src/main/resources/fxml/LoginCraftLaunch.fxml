@@ -34,50 +34,59 @@
             </Label>
          </children>
       </AnchorPane>
-      <ScrollPane fx:id="Spane" layoutX="-17.0" layoutY="70.0" prefHeight="463.0" prefWidth="834.0">
+      <ScrollPane fx:id="Spane" layoutY="33.0" prefHeight="500.0" prefWidth="800.0">
          <content>
-          <AnchorPane fx:id="Apane" minHeight="0.0" minWidth="0.0" prefHeight="432.0" prefWidth="1181.0" stylesheets="/css/MetroUI.css" translateY="45.0">
+          <AnchorPane fx:id="Apane" focusTraversable="true" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="376.0" prefWidth="1180.0" stylesheets="/css/MetroUI.css" translateY="100.0">
                <children>
                   <Button fx:id="skin" alignment="CENTER" contentDisplay="TOP" layoutX="635.0" layoutY="10.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="个性化">
                      <graphic>
                         <ImageView fx:id="skinImg" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic></Button>
+                     </graphic>
+                  </Button>
                   <Button fx:id="getResources" alignment="CENTER" contentDisplay="TOP" layoutX="510.0" layoutY="10.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="资源获取" textOverrun="CLIP">
                      <graphic>
                         <ImageView fx:id="getResourcesImg" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic></Button>
+                     </graphic>
+                  </Button>
                   <Button fx:id="custom" alignment="CENTER" contentDisplay="TOP" layoutX="760.0" layoutY="10.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="自定义">
                      <graphic>
                         <ImageView fx:id="customImg" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic></Button>
+                     </graphic>
+                  </Button>
                   <Button fx:id="setting" alignment="CENTER" contentDisplay="TOP" layoutX="30.0" layoutY="130.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="230.0" text="设置" textOverrun="CLIP">
                      <graphic>
                         <ImageView fx:id="settingImg" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic></Button>
+                     </graphic>
+                  </Button>
                   <Button fx:id="author" alignment="CENTER" contentDisplay="TOP" layoutX="635.0" layoutY="130.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="关于">
                      <graphic>
                         <ImageView fx:id="authorImg" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic></Button>
+                     </graphic>
+                  </Button>
                   <Button fx:id="login" alignment="CENTER" contentDisplay="TOP" layoutX="30.0" layoutY="10.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="230.0" text="正版登录">
                      <graphic>
                         <ImageView fx:id="loginImg" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic></Button>
+                     </graphic>
+                  </Button>
                   <Button fx:id="serverInformation" alignment="CENTER" contentDisplay="TOP" layoutX="30.0" layoutY="250.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="230.0" text="服务器信息">
                      <graphic>
                         <ImageView fx:id="serverInformationImg" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic></Button>
+                     </graphic>
+                  </Button>
                   <Button fx:id="resourceManagement" alignment="CENTER" contentDisplay="TOP" layoutX="270.0" layoutY="10.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="230.0" text="资源管理">
                      <graphic>
                         <ImageView fx:id="resourceManagementImg" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic></Button>
+                     </graphic>
+                  </Button>
                   <Button fx:id="update" alignment="CENTER" contentDisplay="TOP" layoutX="635.0" layoutY="250.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="更新">
                      <graphic>
                         <ImageView fx:id="updateImg" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic></Button>
+                     </graphic>
+                  </Button>
                   <ImageView fx:id="bulletinImg" fitHeight="230.0" fitWidth="350.0" layoutX="270.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="881.0" layoutY="168.0" prefHeight="37.0" prefWidth="315.0" text="更多功能正在开发哦qwq……">
+                  <Label layoutX="865.0" layoutY="166.0" prefHeight="37.0" prefWidth="315.0" text="更多功能正在开发哦qwq……" textFill="WHITE">
                      <font>
-                        <Font size="22.0" />
+                        <Font name="Microsoft YaHei Bold" size="30.0" />
                      </font>
                   </Label>
                </children>

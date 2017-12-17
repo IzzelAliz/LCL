@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.SVGPath;
 import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
+import me.kevinwalker.utils.PictureUtil;
 import me.kevinwalker.utils.Util;
 
 import java.io.File;
@@ -58,7 +59,7 @@ public abstract class MainController implements Initializable {
         File file = new File(Main.getBaseDir(), "LclConfig/"+ ConfigController.json.getString("background"));
         if (file.exists()) {
             try {
-                Util.zoomImage("LclConfig/"+ConfigController.json.getString("background"), "LclConfig/"+ConfigController.json.getString("background"), 800, 530);
+                PictureUtil.zoomImage("LclConfig/"+ConfigController.json.getString("background"), "LclConfig/"+ConfigController.json.getString("background"), 800, 530);
             } catch (Exception e) {
                 e.printStackTrace();
             }

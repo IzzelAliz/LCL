@@ -1,7 +1,11 @@
 package me.kevinwalker.utils;
 
+import me.kevinwalker.main.Main;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -9,97 +13,32 @@ import java.io.File;
  * Created by KevinWalker on 2017/10/5.
  */
 public class PictureUtil {
-    private static File file;
+    /**
+     * 缩放图片
+     *
+     * @param src  图片位置
+     * @param dest 输出的位置
+     * @param w    缩放后的长
+     * @param h    缩放后的宽
+     * @throws Exception
+     */
+    public static void zoomImage(String src, String dest, int w, int h) throws Exception {
+        double wr = 0, hr = 0;
+        File srcFile = new File(Main.getBaseDir(), src);
+        File destFile = new File(Main.getBaseDir(), dest);
 
-    public PictureUtil(File file){
-        file = file;
-    }
+        BufferedImage bufImg = ImageIO.read(srcFile); //读取图片
+        java.awt.Image Itemp = bufImg.getScaledInstance(w, h, bufImg.SCALE_SMOOTH);//设置缩放目标图片模板
 
-    public static void run() throws Exception{
-        BufferedImage img = ImageIO.read(file);
-        System.out.println(img);
-        int height = img.getHeight();
-        int width = img.getWidth();
-        int[][] matrix = new int[3][3];
-        int[] values = new int[9];
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                readPixel(img, i, j, values);
-                fillMatrix(matrix, values);
-                img.setRGB(i, j, avgMatrix(matrix));
-            }
+        wr = w * 1.0 / bufImg.getWidth();     //获取缩放比例
+        hr = h * 1.0 / bufImg.getHeight();
+
+        AffineTransformOp ato = new AffineTransformOp(AffineTransform.getScaleInstance(wr, hr), null);
+        Itemp = ato.filter(bufImg, null);
+        try {
+            ImageIO.write((BufferedImage) Itemp, dest.substring(dest.lastIndexOf(".") + 1), destFile); //写入缩减后的图片
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        ImageIO.write(img, "png", new File("/LclConfig/background_Title.png"));
-    }
-
-    private static void readPixel(BufferedImage img, int x, int y, int[] pixels)
-    {
-        int xStart = x - 1;
-        int yStart = y - 1;
-        int current = 0;
-        for (int i = xStart; i < 3 + xStart; i++)
-        {
-            for (int j = yStart; j < 3 + yStart; j++)
-            {
-                int tx = i;
-                if (tx < 0)
-                {
-                    tx = -tx;
-                }
-                else if (tx >= img.getWidth())
-                {
-                    tx = x;
-                }
-
-                int ty = j;
-                if (ty < 0)
-                {
-                    ty = -ty;
-                }
-                else if (ty >= img.getHeight())
-                {
-                    ty = y;
-                }
-                pixels[current++] = img.getRGB(tx, ty);
-            }
-        }
-    }
-
-    private static void fillMatrix(int[][] matrix, int... values)
-    {
-        int filled = 0;
-        for (int i = 0; i < matrix.length; i++)
-        {
-            int[] x = matrix[i];
-            for (int j = 0; j < x.length; j++)
-            {
-                x[j] = values[filled++];
-            }
-        }
-    }
-
-    private static int avgMatrix(int[][] matrix)
-    {
-        int r = 0;
-        int g = 0;
-        int b = 0;
-        for (int i = 0; i < matrix.length; i++)
-        {
-            int[] x = matrix[i];
-            for (int j = 0; j < x.length; j++)
-            {
-                if (j == 1)
-                {
-                    continue;
-                }
-                Color c = new Color(x[j]);
-                r += c.getRed();
-                g += c.getGreen();
-                b += c.getBlue();
-            }
-        }
-        return new Color(r / 8, g / 8, b / 8).getRGB();
     }
 }

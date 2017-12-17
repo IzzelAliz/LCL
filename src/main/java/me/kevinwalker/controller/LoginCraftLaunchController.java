@@ -1,10 +1,9 @@
 package me.kevinwalker.controller;
 
-import javafx.animation.*;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -15,14 +14,18 @@ import javafx.util.Duration;
 import me.kevinwalker.guis.GuiBase;
 import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
-import me.kevinwalker.utils.Util;
-import me.kevinwalker.utils.ZipUtils;
+import me.kevinwalker.utils.*;
 
+import java.awt.*;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+
+import static java.awt.Color.blue;
+import static java.awt.Color.green;
+import static java.awt.Color.red;
 
 /**
  * Created by KevinWalker on 2017/9/16.
@@ -135,12 +138,11 @@ public class LoginCraftLaunchController implements Initializable {
      * 界面配置
      */
     void guiSetStyle() {
-
         //设置背景
         File file = new File(Main.getBaseDir(), "LclConfig/" + ConfigController.json.getString("background"));
         if (file.exists()) {
             try {
-                Util.zoomImage("LclConfig/" + ConfigController.json.getString("background"), "LclConfig/" + ConfigController.json.getString("background"), 800, 530);
+                PictureUtil.zoomImage("LclConfig/" + ConfigController.json.getString("background"), "LclConfig/" + ConfigController.json.getString("background"), 800, 530);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -152,7 +154,6 @@ public class LoginCraftLaunchController implements Initializable {
         } else {
             MainGui.setStyle("-fx-background-image: url(/css/images/background.jpg)");
         }
-
 
         //设置随机按钮颜色部分
         onGuiOpen(skin);
@@ -169,7 +170,6 @@ public class LoginCraftLaunchController implements Initializable {
         name.setText(ConfigController.json.getString("name"));
 //        handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",0.9);");
         handsvg.setStyle("-fx-fill:rgba(122,122,122,0.9);");
-
     }
 
     public void setButtomImg() {
@@ -189,24 +189,19 @@ public class LoginCraftLaunchController implements Initializable {
         System.exit(0);
     }
 
-    public static void onGuiOpen(Button button) {
+    public static void onGuiOpen1(Button button) {
         int red;
         int green;
         int blue;
-//        int red2;
-//        int green2;
-//        int blue2;
         Random random = new Random();
-//        Random random2 = new Random();
         red = random.nextInt(150) + 50;
         green = random.nextInt(130) + 50;
         blue = random.nextInt(120) + 50;
-//        red2 = random.nextInt(150) + 50;
-//        green2 = random.nextInt(130) + 50;
-//        blue2 = random.nextInt(120) + 50;
         button.setStyle("-fx-background-color: rgba(" + red + "," + green + "," + blue + ",0.9);-fx-border-color: rgba(" + red + "," + green + "," + blue + ",0.9);-fx-border-width: 1;");
-//        button.setStyle("-fx-background-color: linear-gradient(to right,"+ ColorTranslated.toHex(red,green,blue)+","+ColorTranslated.toHex(red2,green2,blue2)+");-fx-opacity:0.9;");
-//        button.setStyle("-fx-background-color: linear-gradient(to right,#00fffc,#fff600);-fx-opacity:0.8;");
     }
-
+    public static void onGuiOpen(Button button) {
+        Color color = GetMainColor.getImagePixel(new File(Main.getBaseDir(), "LclConfig/" + ConfigController.json.getString("background")));
+//        color = ColorTranslated.Color2Contrary2(color);
+        button.setStyle("-fx-background-color: rgba(" + color.getRed() + "," + color.getGreen() + "," + color.getBlue() + ",0.9);-fx-border-color: rgba(" + color.getRed() + "," + color.getGreen() + "," + color.getBlue() + ",0.9);-fx-border-width: 1;");
+    }
 }

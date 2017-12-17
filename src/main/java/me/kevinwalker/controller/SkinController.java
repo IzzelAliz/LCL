@@ -14,6 +14,7 @@ import javafx.scene.layout.RowConstraints;
 import me.kevinwalker.guis.GuiBase;
 import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
+import me.kevinwalker.utils.Json;
 import me.kevinwalker.utils.ZipUtils;
 
 import java.io.File;
