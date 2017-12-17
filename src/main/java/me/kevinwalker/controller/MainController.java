@@ -7,10 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.SVGPath;
+import me.kevinwalker.guis.Transition;
 import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
 import me.kevinwalker.utils.PictureUtil;
-import me.kevinwalker.utils.Util;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -46,20 +46,20 @@ public abstract class MainController implements Initializable {
         closebtn.setOnAction(oa -> {
             System.exit(0);
         });
-        leave.setOnAction(oa -> {
-            Main.mainGui.show();
+        leave.setOnMouseClicked(event ->  {
+            Transition.lollipopTransition(leave, Main.mainGui, event.getSceneX(), event.getSceneY(), 1000);
         });
     }
 
     /**
      * 界面配置
      */
-    void guiSetStyle(){
+    void guiSetStyle() {
         //设置背景
-        File file = new File(Main.getBaseDir(), "LclConfig/"+ ConfigController.json.getString("background"));
+        File file = new File(Main.getBaseDir(), "LclConfig/" + ConfigController.json.getString("background"));
         if (file.exists()) {
             try {
-                PictureUtil.zoomImage("LclConfig/"+ConfigController.json.getString("background"), "LclConfig/"+ConfigController.json.getString("background"), 800, 530);
+                PictureUtil.zoomImage("LclConfig/" + ConfigController.json.getString("background"), "LclConfig/" + ConfigController.json.getString("background"), 800, 530);
             } catch (Exception e) {
                 e.printStackTrace();
             }

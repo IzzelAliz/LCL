@@ -1,6 +1,5 @@
 package me.kevinwalker.controller;
 
-import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,22 +9,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.SVGPath;
-import javafx.util.Duration;
 import me.kevinwalker.guis.GuiBase;
+import me.kevinwalker.guis.Transition;
 import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
-import me.kevinwalker.utils.*;
+import me.kevinwalker.utils.PictureUtil;
+import me.kevinwalker.utils.ZipUtils;
 
-import java.awt.*;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
-
-import static java.awt.Color.blue;
-import static java.awt.Color.green;
-import static java.awt.Color.red;
 
 /**
  * Created by KevinWalker on 2017/9/16.
@@ -76,68 +71,29 @@ public class LoginCraftLaunchController implements Initializable {
             }
         });
 
-        author.setOnAction(oa -> {
-            try {
-                FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), Main.author.getRoot());
-                fadeTransition.setFromValue(0.2f);
-                fadeTransition.setToValue(1f);
-                fadeTransition.setCycleCount(1);
-                fadeTransition.setAutoReverse(true);
-                fadeTransition.play();
-                Main.author.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        author.setOnMouseClicked(event -> {
+            Transition.lollipopTransition(author, Main.author, event.getSceneX(), event.getSceneY(), 1000);
         });
 
-        setting.setOnAction(oa -> {
-            try {
-                FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), Main.setting.getRoot());
-                fadeTransition.setFromValue(0.2f);
-                fadeTransition.setToValue(1f);
-                fadeTransition.setCycleCount(1);
-                fadeTransition.setAutoReverse(true);
-                fadeTransition.play();
-                Main.setting.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        setting.setOnMouseClicked(event -> {
+            Transition.lollipopTransition(setting, Main.setting, event.getSceneX(), event.getSceneY(), 1000);
         });
 
-        getResources.setOnAction(oa -> {
-            try {
-                FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), Main.getResources.getRoot());
-                fadeTransition.setFromValue(0.2f);
-                fadeTransition.setToValue(1f);
-                fadeTransition.setCycleCount(1);
-                fadeTransition.setAutoReverse(true);
-                fadeTransition.play();
-                Main.getResources.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        getResources.setOnMouseClicked(event -> {
+            Transition.lollipopTransition(getResources, Main.getResources, event.getSceneX(), event.getSceneY(),
+                    1000);
         });
-
-        skin.setOnAction(oa -> {
-            try {
-                GuiBase skin = new GuiBase("Skin", Main.primaryStage, 800, 530);
-                FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), skin.getRoot());
-                fadeTransition.setFromValue(0.2f);
-                fadeTransition.setToValue(1f);
-                fadeTransition.setCycleCount(1);
-                fadeTransition.setAutoReverse(true);
-                fadeTransition.play();
-                skin.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        skin.setOnMouseClicked(event -> {
+            Transition.lollipopTransition(skin, new GuiBase("Skin", Main.primaryStage, 800, 530),
+                    event.getSceneX(), event.getSceneY(), 1000);
         });
     }
 
     /**
      * 界面配置
      */
-    void guiSetStyle() {
+    private void guiSetStyle() {
+
         //设置背景
         File file = new File(Main.getBaseDir(), "LclConfig/" + ConfigController.json.getString("background"));
         if (file.exists()) {
@@ -155,6 +111,7 @@ public class LoginCraftLaunchController implements Initializable {
             MainGui.setStyle("-fx-background-image: url(/css/images/background.jpg)");
         }
 
+
         //设置随机按钮颜色部分
         onGuiOpen(skin);
         onGuiOpen(setting);
@@ -170,6 +127,7 @@ public class LoginCraftLaunchController implements Initializable {
         name.setText(ConfigController.json.getString("name"));
 //        handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",0.9);");
         handsvg.setStyle("-fx-fill:rgba(122,122,122,0.9);");
+
     }
 
     public void setButtomImg() {
@@ -189,19 +147,24 @@ public class LoginCraftLaunchController implements Initializable {
         System.exit(0);
     }
 
-    public static void onGuiOpen1(Button button) {
+    public static void onGuiOpen(Button button) {
         int red;
         int green;
         int blue;
+//        int red2;
+//        int green2;
+//        int blue2;
         Random random = new Random();
+//        Random random2 = new Random();
         red = random.nextInt(150) + 50;
         green = random.nextInt(130) + 50;
         blue = random.nextInt(120) + 50;
+//        red2 = random.nextInt(150) + 50;
+//        green2 = random.nextInt(130) + 50;
+//        blue2 = random.nextInt(120) + 50;
         button.setStyle("-fx-background-color: rgba(" + red + "," + green + "," + blue + ",0.9);-fx-border-color: rgba(" + red + "," + green + "," + blue + ",0.9);-fx-border-width: 1;");
+//        button.setStyle("-fx-background-color: linear-gradient(to right,"+ ColorTranslated.toHex(red,green,blue)+","+ColorTranslated.toHex(red2,green2,blue2)+");-fx-opacity:0.9;");
+//        button.setStyle("-fx-background-color: linear-gradient(to right,#00fffc,#fff600);-fx-opacity:0.8;");
     }
-    public static void onGuiOpen(Button button) {
-        Color color = GetMainColor.getImagePixel(new File(Main.getBaseDir(), "LclConfig/" + ConfigController.json.getString("background")));
-//        color = ColorTranslated.Color2Contrary2(color);
-        button.setStyle("-fx-background-color: rgba(" + color.getRed() + "," + color.getGreen() + "," + color.getBlue() + ",0.9);-fx-border-color: rgba(" + color.getRed() + "," + color.getGreen() + "," + color.getBlue() + ",0.9);-fx-border-width: 1;");
-    }
+
 }

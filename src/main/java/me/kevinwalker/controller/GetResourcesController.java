@@ -160,7 +160,7 @@ public class GetResourcesController extends MainController {
                 pane.setAlignment(Pos.BASELINE_LEFT);
                 pane.getChildren().clear();
             });
-            list.stream().forEach(thread -> {
+            list.forEach(thread -> {
                 Platform.runLater(() -> {
                     HBox box = new HBox();
                     box.setOnMouseClicked(e -> {
@@ -169,7 +169,7 @@ public class GetResourcesController extends MainController {
                         if (dp.isSupported(Desktop.Action.BROWSE))
                             try {
                                 dp.browse(uri);
-                            } catch (IOException e1) {
+                            } catch (IOException ignored) {
                             }
                     });
                     box.setMaxWidth(680.0D);

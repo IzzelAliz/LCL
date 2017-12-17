@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.*?>
+
 <AnchorPane fx:id="mainGui" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="800.0" stylesheets="/css/MetroUI.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.controller.GetResourcesController">
     <children>
         <ImageView fx:id="background" fitHeight="530.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
@@ -44,7 +49,7 @@
             </Button>
          </children>
       </HBox>
-      <TabPane layoutX="92.0" layoutY="75.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="443.0" prefWidth="700.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" stylesheets="/css/MainUI.css">
+      <TabPane layoutX="92.0" layoutY="75.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="443.0" prefWidth="700.0" side="BOTTOM" style="-fx-background-color: rgba(0,0,0,0); -fx-border-width: 0; -fx-border-color: rgba(0,0,0,0);" stylesheets="/css/MainUI.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab onSelectionChanged="#onModSelect" text="Mod资源">
             <content>
