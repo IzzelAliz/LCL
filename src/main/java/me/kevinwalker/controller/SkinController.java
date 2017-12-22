@@ -98,7 +98,7 @@ public class SkinController extends MainController {
                 ConfigController.saveJson();
                 Main.mainGui = new GuiBase("LoginCraftLaunch", Main.primaryStage, 800, 530);
                 Transition.lollipopTransition(skinButton[num], Main.mainGui, oa.getSceneX(), oa.getSceneY(),
-                        1000);
+                        1500);
             });
         }
         open.setOnAction(oa -> {

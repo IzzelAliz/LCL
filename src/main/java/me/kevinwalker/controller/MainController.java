@@ -47,7 +47,7 @@ public abstract class MainController implements Initializable {
             System.exit(0);
         });
         leave.setOnMouseClicked(event ->  {
-            Transition.lollipopTransition(leave, Main.mainGui, event.getSceneX(), event.getSceneY(), 1000);
+            Transition.lollipopTransition(leave, Main.mainGui, event.getSceneX(), event.getSceneY(), 1500);
         });
     }
 
