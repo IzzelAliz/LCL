@@ -12,7 +12,6 @@ import java.io.*;
 public class ConfigController {
     public static File configFile;
     public static JSONObject json;
-    public static JSONObject skinJson;
 
     public ConfigController(){
         File file = new File(Main.getBaseDir(), "LclConfig");

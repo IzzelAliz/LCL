@@ -56,9 +56,11 @@ public class SkinController extends MainController {
         skinPane.setPrefHeight(skinList.size() * 205);
         for (int i = 0; i < skinList.size(); i++) {
             ZipUtils zipFile = new ZipUtils(skinList.get(i));
-            try (InputStream inputStream = zipFile.getInputStream("preview.png")) {
+            try (InputStream inputStream = zipFile.getInputStream("preview.png");InputStream skinInputStream = zipFile.getInputStream("skin.json")) {
+                Json json = new Json(skinInputStream);
                 image[i] = new ImageView(new Image(inputStream));
-                skinButton[i] = new Button(skinList.get(i), image[i]);
+//                skinButton[i] = new Button(skinList.get(i), image[i]);
+                skinButton[i] = new Button(skinList.get(i)+"/"+json.getString("text"), image[i]);
                 image[i].setFitWidth(80);
                 image[i].setFitHeight(80);
                 skinButton[i].setPrefSize(330, 100);
