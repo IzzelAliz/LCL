@@ -1,24 +1,24 @@
 package me.kevinwalker.controller;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import me.kevinwalker.guis.GuiBase;
+import me.kevinwalker.guis.Transition;
 import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
 import me.kevinwalker.utils.Json;
 import me.kevinwalker.utils.ZipUtils;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -51,55 +51,63 @@ public class SkinController extends MainController {
     private void guisettings() {
         //选择控件获取文件名List
         skinList = getFileList(new File(Main.getBaseDir(), "LclConfig/skin"));
-        Button skinButton[] = new Button[skinList.size()];
-        ImageView image[] = new ImageView[skinList.size()];
+        HBox[] skinButton = new HBox[skinList.size()];
+        ImageView[] image = new ImageView[skinList.size()];
         skinPane.setPrefHeight(skinList.size() * 205);
         for (int i = 0; i < skinList.size(); i++) {
             ZipUtils zipFile = new ZipUtils(skinList.get(i));
-            try (InputStream inputStream = zipFile.getInputStream("preview.png");InputStream skinInputStream = zipFile.getInputStream("skin.json")) {
+            try (InputStream inputStream = zipFile.getInputStream("preview.png");
+                 InputStream skinInputStream = zipFile.getInputStream("skin.json")) {
                 Json json = new Json(skinInputStream);
                 image[i] = new ImageView(new Image(inputStream));
-//                skinButton[i] = new Button(skinList.get(i), image[i]);
-                skinButton[i] = new Button(skinList.get(i)+"/"+json.getString("text"), image[i]);
                 image[i].setFitWidth(80);
                 image[i].setFitHeight(80);
+                VBox vBox = new VBox();
+                Text text;
+                vBox.getChildren().add(text = new Text(skinList.get(i)));
+                text.setFill(Color.WHITE);
+                // 这一行会蜜汁报错，自己解决
+                // vBox.getChildren().add(new Text(json.getString("text")));
+                vBox.getChildren().add(text = new Text("text"));
+                text.setFill(Color.WHITE);
+                vBox.setStyle("-fx-font-family: \"微软雅黑\";-fx-font-size: 16px;");
+                vBox.setPadding(new Insets(5.0D));
+                vBox.setSpacing(5.0D);
+                vBox.setAlignment(Pos.CENTER);
+                skinButton[i] = new HBox(image[i], vBox);
+                skinButton[i].setPadding(new Insets(10.0D));
+                skinButton[i].setSpacing(15.0D);
+                skinButton[i].setAlignment(Pos.CENTER_LEFT);
                 skinButton[i].setPrefSize(330, 100);
                 skinButton[i].setMinSize(330, 100);
                 skinButton[i].setMaxSize(330, 100);
-                if(this.list) {
-                    skinButton[i].setLayoutX(8);
-                }else{
-                    skinButton[i].setLayoutX(15+330);
-                }
-                if(this.list) {
-                    skinButton[i].setLayoutY((i-i/2) * (100 + 5));
-
-                }else{
-                    skinButton[i].setLayoutY(((i-1)-(i-1)/2) * (100 + 5));
-                }
-                skinButton[i].setContentDisplay(ContentDisplay.LEFT);
-                skinButton[i].setAlignment(Pos.BASELINE_LEFT);
+                if (this.list) skinButton[i].setLayoutX(8);
+                else skinButton[i].setLayoutX(15 + 330);
+                if (this.list) skinButton[i].setLayoutY((i - i / 2) * (100 + 5));
+                else skinButton[i].setLayoutY(((i - 1) - (i - 1) / 2) * (100 + 5));
                 skinPane.getChildren().add(skinButton[i]);
                 LoginCraftLaunchController.onGuiOpen(skinButton[i]);
                 this.list = !this.list;
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            final int num = i;
-            skinButton[i].setOnAction(oa -> {
-                ConfigController.json.put("skin",skinButton[num].getText());
+            int num = i;
+            skinButton[i].setOnMouseClicked(oa -> {
+                ConfigController.json.put("skin", ((Text) ((VBox) skinButton[num].getChildren().get(1))
+                        .getChildren().get(0)).getText());
                 ConfigController.saveJson();
                 Main.mainGui = new GuiBase("LoginCraftLaunch", Main.primaryStage, 800, 530);
-                Main.mainGui.show();
-            });
-            open.setOnAction(oa -> {
-                try {
-                    java.awt.Desktop.getDesktop().open(new File(Main.getBaseDir(), "LclConfig/skin"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Transition.lollipopTransition(skinButton[num], Main.mainGui, oa.getSceneX(), oa.getSceneY(),
+                        1000);
             });
         }
+        open.setOnAction(oa -> {
+            try {
+                java.awt.Desktop.getDesktop().open(new File(Main.getBaseDir(), "LclConfig/skin"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     /**
@@ -114,17 +122,9 @@ public class SkinController extends MainController {
             System.out.println(file.getAbsolutePath());
             result.add(file.getAbsolutePath());
         } else {
-            File[] directoryList = file.listFiles(new FileFilter() {
-                public boolean accept(File file) {
-                    if (file.isFile() && file.getName().indexOf("zip") > -1) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-            });
-            for (int i = 0; i < directoryList.length; i++) {
-                result.add(directoryList[i].getName().substring(0, directoryList[i].getName().length() - 4));
+            File[] directoryList = file.listFiles(file1 -> file1.isFile() && file1.getName().endsWith(".zip"));
+            for (File aDirectoryList : directoryList) {
+                result.add(aDirectoryList.getName().substring(0, aDirectoryList.getName().length() - 4));
             }
         }
         return result;

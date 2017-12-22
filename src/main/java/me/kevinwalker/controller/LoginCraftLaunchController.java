@@ -3,6 +3,7 @@ package me.kevinwalker.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -147,7 +148,7 @@ public class LoginCraftLaunchController implements Initializable {
         System.exit(0);
     }
 
-    public static void onGuiOpen(Button button) {
+    public static void onGuiOpen(Node button) {
         int red;
         int green;
         int blue;
