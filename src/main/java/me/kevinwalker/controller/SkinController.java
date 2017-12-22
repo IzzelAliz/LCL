@@ -1,7 +1,5 @@
 package me.kevinwalker.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
