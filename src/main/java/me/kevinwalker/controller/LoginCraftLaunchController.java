@@ -72,20 +72,20 @@ public class LoginCraftLaunchController implements Initializable {
         });
 
         author.setOnMouseClicked(event -> {
-            Transition.lollipopTransition(author, Main.author, event.getSceneX(), event.getSceneY(), 1000);
+            Transition.lollipopTransition(author, Main.author, event.getSceneX(), event.getSceneY(), 1500);
         });
 
         setting.setOnMouseClicked(event -> {
-            Transition.lollipopTransition(setting, Main.setting, event.getSceneX(), event.getSceneY(), 1000);
+            Transition.lollipopTransition(setting, Main.setting, event.getSceneX(), event.getSceneY(), 1500);
         });
 
         getResources.setOnMouseClicked(event -> {
             Transition.lollipopTransition(getResources, Main.getResources, event.getSceneX(), event.getSceneY(),
-                    1000);
+                    1500);
         });
         skin.setOnMouseClicked(event -> {
             Transition.lollipopTransition(skin, new GuiBase("Skin", Main.primaryStage, 800, 530),
-                    event.getSceneX(), event.getSceneY(), 1000);
+                    event.getSceneX(), event.getSceneY(), 1500);
         });
     }
 

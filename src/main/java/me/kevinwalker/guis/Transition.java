@@ -6,9 +6,12 @@ import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import me.kevinwalker.controller.GetResourcesController;
 
 import java.lang.reflect.Method;
 import java.util.concurrent.Executors;
