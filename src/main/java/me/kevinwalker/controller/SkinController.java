@@ -50,55 +50,57 @@ public class SkinController extends MainController {
      */
     private void guisettings() {
         //选择控件获取文件名List
-        skinList = getFileList(new File(Main.getBaseDir(), "LclConfig/skin"));
-        HBox[] skinButton = new HBox[skinList.size()];
-        ImageView[] image = new ImageView[skinList.size()];
-        skinPane.setPrefHeight(skinList.size() * 205);
-        for (int i = 0; i < skinList.size(); i++) {
-            ZipUtils zipFile = new ZipUtils(skinList.get(i));
-            try (InputStream inputStream = zipFile.getInputStream("preview.png");
-                 InputStream skinInputStream = zipFile.getInputStream("skin.json")) {
-                Json json = new Json(skinInputStream);
-                image[i] = new ImageView(new Image(inputStream));
-                image[i].setFitWidth(80);
-                image[i].setFitHeight(80);
-                VBox vBox = new VBox();
-                Text text;
-                vBox.getChildren().add(text = new Text(skinList.get(i)));
-                text.setFill(Color.WHITE);
-                vBox.getChildren().add(text = new Text(json.getString("text")));
-                text.setFill(Color.WHITE);
-                vBox.setPadding(new Insets(5.0D));
-                vBox.setSpacing(5.0D);
-                vBox.setAlignment(Pos.CENTER_LEFT);
-                skinButton[i] = new HBox(image[i], vBox);
-                skinButton[i].setPadding(new Insets(10.0D));
-                skinButton[i].setSpacing(15.0D);
-                skinButton[i].setAlignment(Pos.CENTER_LEFT);
-                skinButton[i].getStyleClass().add("button");
-                skinButton[i].setPrefSize(330, 100);
-                skinButton[i].setMinSize(330, 100);
-                skinButton[i].setMaxSize(330, 100);
-                if (this.list) skinButton[i].setLayoutX(8);
-                else skinButton[i].setLayoutX(15 + 330);
-                if (this.list) skinButton[i].setLayoutY((i - i / 2) * (100 + 5));
-                else skinButton[i].setLayoutY(((i - 1) - (i - 1) / 2) * (100 + 5));
-                skinPane.getChildren().add(skinButton[i]);
-                LoginCraftLaunchController.onGuiOpen(skinButton[i]);
-                this.list = !this.list;
-            } catch (IOException e) {
-                e.printStackTrace();
+        new Thread(() -> {
+            skinList = getFileList(new File(Main.getBaseDir(), "LclConfig/skin"));
+            HBox[] skinButton = new HBox[skinList.size()];
+            ImageView[] image = new ImageView[skinList.size()];
+            skinPane.setPrefHeight(skinList.size() * 205);
+            for (int i = 0; i < skinList.size(); i++) {
+                ZipUtils zipFile = new ZipUtils(skinList.get(i));
+                try (InputStream inputStream = zipFile.getInputStream("preview.png");
+                     InputStream skinInputStream = zipFile.getInputStream("skin.json")) {
+                    Json json = new Json(skinInputStream);
+                    image[i] = new ImageView(new Image(inputStream));
+                    image[i].setFitWidth(80);
+                    image[i].setFitHeight(80);
+                    VBox vBox = new VBox();
+                    Text text;
+                    vBox.getChildren().add(text = new Text(skinList.get(i)));
+                    text.setFill(Color.WHITE);
+                    vBox.getChildren().add(text = new Text(json.getString("text")));
+                    text.setFill(Color.WHITE);
+                    vBox.setPadding(new Insets(5.0D));
+                    vBox.setSpacing(5.0D);
+                    vBox.setAlignment(Pos.CENTER_LEFT);
+                    skinButton[i] = new HBox(image[i], vBox);
+                    skinButton[i].setPadding(new Insets(10.0D));
+                    skinButton[i].setSpacing(15.0D);
+                    skinButton[i].setAlignment(Pos.CENTER_LEFT);
+                    skinButton[i].getStyleClass().add("button");
+                    skinButton[i].setPrefSize(330, 100);
+                    skinButton[i].setMinSize(330, 100);
+                    skinButton[i].setMaxSize(330, 100);
+                    if (this.list) skinButton[i].setLayoutX(8);
+                    else skinButton[i].setLayoutX(15 + 330);
+                    if (this.list) skinButton[i].setLayoutY((i - i / 2) * (100 + 5));
+                    else skinButton[i].setLayoutY(((i - 1) - (i - 1) / 2) * (100 + 5));
+                    skinPane.getChildren().add(skinButton[i]);
+                    LoginCraftLaunchController.onGuiOpen(skinButton[i]);
+                    this.list = !this.list;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                int num = i;
+                skinButton[i].setOnMouseClicked(oa -> {
+                    ConfigController.json.put("skin", ((Text) ((VBox) skinButton[num].getChildren().get(1))
+                            .getChildren().get(0)).getText());
+                    ConfigController.saveJson();
+                    Main.mainGui = new GuiBase("LoginCraftLaunch", Main.primaryStage, 800, 530);
+                    Transition.lollipopTransition(skinButton[num], Main.mainGui, oa.getSceneX(), oa.getSceneY(),
+                            1500);
+                });
             }
-            int num = i;
-            skinButton[i].setOnMouseClicked(oa -> {
-                ConfigController.json.put("skin", ((Text) ((VBox) skinButton[num].getChildren().get(1))
-                        .getChildren().get(0)).getText());
-                ConfigController.saveJson();
-                Main.mainGui = new GuiBase("LoginCraftLaunch", Main.primaryStage, 800, 530);
-                Transition.lollipopTransition(skinButton[num], Main.mainGui, oa.getSceneX(), oa.getSceneY(),
-                        1500);
-            });
-        }
+        }).start();
         open.setOnAction(oa -> {
             try {
                 java.awt.Desktop.getDesktop().open(new File(Main.getBaseDir(), "LclConfig/skin"));
