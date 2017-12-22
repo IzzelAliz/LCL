@@ -1,5 +1,7 @@
 package me.kevinwalker.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -68,14 +70,14 @@ public class SkinController extends MainController {
                 text.setFill(Color.WHITE);
                 vBox.getChildren().add(text = new Text(json.getString("text")));
                 text.setFill(Color.WHITE);
-                vBox.setStyle("-fx-font-family: \"微软雅黑\";-fx-font-size: 16px;");
                 vBox.setPadding(new Insets(5.0D));
                 vBox.setSpacing(5.0D);
-                vBox.setAlignment(Pos.CENTER);
+                vBox.setAlignment(Pos.CENTER_LEFT);
                 skinButton[i] = new HBox(image[i], vBox);
                 skinButton[i].setPadding(new Insets(10.0D));
                 skinButton[i].setSpacing(15.0D);
                 skinButton[i].setAlignment(Pos.CENTER_LEFT);
+                skinButton[i].getStyleClass().add("button");
                 skinButton[i].setPrefSize(330, 100);
                 skinButton[i].setMinSize(330, 100);
                 skinButton[i].setMaxSize(330, 100);
