@@ -66,9 +66,7 @@ public class SkinController extends MainController {
                 Text text;
                 vBox.getChildren().add(text = new Text(skinList.get(i)));
                 text.setFill(Color.WHITE);
-                // 这一行会蜜汁报错，自己解决
-                // vBox.getChildren().add(new Text(json.getString("text")));
-                vBox.getChildren().add(text = new Text("text"));
+                vBox.getChildren().add(text = new Text(json.getString("text")));
                 text.setFill(Color.WHITE);
                 vBox.setStyle("-fx-font-family: \"微软雅黑\";-fx-font-size: 16px;");
                 vBox.setPadding(new Insets(5.0D));
