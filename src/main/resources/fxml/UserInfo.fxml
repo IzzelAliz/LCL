@@ -17,7 +17,7 @@
 
 <AnchorPane fx:id="mainGui" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="800.0" stylesheets="/css/MetroUI.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.controller.UserController">
     <children>
-        <ImageView fx:id="background" fitHeight="530.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="background" fitHeight="530.0" fitWidth="800.0" onMouseClicked="#onClickImage" pickOnBounds="true" preserveRatio="true">
         </ImageView>
         <SVGPath fx:id="handsvg" content="M65.23884 456.152041h893.521297v111.695918H65.23884V456.152041z" fill="#D9D7CA" layoutX="-111.0" layoutY="-498.0" scaleX="0.898" scaleY="0.35" AnchorPane.bottomAnchor="353.62296295166016" AnchorPane.leftAnchor="-45.76116180419922" AnchorPane.rightAnchor="328.7107849121094" AnchorPane.topAnchor="-41.84796142578125" />
         <SVGPath fx:id="closesvg" content="M830.606452 106.529032 512 425.135484 193.393548 106.529032 106.529032 193.393548 425.083871 512 106.529032 830.606452 193.393548 917.470968 512 598.916129 830.606452 917.470968 917.470968 830.606452 598.864516 512 917.470968 193.393548Z" fill="white" layoutX="259.0" layoutY="-496.0" scaleX="0.028" scaleY="0.028" scaleZ="0.028" />
@@ -36,7 +36,7 @@
                 </ImageView>
             </graphic>
         </Button>
-      <Pane layoutX="101.0" layoutY="53.0" prefHeight="476.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);" styleClass="root">
+      <Pane layoutX="101.0" layoutY="53.0" onMouseClicked="#onClick" prefHeight="476.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);" styleClass="root">
          <children>
             <VBox fx:id="swap" alignment="CENTER" layoutX="30.0" layoutY="30.0" prefHeight="110.0" prefWidth="230.0" spacing="10.0" styleClass="button">
                <children>
@@ -83,7 +83,7 @@
                   <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
                </padding>
             </VBox>
-            <GridPane fx:id="custom" layoutX="30.0" layoutY="170.0" prefHeight="286.0" prefWidth="540.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #FFFFFF;">
+            <GridPane fx:id="custom" layoutX="30.0" layoutY="170.0" prefHeight="286.0" prefWidth="540.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #FFFFFF; -fx-grid-lines-visible: true;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>

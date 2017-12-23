@@ -41,18 +41,26 @@ public class UserController extends MainController {
         currentMsg.setText(Config.instance.authType.s);
         if (Config.instance.authType == Login.Offline) {
             input1.setOpacity(1.0D);
+            input1.setMouseTransparent(false);
             input2.setOpacity(0.0D);
+            input2.setMouseTransparent(true);
         } else {
             input2.setOpacity(1.0D);
+            input2.setMouseTransparent(false);
             input1.setOpacity(0.0D);
+            input1.setMouseTransparent(true);
         }
         swap.setOnMouseClicked(event -> {
             Config.instance.authType = Config.instance.authType.getNext();
             if (Config.instance.authType == Login.Offline) {
                 Transition.fadeIn(input1);
+                input1.setMouseTransparent(false);
+                input2.setMouseTransparent(true);
                 Transition.fadeOut(input2);
                 Transition.fadeOut(custom);
             } else if (Config.instance.authType == Login.Yggdrasil){
+                input2.setMouseTransparent(false);
+                input1.setMouseTransparent(true);
                 Transition.fadeIn(input2);
                 Transition.fadeOut(input1);
             } else if (Config.instance.authType == Login.Custom) {
@@ -73,6 +81,16 @@ public class UserController extends MainController {
 
     @FXML
     public GridPane custom;
+
+    @FXML
+    void onClick() {
+        custom.requestFocus();
+    }
+
+    @FXML
+    void onClickImage() {
+        custom.requestFocus();
+    }
 
 }
 
