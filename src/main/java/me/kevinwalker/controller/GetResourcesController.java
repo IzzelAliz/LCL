@@ -37,6 +37,7 @@ import java.util.ResourceBundle;
  * Created by KevinWalker on 2017/10/6.
  */
 public class GetResourcesController extends MainController {
+
     @FXML
     private ScrollPane ResourcesPane;
 
@@ -163,6 +164,7 @@ public class GetResourcesController extends MainController {
             list.forEach(thread -> {
                 Platform.runLater(() -> {
                     HBox box = new HBox();
+                    box.getStyleClass().add("resourceButton");
                     box.setOnMouseClicked(e -> {
                         URI uri = java.net.URI.create(thread.url);
                         Desktop dp = Desktop.getDesktop();
@@ -182,16 +184,16 @@ public class GetResourcesController extends MainController {
                     ft.setCycleCount(1);
                     ft.setAutoReverse(true);
                     if (thread.digest) {
-                        rectangle.setFill(new Color(Color.BLUEVIOLET.getRed(), Color.BLUEVIOLET.getGreen(), Color.BLUEVIOLET.getBlue(), 0.5));
+                        rectangle.setFill(new Color(Color.BLUEVIOLET.getRed(), Color.BLUEVIOLET.getGreen(), Color.BLUEVIOLET.getBlue(), 0.7));
                     } else {
                         if (thread.reply > 300)
-                            rectangle.setFill(new Color(Color.ORANGERED.getRed(), Color.ORANGERED.getGreen(), Color.ORANGERED.getBlue(), 0.5));
+                            rectangle.setFill(new Color(Color.ORANGERED.getRed(), Color.ORANGERED.getGreen(), Color.ORANGERED.getBlue(), 0.7));
                         else if (thread.reply > 200)
-                            rectangle.setFill(new Color(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue(), 0.5));
+                            rectangle.setFill(new Color(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue(), 0.7));
                         else if (thread.reply > 100)
-                            rectangle.setFill(new Color(Color.YELLOW.getRed(), Color.YELLOW.getGreen(), Color.YELLOW.getBlue(), 0.5));
+                            rectangle.setFill(new Color(Color.YELLOW.getRed(), Color.YELLOW.getGreen(), Color.YELLOW.getBlue(), 0.7));
                         else
-                            rectangle.setFill(new Color(0.99, 0.99, 0.99, 0.5));
+                            rectangle.setFill(new Color(0.99, 0.99, 0.99, 0.7));
                     }
                     box.getChildren().add(rectangle);
                     Text text = new Text();

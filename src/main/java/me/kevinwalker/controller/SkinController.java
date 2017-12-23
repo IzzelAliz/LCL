@@ -17,6 +17,7 @@ import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
 import me.kevinwalker.utils.Json;
 import me.kevinwalker.utils.ZipUtils;
+import net.lingala.zip4j.io.ZipInputStream;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,8 +58,9 @@ public class SkinController extends MainController {
             skinPane.setPrefHeight(skinList.size() * 205);
             for (int i = 0; i < skinList.size(); i++) {
                 ZipUtils zipFile = new ZipUtils(skinList.get(i));
-                try (InputStream inputStream = zipFile.getInputStream("preview.png");
-                     InputStream skinInputStream = zipFile.getInputStream("skin.json")) {
+                try {
+                    ZipInputStream inputStream = zipFile.getInputStream("preview.png");
+                    ZipInputStream skinInputStream = zipFile.getInputStream("skin.json");
                     Json json = new Json(skinInputStream);
                     image[i] = new ImageView(new Image(inputStream));
                     image[i].setFitWidth(80);
@@ -87,6 +89,8 @@ public class SkinController extends MainController {
                     skinPane.getChildren().add(skinButton[i]);
                     LoginCraftLaunchController.onGuiOpen(skinButton[i]);
                     this.list = !this.list;
+                    inputStream.close(true);
+                    skinInputStream.close(true);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

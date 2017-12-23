@@ -24,6 +24,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class Transition {
 
+    private static Random random = new Random();
+
     private static ScheduledExecutorService service = Executors.newScheduledThreadPool(2);
 
     public static Image getFillingImage() {
@@ -42,6 +44,9 @@ public class Transition {
         Circle circle = new Circle(x, y, 50);
         Color color = randomColor();
         circle.setFill(color);
+        circle.setOpacity(0);
+        Circle circle1 = new Circle(x, y, 50);
+        circle1.setFill(randomColor());
         show.getScene().setFill(color);
         ObservableList<Node> children, target;
         ImageView view;
@@ -53,6 +58,7 @@ public class Transition {
             Method method = parent.getClass().getMethod("getChildren");
             method.setAccessible(true);
             children = (ObservableList<Node>) method.invoke(parent);
+            children.add(circle1);
             children.add(circle);
             /*
             view = new ImageView(getFillingImage());
@@ -70,23 +76,34 @@ public class Transition {
             e.printStackTrace();
             return;
         }
-        ScaleTransition transition = new ScaleTransition(Duration.millis(duration / 2), circle);
+        ScaleTransition transition = new ScaleTransition(Duration.millis(duration / 2), circle1);
         transition.setToX(40F);
         transition.setToY(40F);
+        FadeTransition fadeTransition = new FadeTransition(Duration.millis(duration / 3), circle1);
+        fadeTransition.setFromValue(0.1);
+        fadeTransition.setToValue(1.0);
         /*
         FadeTransition fadeTransition3 = new FadeTransition(Duration.millis(duration / 2.5), view);
         fadeTransition3.setFromValue(0);
         fadeTransition3.setToValue(0.5);
         */
-        FadeTransition fadeTransition = new FadeTransition(Duration.millis(duration / 3), circle);
-        fadeTransition.setFromValue(0.1);
-        fadeTransition.setToValue(1.0);
         ParallelTransition parallelTransition = new ParallelTransition(transition, fadeTransition/*, fadeTransition3*/);
         parallelTransition.play();
         ObservableList<Node> finalChildren = children;
         service.schedule(() -> Platform.runLater(() -> {
+            ScaleTransition transition5 = new ScaleTransition(Duration.millis(duration / 2), circle);
+            transition5.setToX(40F);
+            transition5.setToY(40F);
+            FadeTransition fadeTransition5 = new FadeTransition(Duration.millis(duration / 3), circle);
+            fadeTransition5.setFromValue(0.1);
+            fadeTransition5.setToValue(1.0);
+            ParallelTransition parallelTransition2 = new ParallelTransition(transition5, fadeTransition5);
+            parallelTransition2.play();
+        }), duration / 6, TimeUnit.MILLISECONDS);
+        service.schedule(() -> Platform.runLater(() -> {
             //finalChildren.remove(view);
             finalChildren.remove(circle);
+            finalChildren.remove(circle1);
             //target.add(view);
             //view.setOpacity(1);
             show.show();
@@ -108,11 +125,10 @@ public class Transition {
         */
     }
 
-    public static Color randomColor() {
-        Random random = new Random();
-        int red = random.nextInt(150) + 50;
-        int green = random.nextInt(130) + 50;
-        int blue = random.nextInt(120) + 50;
+    private static Color randomColor() {
+        int red = random.nextInt(150) + 30;
+        int green = random.nextInt(130) + 30;
+        int blue = random.nextInt(120) + 30;
         return Color.rgb(red, green, blue);
     }
 }
