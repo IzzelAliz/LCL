@@ -21,6 +21,7 @@ import me.kevinwalker.utils.ZipUtils;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -54,6 +55,7 @@ public class LoginCraftLaunchController implements Initializable {
         guiSetStyle();
         mouseAction();
         setButtomImg();
+        setButtomText();
     }
 
 
@@ -135,6 +137,9 @@ public class LoginCraftLaunchController implements Initializable {
 
     }
 
+    /**
+     * 设置主界面按钮图标
+     */
     public void setButtomImg() {
         ZipUtils zipFile = new ZipUtils(Config.instance.skin);
         settingImg.setImage(new Image(zipFile.getInputStream("settingImg.png")));
@@ -146,6 +151,14 @@ public class LoginCraftLaunchController implements Initializable {
         serverInformationImg.setImage(new Image(zipFile.getInputStream("serverInformationImg.png")));
         resourceManagementImg.setImage(new Image(zipFile.getInputStream("resourceManagementImg.png")));
         updateImg.setImage(new Image(zipFile.getInputStream("updateImg.png")));
+    }
+
+    /**
+     * 设置主界面按钮文字
+     */
+    public void setButtomText() {
+        Locale locale = Locale.getDefault();
+        skin.setText("");
     }
 
     public void onCloseButtonAction(ActionEvent event) {

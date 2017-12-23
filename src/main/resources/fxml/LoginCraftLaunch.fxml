@@ -63,7 +63,7 @@
                         <ImageView fx:id="authorImg" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
-                  <Button fx:id="login" alignment="CENTER" contentDisplay="TOP" layoutX="30.0" layoutY="10.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="230.0" text="正版登录">
+                  <Button fx:id="login" alignment="CENTER" contentDisplay="TOP" layoutX="30.0" layoutY="10.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="230.0" text="用户">
                      <graphic>
                         <ImageView fx:id="loginImg" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
