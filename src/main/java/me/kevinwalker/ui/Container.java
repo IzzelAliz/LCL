@@ -14,7 +14,9 @@ public interface Container {
     Node getButton();
 
     static Container create(String fxmlName) throws IOException {
-        return create(fxmlName, new Button(fxmlName));
+        Button button = new Button(fxmlName);
+        button.setPrefSize(200,50);
+        return create(fxmlName,button);
     }
 
     static Container create(String fxmlName, Node button) throws IOException {

@@ -1,14 +1,18 @@
 package me.kevinwalker.main;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import me.kevinwalker.threads.MusicPlayThread;
+import me.kevinwalker.ui.Container;
 import me.kevinwalker.ui.Skin;
+import me.kevinwalker.ui.controller.InterfaceManager;
+import me.kevinwalker.ui.controller.MainGuiController;
 import me.kevinwalker.utils.Util;
 
 import java.io.File;
@@ -52,6 +56,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         //setupLogger();
+        MainGuiController mc = new MainGuiController();
+        InterfaceManager.addInterface(mc);
         Config.load();
         Locale.load();
         Skin.load();
