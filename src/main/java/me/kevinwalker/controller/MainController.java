@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.SVGPath;
 import me.kevinwalker.guis.Transition;
+import me.kevinwalker.main.Config;
 import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
 import me.kevinwalker.utils.PictureUtil;
@@ -44,9 +45,10 @@ public abstract class MainController implements Initializable {
      */
     void mouseAction() {
         closebtn.setOnAction(oa -> {
+            ConfigController.saveJson();
             System.exit(0);
         });
-        leave.setOnMouseClicked(event ->  {
+        leave.setOnMouseClicked(event -> {
             Transition.lollipopTransition(leave, Main.mainGui, event.getSceneX(), event.getSceneY(), 1500);
         });
     }
@@ -56,10 +58,10 @@ public abstract class MainController implements Initializable {
      */
     void guiSetStyle() {
         //设置背景
-        File file = new File(Main.getBaseDir(), "LclConfig/" + ConfigController.json.getString("background"));
+        File file = new File(Main.getBaseDir(), "LclConfig/" + Config.instance.background);
         if (file.exists()) {
             try {
-                PictureUtil.zoomImage("LclConfig/" + ConfigController.json.getString("background"), "LclConfig/" + ConfigController.json.getString("background"), 800, 530);
+                PictureUtil.zoomImage("LclConfig/" + Config.instance.background, "LclConfig/" + Config.instance.background, 800, 530);
             } catch (Exception e) {
                 e.printStackTrace();
             }

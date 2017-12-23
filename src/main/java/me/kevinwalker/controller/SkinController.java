@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import me.kevinwalker.guis.GuiBase;
 import me.kevinwalker.guis.Transition;
+import me.kevinwalker.main.Config;
 import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
 import me.kevinwalker.utils.Json;
@@ -96,8 +97,8 @@ public class SkinController extends MainController {
                 }
                 int num = i;
                 skinButton[i].setOnMouseClicked(oa -> {
-                    ConfigController.json.put("skin", ((Text) ((VBox) skinButton[num].getChildren().get(1))
-                            .getChildren().get(0)).getText());
+                    Config.instance.skin = ((Text) ((VBox) skinButton[num].getChildren().get(1))
+                            .getChildren().get(0)).getText();
                     ConfigController.saveJson();
                     Main.mainGui = new GuiBase("LoginCraftLaunch", Main.primaryStage, 800, 530);
                     Transition.lollipopTransition(skinButton[num], Main.mainGui, oa.getSceneX(), oa.getSceneY(),

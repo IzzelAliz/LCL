@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.SVGPath;
 import me.kevinwalker.guis.GuiBase;
 import me.kevinwalker.guis.Transition;
+import me.kevinwalker.main.Config;
 import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
 import me.kevinwalker.utils.PictureUtil;
@@ -88,6 +89,9 @@ public class LoginCraftLaunchController implements Initializable {
             Transition.lollipopTransition(skin, new GuiBase("Skin", Main.primaryStage, 800, 530),
                     event.getSceneX(), event.getSceneY(), 1500);
         });
+        login.setOnMouseClicked(event -> {
+            Transition.lollipopTransition(login, Main.user, event.getSceneX(), event.getSceneY(), 1500);
+        });
     }
 
     /**
@@ -96,10 +100,10 @@ public class LoginCraftLaunchController implements Initializable {
     private void guiSetStyle() {
 
         //设置背景
-        File file = new File(Main.getBaseDir(), "LclConfig/" + ConfigController.json.getString("background"));
+        File file = new File(Main.getBaseDir(), "LclConfig/" + Config.instance.background);
         if (file.exists()) {
             try {
-                PictureUtil.zoomImage("LclConfig/" + ConfigController.json.getString("background"), "LclConfig/" + ConfigController.json.getString("background"), 800, 530);
+                PictureUtil.zoomImage("LclConfig/" + Config.instance.background, "LclConfig/" + Config.instance.background, 800, 530);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -125,14 +129,14 @@ public class LoginCraftLaunchController implements Initializable {
         onGuiOpen(update);
 
         //设置标题栏
-        name.setText(ConfigController.json.getString("name"));
+        name.setText(Config.instance.name);
 //        handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",0.9);");
         handsvg.setStyle("-fx-fill:rgba(122,122,122,0.9);");
 
     }
 
     public void setButtomImg() {
-        ZipUtils zipFile = new ZipUtils(ConfigController.json.getString("skin"));
+        ZipUtils zipFile = new ZipUtils(Config.instance.skin);
         settingImg.setImage(new Image(zipFile.getInputStream("settingImg.png")));
         skinImg.setImage(new Image(zipFile.getInputStream("skinImg.png")));
         getResourcesImg.setImage(new Image(zipFile.getInputStream("getResourcesImg.png")));

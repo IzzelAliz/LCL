@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import me.kevinwalker.main.Main;
+import me.kevinwalker.utils.SimplexNoise;
 
 import java.lang.reflect.Method;
 import java.util.Random;
@@ -25,6 +26,8 @@ import java.util.concurrent.TimeUnit;
 public class Transition {
 
     private static Random random = new Random();
+
+    private static int r = random.nextInt(10000), g = random.nextInt(10000), b = random.nextInt(10000);
 
     private static ScheduledExecutorService service = Executors.newScheduledThreadPool(2);
 
@@ -125,10 +128,26 @@ public class Transition {
         */
     }
 
+    public static void fadeIn(Node node) {
+        FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), node);
+        fadeTransition.setFromValue(0.0);
+        fadeTransition.setToValue(1.0);
+        fadeTransition.setCycleCount(1);
+        fadeTransition.play();
+    }
+
+    public static void fadeOut(Node node) {
+        FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), node);
+        fadeTransition.setFromValue(1.0);
+        fadeTransition.setToValue(0.0);
+        fadeTransition.setCycleCount(1);
+        fadeTransition.play();
+    }
+
     private static Color randomColor() {
-        int red = random.nextInt(150) + 30;
-        int green = random.nextInt(130) + 30;
-        int blue = random.nextInt(120) + 30;
+        int red = (int) (170D + 75D * SimplexNoise.noise(((double) r++) / 5D, 0));
+        int green = (int) (165D + 70D * SimplexNoise.noise(((double) g++) / 5D, 0));
+        int blue = (int) (160D + 65D * SimplexNoise.noise(((double) b++) / 5D, 0));
         return Color.rgb(red, green, blue);
     }
 }

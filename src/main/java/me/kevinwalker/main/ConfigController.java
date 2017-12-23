@@ -1,19 +1,21 @@
 package me.kevinwalker.main;
 
+import com.google.gson.Gson;
 import me.kevinwalker.utils.Util;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.*;
+import java.nio.charset.Charset;
 
 /**
  * Created by KevinWalker on 2017/10/5.
  */
 public class ConfigController {
     public static File configFile;
-    public static JSONObject json;
+    //public static JSONObject json;
 
-    public ConfigController(){
+    public ConfigController() {
         File file = new File(Main.getBaseDir(), "LclConfig");
         configFile = new File(Main.getBaseDir(), "LclConfig/config.json");
         File skin = new File(Main.getBaseDir(), "LclConfig/skin");
@@ -31,17 +33,13 @@ public class ConfigController {
         if (!defaultSkin.exists()) {
             Util.saveResource("default.zip", new File(Main.getBaseDir(), "LclConfig/skin/default.zip"));
         }
-        json = new JSONObject(new JSONTokener(Main.Files.toString(new File(Main.getBaseDir(), "LclConfig/config.json"), "utf-8")));
+        Config.instance = new Gson().fromJson(Main.Files.toString(new File(Main.getBaseDir(), "LclConfig/config.json"), "utf-8"), Config.class);
+        //json = new JSONObject(new JSONTokener(Main.Files.toString(new File(Main.getBaseDir(), "LclConfig/config.json"), "utf-8")));
     }
 
     public static void saveJson() {
-        OutputStream out = null;
-        try {
-            out = new FileOutputStream(configFile);
-            out.write(json.toString().getBytes());
-            out.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        try (OutputStream out = new FileOutputStream(configFile)) {
+            out.write(new Gson().toJson(Config.instance).getBytes(Charset.forName("utf-8")));
         } catch (IOException e) {
             e.printStackTrace();
         }

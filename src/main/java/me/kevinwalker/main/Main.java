@@ -24,6 +24,7 @@ public class Main extends Application {
     public static GuiBase author;
     public static GuiBase setting;
     public static GuiBase getResources;
+    public static GuiBase user;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -35,11 +36,12 @@ public class Main extends Application {
         mainGui.getStage().setResizable(false);
         mainGui.getScene().setFill(Color.WHITE);
         mainGui.getStage().setOnCloseRequest((e) -> {
+            ConfigController.saveJson();
             System.exit(0);
         });
         GuiMain(primaryStage);
         //播放音乐
-        bgm = new File(Main.getBaseDir(), "LclConfig/" + ConfigController.json.getString("bgm"));
+        bgm = new File(Main.getBaseDir(), "LclConfig/" + Config.instance.bgm);
         if (bgm.exists()) {
             musicPlayThread = new MusicPlayThread(bgm.getPath());
         } else {
@@ -55,6 +57,7 @@ public class Main extends Application {
         Main.author = new GuiBase("Author", stage, 800, 530);
         Main.setting = new GuiBase("Setting", stage, 800, 530);
         Main.getResources = new GuiBase("GetResources", stage, 800, 530);
+        Main.user = new GuiBase("UserInfo", stage, 800, 530);
     }
 
     public static void main(String[] args) {
