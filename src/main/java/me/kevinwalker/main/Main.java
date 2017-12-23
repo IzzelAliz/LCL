@@ -24,18 +24,28 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Main.primaryStage = primaryStage;
-        scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/Frame.fxml")));
-        scene.setFill(Color.WHITE);
-        primaryStage.setTitle("LoginCraftLaunch-0.0.1Demo");
-        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.setResizable(true);
-        primaryStage.setOnCloseRequest((e) -> {
+        GuiBase mainGui = new GuiBase("Frame",primaryStage);
+        mainGui.getScene().setFill(Color.WHITE);
+        mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
+        mainGui.getStage().getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));
+        mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
+        mainGui.getStage().setResizable(true);
+        mainGui.getStage().setOnCloseRequest((e) -> {
+//        Main.primaryStage = primaryStage;
+//        scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/Frame.fxml")));
+//        scene.setFill(Color.WHITE);
+//        primaryStage.setTitle("LoginCraftLaunch-0.0.1Demo");
+//        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));
+//        primaryStage.initStyle(StageStyle.TRANSPARENT);
+//        primaryStage.setResizable(true);
+//        primaryStage.setOnCloseRequest((e) -> {
             Config.save();
             System.exit(0);
         });
-        primaryStage.setScene(scene);
-        primaryStage.show();
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+        mainGui.getStage().setScene(scene);
+        mainGui.getStage().show();
         /*
         //播放音乐
         bgm = new File(Main.getBaseDir(), "LclConfig/" + Config.instance.bgm);
