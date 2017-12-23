@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -13,11 +12,13 @@ import javafx.scene.shape.SVGPath;
 import me.kevinwalker.guis.GuiBase;
 import me.kevinwalker.guis.Transition;
 import me.kevinwalker.main.Config;
-import me.kevinwalker.main.ConfigController;
 import me.kevinwalker.main.Main;
+import me.kevinwalker.utils.ColorTranslated;
+import me.kevinwalker.utils.GetMainColor;
 import me.kevinwalker.utils.PictureUtil;
 import me.kevinwalker.utils.ZipUtils;
 
+import java.awt.*;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -33,9 +34,6 @@ public class LoginCraftLaunchController implements Initializable {
 
     @FXML
     private ImageView background, musicImages;
-
-    @FXML
-    private Label name;
 
     @FXML
     private Pane MainGui;
@@ -131,10 +129,8 @@ public class LoginCraftLaunchController implements Initializable {
         onGuiOpen(update);
 
         //设置标题栏
-        name.setText(Config.instance.name);
 //        handsvg.setStyle("-fx-fill:rgba(" + this.BackGroundRGB.getRed() + "," + this.BackGroundRGB.getGreen() + "," + this.BackGroundRGB.getBlue() + ",0.9);");
         handsvg.setStyle("-fx-fill:rgba(122,122,122,0.9);");
-
     }
 
     /**
@@ -177,6 +173,7 @@ public class LoginCraftLaunchController implements Initializable {
         red = random.nextInt(150) + 50;
         green = random.nextInt(130) + 50;
         blue = random.nextInt(120) + 50;
+
 //        red2 = random.nextInt(150) + 50;
 //        green2 = random.nextInt(130) + 50;
 //        blue2 = random.nextInt(120) + 50;

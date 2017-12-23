@@ -53,28 +53,8 @@
 }
 
 .scroll-pane, #Apane {
-    -fx-background-color: rgba(255, 255, 255, 0.1);
-    -fx-background: rgba(255, 255, 255, 0.1)
-}
-
-#namebtn {
-    -fx-background-color: rgba(122, 122, 122, 0.8);
-    -fx-border-color: rgba(122, 122, 122, 0.8);
-    -fx-border-width: 1;
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
-}
-
-#namebtn:hover {
-    -fx-background-color: rgba(122, 122, 122, 0.9);
-    -fx-border-color: rgba(122, 122, 122, 0.9);
-    -fx-border-width: 1;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
-    -fx-scale-x: 1.01;
-    -fx-scale-y: 1.01;
-    -fx-scale-z: 1.01;
+    -fx-background-color: rgba(255, 255, 255, 0);
+    -fx-background: rgba(255, 255, 255, 0)
 }
 
 #music {

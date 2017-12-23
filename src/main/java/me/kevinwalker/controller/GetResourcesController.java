@@ -165,6 +165,7 @@ public class GetResourcesController extends MainController {
                 Platform.runLater(() -> {
                     HBox box = new HBox();
                     box.getStyleClass().add("resourceButton");
+                    LoginCraftLaunchController.onGuiOpen(box);
                     box.setOnMouseClicked(e -> {
                         URI uri = java.net.URI.create(thread.url);
                         Desktop dp = Desktop.getDesktop();

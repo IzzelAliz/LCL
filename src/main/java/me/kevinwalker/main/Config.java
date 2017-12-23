@@ -8,8 +8,6 @@ public class Config {
 
     public String background;
 
-    public String name;
-
     public String skin;
 
     public String bgm;
