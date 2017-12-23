@@ -8,7 +8,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import me.kevinwalker.main.Config;
 import me.kevinwalker.ui.Skin;
-import me.kevinwalker.utils.io.PictureUtil;
 
 import java.net.URL;
 import java.util.ResourceBundle;
