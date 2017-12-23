@@ -53,7 +53,7 @@
                   <Insets />
                </opaqueInsets>
                <children>
-                  <TextField alignment="CENTER" prefHeight="70.0" promptText="Steve" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #FFFFFF;">
+                  <TextField fx:id="offlineName" alignment="CENTER" prefHeight="70.0" promptText="Steve" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #FFFFFF;">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -68,12 +68,12 @@
                   <Insets />
                </opaqueInsets>
                <children>
-                  <TextField prefHeight="80.0" promptText="用户名" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #FFFFFF;">
+                  <TextField fx:id="onlineAccount" prefHeight="80.0" promptText="用户名" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #FFFFFF;">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </TextField>
-                  <PasswordField prefHeight="80.0" promptText="密码" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #FFFFFF;">
+                  <PasswordField fx:id="onlinePassword" prefHeight="80.0" promptText="密码" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #FFFFFF;">
                      <font>
                         <Font size="16.0" />
                      </font>

@@ -1,6 +1,7 @@
 package me.kevinwalker.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -13,7 +14,7 @@ import java.util.ResourceBundle;
 
 public class UserController extends MainController {
 
-    public static enum Login {
+    public enum Login {
 
         Offline("离线"), Yggdrasil("正版"), Custom("自定义");
 
@@ -26,7 +27,7 @@ public class UserController extends MainController {
         Login getNext() {
             if (this.ordinal() + 1 == Login.values().length)
                 return Login.values()[0];
-            else return Login.values()[this.ordinal()+1];
+            else return Login.values()[this.ordinal() + 1];
         }
     }
 
@@ -44,6 +45,8 @@ public class UserController extends MainController {
             input1.setMouseTransparent(false);
             input2.setOpacity(0.0D);
             input2.setMouseTransparent(true);
+            custom.setOpacity(0.0D);
+            custom.setMouseTransparent(true);
         } else {
             input2.setOpacity(1.0D);
             input2.setMouseTransparent(false);
@@ -56,15 +59,17 @@ public class UserController extends MainController {
                 Transition.fadeIn(input1);
                 input1.setMouseTransparent(false);
                 input2.setMouseTransparent(true);
+                custom.setMouseTransparent(true);
                 Transition.fadeOut(input2);
                 Transition.fadeOut(custom);
-            } else if (Config.instance.authType == Login.Yggdrasil){
+            } else if (Config.instance.authType == Login.Yggdrasil) {
                 input2.setMouseTransparent(false);
                 input1.setMouseTransparent(true);
                 Transition.fadeIn(input2);
                 Transition.fadeOut(input1);
             } else if (Config.instance.authType == Login.Custom) {
                 Transition.fadeIn(custom);
+                custom.setMouseTransparent(false);
             }
             currentMsg.setText(Config.instance.authType.s);
         });
@@ -81,6 +86,10 @@ public class UserController extends MainController {
 
     @FXML
     public GridPane custom;
+
+    @FXML
+    public TextField offlineName, onlineAccount, onlinePassword, authenticate, refresh, validate, invalidate, signout,
+            profile, profileLookup;
 
     @FXML
     void onClick() {
