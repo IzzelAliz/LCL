@@ -1,19 +1,36 @@
 package me.kevinwalker.main;
 
-import me.kevinwalker.controller.UserController;
+import com.google.gson.Gson;
+import me.kevinwalker.utils.Util;
+import me.kevinwalker.utils.io.Files;
+
+import java.io.File;
+import java.nio.charset.Charset;
 
 public class Config {
 
     public static Config instance;
 
-    public String background;
+    public String background, lang = java.util.Locale.getDefault().getLanguage();
 
     public String name;
 
-    public String skin;
+    public String skin = "/LcLConfig/skin/default.zip";
 
     public String bgm;
 
-    public UserController.Login authType;
+    public String authType;
+
+    public static void load() {
+        File fo = new File(Util.getBaseDir(), "/LcLConfig");
+        if (!fo.exists()) fo.mkdir();
+        File file = new File(Util.getBaseDir(), "/LcLConfig/config.json");
+        instance = new Gson().fromJson(Files.toString(file, "utf-8"), Config.class);
+    }
+
+    public static void save() {
+        Files.write(new Gson().toJson(instance).getBytes(Charset.forName("utf-8")),
+                new File(Util.getBaseDir(), "/LcLConfig/config.json"));
+    }
 
 }

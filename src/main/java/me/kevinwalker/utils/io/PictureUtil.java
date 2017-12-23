@@ -1,6 +1,7 @@
-package me.kevinwalker.utils;
+package me.kevinwalker.utils.io;
 
 import me.kevinwalker.main.Main;
+import me.kevinwalker.utils.Util;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -24,11 +25,11 @@ public class PictureUtil {
      */
     public static void zoomImage(String src, String dest, int w, int h) throws Exception {
         double wr = 0, hr = 0;
-        File srcFile = new File(Main.getBaseDir(), src);
-        File destFile = new File(Main.getBaseDir(), dest);
+        File srcFile = new File(Util.getBaseDir(), src);
+        File destFile = new File(Util.getBaseDir(), dest);
 
         BufferedImage bufImg = ImageIO.read(srcFile); //读取图片
-        java.awt.Image Itemp = bufImg.getScaledInstance(w, h, bufImg.SCALE_SMOOTH);//设置缩放目标图片模板
+        java.awt.Image Itemp = bufImg.getScaledInstance(w, h, Image.SCALE_SMOOTH);//设置缩放目标图片模板
 
         wr = w * 1.0 / bufImg.getWidth();     //获取缩放比例
         hr = h * 1.0 / bufImg.getHeight();

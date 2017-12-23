@@ -1,45 +1,42 @@
 package me.kevinwalker.main;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import me.kevinwalker.guis.GuiBase;
 import me.kevinwalker.threads.MusicPlayThread;
+import me.kevinwalker.ui.Skin;
 import me.kevinwalker.utils.Util;
-import me.kevinwalker.utils.ZipUtils;
-import org.json.JSONObject;
-import org.json.JSONTokener;
 
-import java.io.*;
-import java.net.URLDecoder;
-import java.nio.ByteBuffer;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
 
 public class Main extends Application {
     public static MusicPlayThread musicPlayThread;
     private static File bgm;
     public static Stage primaryStage;
-    public static GuiBase mainGui;
-    public static GuiBase author;
-    public static GuiBase setting;
-    public static GuiBase getResources;
-    public static GuiBase user;
+    public static Scene scene;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         Main.primaryStage = primaryStage;
-        mainGui = new GuiBase("LoginCraftLaunch", primaryStage, 800, 530);
-        mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
-        mainGui.getStage().getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));
-        mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
-        mainGui.getStage().setResizable(false);
-        mainGui.getScene().setFill(Color.WHITE);
-        mainGui.getStage().setOnCloseRequest((e) -> {
-            ConfigController.saveJson();
+        scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/Frame.fxml")));
+        scene.setFill(Color.WHITE);
+        primaryStage.setTitle("LoginCraftLaunch-0.0.1Demo");
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.setResizable(true);
+        primaryStage.setOnCloseRequest((e) -> {
+            Config.save();
             System.exit(0);
         });
-        GuiMain(primaryStage);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        /*
         //播放音乐
         bgm = new File(Main.getBaseDir(), "LclConfig/" + Config.instance.bgm);
         if (bgm.exists()) {
@@ -50,19 +47,14 @@ public class Main extends Application {
             musicPlayThread = new MusicPlayThread(musicFile.getPath());
         }
         musicPlayThread.start();
-        mainGui.show();
-    }
-
-    void GuiMain(Stage stage) {
-        Main.author = new GuiBase("Author", stage, 800, 530);
-        Main.setting = new GuiBase("Setting", stage, 800, 530);
-        Main.getResources = new GuiBase("GetResources", stage, 800, 530);
-        Main.user = new GuiBase("UserInfo", stage, 800, 530);
+        */
     }
 
     public static void main(String[] args) {
-//        setupLogger();
-        new ConfigController();
+        //setupLogger();
+        Config.load();
+        Locale.load();
+        Skin.load();
         launch(args);
         // ServerListPing slp = new ServerListPing();
         // InetSocketAddress sadd0 = new InetSocketAddress("dx.mc11.icraft.cc", 37190);
@@ -82,64 +74,17 @@ public class Main extends Application {
         // }
     }
 
-    public static void setupLogger() {
+    private static void setupLogger() {
         try {
-            if (!new File(getBaseDir(), "/LclConfig").exists())
-                new File(getBaseDir(), "/LclConfig").mkdir();
-            if (!new File(getBaseDir(), "LclConfig/log.txt").exists())
-                new File(getBaseDir(), "LclConfig/log.txt").createNewFile();
-            System.setOut(new PrintStream(new File(getBaseDir(), "LclConfig/log.txt")));
-            System.setErr(new PrintStream(new File(getBaseDir(), "LclConfig/log.txt")));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            if (!new File(Util.getBaseDir(), "/LclConfig").exists())
+                new File(Util.getBaseDir(), "/LclConfig").mkdir();
+            if (new File(Util.getBaseDir(), "LclConfig/log.txt").exists())
+                new File(Util.getBaseDir(), "LclConfig/log.txt").delete();
+            new File(Util.getBaseDir(), "LclConfig/log.txt").createNewFile();
+            System.setOut(new PrintStream(new File(Util.getBaseDir(), "LclConfig/log.txt")));
+            System.setErr(new PrintStream(new File(Util.getBaseDir(), "LclConfig/log.txt")));
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public static File getBaseDir() {
-        try {
-            File file = new File(URLDecoder
-                    .decode(Main.class.getProtectionDomain().getCodeSource().getLocation().toString(), "utf-8")
-                    .substring(6));
-            return file.getParentFile();
-        } catch (UnsupportedEncodingException e) {
-            return null;
-        }
-    }
-
-    public static class Files {
-        public static String toString(InputStream in, String charset) {
-            ByteBuffer bb = ByteBuffer.allocate(1024);
-            int length = -1;
-            byte[] buffer = new byte[1024];
-            try {
-                while ((length = in.read(buffer)) != -1)
-                    bb.put(buffer);
-                return new String(bb.array(), charset);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        public static String toString(File file, String charset) {
-            try {
-                if (!file.exists())
-                    return null;
-                RandomAccessFile rf = new RandomAccessFile(file, "r");
-                rf.seek(0);
-                long length = rf.length();
-                byte[] content = new byte[(int) length];
-                rf.readFully(content);
-                rf.close();
-                return new String(content, charset);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
         }
     }
 }

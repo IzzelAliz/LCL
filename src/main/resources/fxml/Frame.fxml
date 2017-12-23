@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="base" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0);" stylesheets="/css/MainUI.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.ui.controller.MainController">
+    <children>
+      <ImageView fx:id="background" fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" />
+        <VBox fx:id="vertical" prefHeight="500.0" prefWidth="200.0" style="-fx-background-color: rgba(0,0,0,0);">
+            <children>
+                <AnchorPane prefHeight="175.0" prefWidth="200.0" style="-fx-background-color: rgba(0,0,0,0);">
+                    <children>
+                        <ImageView fx:id="avatar" fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../css/images/LCL.png" />
+                            </image>
+                        </ImageView>
+                        <Text fx:id="username" layoutX="64.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="用户名">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+        <Pane fx:id="pane" layoutX="200.0" layoutY="50.0" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);" />
+        <Pane fx:id="title" layoutX="200.0" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);">
+            <children>
+                <Circle fill="#cc0000" layoutX="575.0" layoutY="25.0" onMouseClicked="#onExit" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button" />
+                <Text layoutX="199.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LoginCraftLaunch">
+                    <font>
+                        <Font name="Microsoft YaHei" size="24.0" />
+                    </font>
+                </Text>
+            </children>
+        </Pane>
+      <Line endX="200.0" endY="600.0" startX="200.0" />
+      <Line endX="800.0" endY="50.0" startX="200.0" startY="50.0" />
+    </children>
+</Pane>

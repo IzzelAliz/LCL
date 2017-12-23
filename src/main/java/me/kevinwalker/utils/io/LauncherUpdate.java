@@ -1,7 +1,5 @@
-package me.kevinwalker.client;
+package me.kevinwalker.utils.io;
 
-import me.kevinwalker.main.Main;
-import me.kevinwalker.utils.AsyncDownload;
 import me.kevinwalker.utils.Util;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -21,7 +19,7 @@ public class LauncherUpdate {
     static String url;
 
     public static void download() {
-        AsyncDownload.download(url, new File(Main.getBaseDir(), "update.jar"), 4, new AsyncDownload.Callback() {
+        AsyncDownload.download(url, new File(Util.getBaseDir(), "update.jar"), 4, new AsyncDownload.Callback() {
             @Override
             public void log(String msg) {
             }

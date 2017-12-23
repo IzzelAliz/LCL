@@ -1,4 +1,4 @@
-package me.kevinwalker.utils;
+package me.kevinwalker.utils.io;
 
 import java.io.File;
 import java.io.InputStream;

@@ -1,9 +1,24 @@
 package me.kevinwalker.utils;
 
+import me.kevinwalker.main.Main;
+
 import java.io.*;
 import java.net.MalformedURLException;
+import java.net.URLDecoder;
 
 public class Util {
+
+
+    public static File getBaseDir() {
+        try {
+            File file = new File(URLDecoder
+                    .decode(Main.class.getProtectionDomain().getCodeSource().getLocation().toString(), "utf-8")
+                    .substring(6));
+            return file.getParentFile();
+        } catch (UnsupportedEncodingException e) {
+            return null;
+        }
+    }
 
     /**
      * 江jar内文件加载为 byte[] 格式
@@ -43,18 +58,14 @@ public class Util {
         try {
             InputStream in = Util.class.getClassLoader().getResourceAsStream(path);
             byte[] buffer = new byte[1024];
-            int length = -1;
+            int length;
             OutputStream out = new FileOutputStream(target);
             while ((length = in.read(buffer)) != -1) {
                 out.write(buffer, 0, length);
             }
             in.close();
             out.close();
-        } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
