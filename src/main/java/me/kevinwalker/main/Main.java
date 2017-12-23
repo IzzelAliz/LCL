@@ -31,20 +31,10 @@ public class Main extends Application {
         mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
         mainGui.getStage().setResizable(true);
         mainGui.getStage().setOnCloseRequest((e) -> {
-//        Main.primaryStage = primaryStage;
-//        scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/Frame.fxml")));
-//        scene.setFill(Color.WHITE);
-//        primaryStage.setTitle("LoginCraftLaunch-0.0.1Demo");
-//        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));
-//        primaryStage.initStyle(StageStyle.TRANSPARENT);
-//        primaryStage.setResizable(true);
-//        primaryStage.setOnCloseRequest((e) -> {
             Config.save();
             System.exit(0);
         });
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-        mainGui.getStage().setScene(scene);
+        mainGui.getStage().setScene(mainGui.getScene());
         mainGui.getStage().show();
         /*
         //播放音乐
