@@ -1,6 +1,6 @@
 package me.kevinwalker.utils;
 
-import java.awt.*;
+import javafx.scene.paint.Color;
 
 /**
  * Created by KevinWalker on 2017/10/4.
@@ -14,9 +14,9 @@ public class ColorTranslated {
     public static String toHexFromColor(Color color){
         String r,g,b;
         StringBuilder su = new StringBuilder();
-        r = Integer.toHexString(color.getRed());
-        g = Integer.toHexString(color.getGreen());
-        b = Integer.toHexString(color.getBlue());
+        r = Integer.toHexString((int)color.getRed());
+        g = Integer.toHexString((int)color.getGreen());
+        b = Integer.toHexString((int)color.getBlue());
         r = r.length() == 1 ? "0" + r : r;
         g = g.length() ==1 ? "0" +g : g;
         b = b.length() == 1 ? "0" + b : b;
@@ -59,6 +59,6 @@ public class ColorTranslated {
      * @return 返回Color
      */
     public static Color Color2Contrary2(Color color) {
-        return new Color(CC(color.getRed()), CC(color.getGreen()), CC(color.getBlue()));
+        return Color.rgb(CC((int) color.getRed()), CC((int)color.getGreen()), CC((int)color.getBlue()));
     }
 }
