@@ -1,19 +1,13 @@
 package me.kevinwalker.ui.controller;
 
-import javafx.application.Platform;
 import javafx.scene.Node;
 import me.kevinwalker.ui.Container;
-import me.kevinwalker.ui.transition.ZoomTransition;
+import me.kevinwalker.ui.Transition;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class InterfaceManager {
-
-    private static ScheduledExecutorService service = Executors.newScheduledThreadPool(1);
 
     public static List<Container> containers = new ArrayList<>();
 
@@ -21,13 +15,14 @@ public class InterfaceManager {
         FrameController.instance.vertical.getChildren().add(container.getButton());
         container.getButton().setOnMouseClicked(event -> {
             Node current = FrameController.instance.pane.getChildren().get(0);
-            if (current.equals(container.getPane()))
+            if (current.equals(container.getPane()) ||
+                    FrameController.instance.pane.getChildren().contains(container.getPane()))
                 return;
-            ZoomTransition.zoomOutExpand(current);
-            service.schedule(() -> Platform.runLater(() -> FrameController.instance.pane.getChildren().remove(current)),
-                    300, TimeUnit.MILLISECONDS);
             FrameController.instance.pane.getChildren().add(container.getPane());
-            ZoomTransition.zoonInContract(container.getPane());
+            Transition.playRandomPair(container.getPane(), event1 -> {
+                    },
+                    current, event1 ->
+                            FrameController.instance.pane.getChildren().remove(current));
         });
         containers.add(container);
     }

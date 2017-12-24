@@ -5,10 +5,15 @@ import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import me.kevinwalker.ui.controller.FrameController;
+import me.kevinwalker.ui.transition.SliceTransition;
+import me.kevinwalker.ui.transition.ZoomTransition;
 import me.kevinwalker.utils.SimplexNoise;
 
 import java.util.Random;
@@ -22,6 +27,38 @@ public class Transition {
 
     private static int r = random.nextInt(10000), g = random.nextInt(10000),
             b = random.nextInt(10000);
+
+    public static void playRandomPair(Node in, EventHandler<ActionEvent> handlerIn, Node out,
+                                      EventHandler<ActionEvent> handlerOut) {
+        switch (random.nextInt(2)) {
+            case 0:
+                ZoomTransition.zoonInContract(in, handlerIn);
+                ZoomTransition.zoomOutExpand(out, handlerOut);
+                break;
+            case 1:
+                ZoomTransition.zoomInExpand(in, handlerIn);
+                ZoomTransition.zoomOutContract(out, handlerOut);
+                break;
+                /*
+            case 2:
+                SliceTransition.sliceInDown(in, handlerIn);
+                SliceTransition.sliceOutUp(out, handlerOut);
+                break;
+            case 3:
+                SliceTransition.sliceInUp(in, handlerIn);
+                SliceTransition.sliceOutDown(out, handlerOut);
+                break;
+            case 4:
+                SliceTransition.sliceInLeft(in, handlerIn);
+                SliceTransition.sliceOutRight(out, handlerOut);
+                break;
+            case 5:
+                SliceTransition.sliceInRight(in, handlerIn);
+                SliceTransition.sliceOutLeft(out, handlerOut);
+                break;
+                */
+        }
+    }
 
     public static void lollipop(double x, double y) {
         Circle circle = new Circle(x, y, 2);
