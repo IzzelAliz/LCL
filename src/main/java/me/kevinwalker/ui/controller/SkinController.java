@@ -69,15 +69,6 @@ public class SkinController implements Initializable {
                     image[i] = new ImageView(new Image(inputStream));
                     image[i].setFitWidth(60);
                     image[i].setFitHeight(60);
-                    VBox vBox = new VBox();
-                    Text text;
-                    vBox.getChildren().add(text = new Text(10,20,skinList.get(i)));
-                    text.setFill(Color.WHITE);
-                    text.setFontSmoothingType(FontSmoothingType.LCD);
-                    text.setWrappingWidth(120);
-                    vBox.setPadding(new Insets(5.0D));
-                    vBox.setSpacing(5.0D);
-                    vBox.setAlignment(Pos.CENTER_LEFT);
                     skinButton[i] = new Button(skinList.get(i), image[i]);
                     skinButton[i].setPrefSize(215, 80);
                     skinButton[i].setMinSize(215, 80);

@@ -2,11 +2,14 @@ package me.kevinwalker.main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -16,6 +19,7 @@ import me.kevinwalker.ui.Skin;
 import me.kevinwalker.ui.controller.FrameController;
 import me.kevinwalker.ui.controller.InterfaceManager;
 import me.kevinwalker.utils.Util;
+import me.kevinwalker.utils.io.ZipUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,6 +61,7 @@ public class Main extends Application {
         load("Setting", "用户", false, false);
         load("ResourceManagement", "设置", false, false);
         load("Skin", "皮肤", false, false);
+        load("Skin", "皮肤2", false, false);
         load("Author", "制作者", false, true);
         /*
         //播放音乐
@@ -77,7 +82,12 @@ public class Main extends Application {
         try {
             parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
             panes.put(fxml, parent);
-            Button button = new Button(buttonName);
+            ImageView img = new ImageView(new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "preview.png")));
+            img.setFitWidth(30);
+            img.setFitHeight(30);
+            Button button = new Button(buttonName,img);
+            button.setContentDisplay(ContentDisplay.LEFT);
+            button.setAlignment(Pos.BASELINE_LEFT);
             button.setPrefSize(200, 50);
             if (last)
                 button.setStyle("-fx-border-style: solid solid solid solid;");
