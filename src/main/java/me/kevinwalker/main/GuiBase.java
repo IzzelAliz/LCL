@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by KevinWalker on 2017/10/4.
  */
-public class GuiBase {
+class GuiBase {
     private double xOffset = 0;
     private double yOffset = 0;
     private Parent root;
@@ -20,18 +20,19 @@ public class GuiBase {
 
     /**
      * new一个新的界面
+     *
      * @param fxmlName fxml文件的名称
-     * @param stage 显示到的的Stage
-     * @param x 界面长度
-     * @param y 界面宽度
+     * @param stage    显示到的的Stage
+     * @param x        界面长度
+     * @param y        界面宽度
      */
-    public GuiBase(String fxmlName, Stage stage, int x, int y){
+    public GuiBase(String fxmlName, Stage stage, int x, int y) {
         this.stage = stage;
         try {
             this.root = FXMLLoader.load(getClass().getResource("/fxml/" + fxmlName + ".fxml"));
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }/*
         this.root.setOnMousePressed((MouseEvent event) -> {
             event.consume();
             xOffset = event.getSceneX();
@@ -40,18 +41,18 @@ public class GuiBase {
         this.root.setOnMouseDragged((MouseEvent event) -> {
             event.consume();
             stage.setX(event.getScreenX() - xOffset);
-
             if (event.getScreenY() - yOffset < 0) {
                 stage.setY(0);
             } else {
                 stage.setY(event.getScreenY() - yOffset);
             }
         });
+        */
         this.scene = new Scene(root, x, y);
     }
 
     public GuiBase(String fxmlName, Stage stage) throws Exception {
-        this(fxmlName,stage,800,500);
+        this(fxmlName, stage, 800, 500);
     }
 
     public void show() {

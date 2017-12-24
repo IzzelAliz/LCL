@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import me.kevinwalker.main.Main;
 
 import java.io.IOException;
 
@@ -15,13 +16,12 @@ public interface Container {
 
     static Container create(String fxmlName) throws IOException {
         Button button = new Button(fxmlName);
-        button.setPrefSize(200,50);
-        return create(fxmlName,button);
+        button.setPrefSize(200, 50);
+        return create(fxmlName, button);
     }
 
     static Container create(String fxmlName, Node button) throws IOException {
-        Parent parent = FXMLLoader.load(Container.class.getResource("/fxml/" + fxmlName + ".fxml"));
-        return new Impl(parent, button);
+        return new Impl(Main.getInstance(fxmlName), button);
     }
 
     class Impl implements Container {

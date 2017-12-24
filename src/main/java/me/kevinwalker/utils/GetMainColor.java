@@ -1,9 +1,13 @@
 package me.kevinwalker.utils;
 
+import javafx.scene.paint.Color;
+
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +17,18 @@ import java.util.Map;
  * Created by KevinWalker on 2017/10/3.
  */
 public class GetMainColor {
+
     public static Color getImagePixel(File file) {
+        try {
+            return getImagePixel(new FileInputStream(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return Color.WHITE;
+    }
+
+
+    public static Color getImagePixel(InputStream file) {
         int R = 0;
         int G = 0;
         int B = 0;
@@ -64,9 +79,9 @@ public class GetMainColor {
         }
         String str[] = max.split("\\-");
         if (str.length == 3) {
-            return new Color(Integer.parseInt(str[0]), Integer.parseInt(str[1]),
+            return Color.rgb(Integer.parseInt(str[0]), Integer.parseInt(str[1]),
                     Integer.parseInt(str[2]));
         }
-        return Color.white;
+        return Color.WHITE;
     }
 }

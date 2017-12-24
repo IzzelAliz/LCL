@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.ui.controller.MainPageController">
+   <children>
+      <Arc fill="DODGERBLUE" layoutX="142.0" layoutY="141.0" length="270.0" radiusX="100.0" radiusY="100.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Ellipse fill="DODGERBLUE" layoutX="414.0" layoutY="221.0" radiusX="100.0" radiusY="80.0" stroke="BLACK" strokeType="INSIDE" />
+   </children>
+</AnchorPane>

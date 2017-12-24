@@ -6,6 +6,7 @@ import me.kevinwalker.utils.Util;
 import me.kevinwalker.utils.io.ZipUtils;
 
 import java.io.File;
+import java.io.InputStream;
 
 public class Skin {
 
@@ -19,6 +20,10 @@ public class Skin {
     }
 
     private static Image background;
+
+    public static InputStream getBackgroundInputStream() {
+        return ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "background.png");
+    }
 
     public static Image getBackground() {
         return background;
