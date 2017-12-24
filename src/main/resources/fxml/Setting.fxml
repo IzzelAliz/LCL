@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<AnchorPane fx:id="mainGui" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0"
-            prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="me.kevinwalker.controller.SettingController">
+<AnchorPane fx:id="mainGui" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="530.0"
+            prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <ImageView fx:id="background" fitHeight="530.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
         </ImageView>
@@ -32,11 +32,12 @@
                 <Font size="17.0"/>
             </font>
         </Label>
-        <Button fx:id="leave" layoutX="-10.0" layoutY="45.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" stylesheets="/css/GuiMain.css">
+        <Button fx:id="leave" layoutX="-10.0" layoutY="45.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0"
+                stylesheets="/css/GuiMain.css">
             <graphic>
                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="/css/images/leave.png" />
+                        <Image url="/css/images/leave.png"/>
                     </image>
                 </ImageView>
             </graphic>

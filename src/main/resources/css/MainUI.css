@@ -46,12 +46,12 @@
 }
 
 .scroll-pane.increment-button:hover, .scroll-pane .decrement-button:hover {
-    -fx-background-color: derive(gray, 100%);
+    -fx-background-color: derive(gray, 0%);
 }
 
 .scroll-pane {
-    -fx-background-color: rgba(255, 255, 255, 0.1);
-    -fx-background: rgba(255, 255, 255, 0.1)
+    -fx-background-color: rgba(255, 255, 255, 0);
+    -fx-background: rgba(255, 255, 255, 0)
 }
 
 #namebtn {
