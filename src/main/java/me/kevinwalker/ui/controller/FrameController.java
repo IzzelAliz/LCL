@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import me.kevinwalker.main.Config;
 import me.kevinwalker.main.Main;
 import me.kevinwalker.ui.Skin;
+import me.kevinwalker.utils.ColorTranslated;
 import me.kevinwalker.utils.GetMainColor;
 
 import java.net.URL;
@@ -46,7 +47,7 @@ public class FrameController implements Initializable {
                 pane.getChildren().add(container.getPane());
             });
         });
-        Color color = GetMainColor.getImagePixel(Skin.getBackgroundInputStream()).invert();
+        Color color = ColorTranslated.Color2Contrary2(GetMainColor.getImagePixel(Skin.getBackgroundInputStream())).invert();
         titleText.setFill(color);
         username.setFill(color);
         l1.setStroke(color);

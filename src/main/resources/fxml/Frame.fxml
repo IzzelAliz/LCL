@@ -26,7 +26,7 @@
         <Pane fx:id="title" layoutX="200.0" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);">
             <children>
                 <Circle fill="#cc0000" layoutX="575.0" layoutY="20.0" onMouseClicked="#onExit" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button" />
-                <Text fx:id="titleText" layoutX="200.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LoginCraftLaunch" textAlignment="CENTER" y="2.5">
+                <Text fx:id="titleText" fill="WHITE" layoutX="200.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LoginCraftLaunch" textAlignment="CENTER" y="2.5">
                     <font>
                         <Font size="24.0" />
                     </font>
@@ -54,7 +54,7 @@
                         <Image url="@../css/images/LCL.png" />
                     </image>
                 </ImageView>
-                <Text fx:id="username" layoutX="64.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="用户名">
+                <Text fx:id="username" fill="WHITE" layoutX="64.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="用户名">
                     <font>
                         <Font size="24.0" />
                     </font>
