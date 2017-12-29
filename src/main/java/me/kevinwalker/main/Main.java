@@ -55,14 +55,13 @@ public class Main extends Application {
         });
         Main.mainGui.getStage().setScene(mainGui.getScene());
         Main.mainGui.getStage().show();
-        load("MainPage", "主界面", true, false);
-        load("Setting", "用户", false, false);
+        load("MainPage", "主界面", true);
+        load("Setting", "用户", false);
 //        load("ResourceManagement", "设置", false, false);
-        load("Skin", "皮肤", false, false);
-        load("Skin", "皮肤2", false, false);
-        load("Author", "关于", false, false);
-        load("Resources", "资源获取", false , false);
-        load("Author", "制作者", false, true);
+        load("Skin", "皮肤", false);
+        load("Author", "关于", false);
+        load("Resources", "资源获取", false);
+        load("Author", "制作者", false);
         /*
         //播放音乐
         bgm = new File(Main.getBaseDir(), "LclConfig/" + Config.instance.bgm);
@@ -77,7 +76,7 @@ public class Main extends Application {
         */
     }
 
-    private void load(String fxml, String buttonName, boolean showDefault, boolean last) {
+    private void load(String fxml, String buttonName, boolean showDefault) {
         Parent parent = null;
         try {
             parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
@@ -89,9 +88,6 @@ public class Main extends Application {
             button.setContentDisplay(ContentDisplay.LEFT);
             button.setAlignment(Pos.BASELINE_LEFT);
             button.setPrefSize(200, 50);
-            if (last)
-                button.setStyle("-fx-border-style: solid solid solid solid;");
-            else button.setStyle("-fx-border-style: solid solid none solid;");
             InterfaceManager.addInterface(Container.create(fxml, button));
             if (showDefault) FrameController.instance.pane.getChildren().add(getInstance(fxml));
         } catch (IOException e) {

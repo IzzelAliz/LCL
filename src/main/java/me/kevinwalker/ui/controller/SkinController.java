@@ -70,13 +70,15 @@ public class SkinController implements Initializable {
                     image[i].setFitWidth(60);
                     image[i].setFitHeight(60);
                     skinButton[i] = new Button(skinList.get(i), image[i]);
+                    skinButton[i].setStyle("-fx-border-color: #e2e2e2;" +
+                            "-fx-border-width: 2.0;");
                     skinButton[i].setPrefSize(215, 80);
                     skinButton[i].setMinSize(215, 80);
                     skinButton[i].setMaxSize(215, 80);
-                    if(this.list)skinButton[i].setLayoutX(5);
-                    else skinButton[i].setLayoutX(15+215);
-                    if(this.list)skinButton[i].setLayoutY((i-i/2) * (80 + 5));
-                    else skinButton[i].setLayoutY(((i-1)-(i-1)/2) * (80 + 5));
+                    if (this.list) skinButton[i].setLayoutX(5);
+                    else skinButton[i].setLayoutX(15 + 215);
+                    if (this.list) skinButton[i].setLayoutY((i - i / 2) * (80 + 5));
+                    else skinButton[i].setLayoutY(((i - 1) - (i - 1) / 2) * (80 + 5));
                     skinButton[i].setContentDisplay(ContentDisplay.LEFT);
                     skinButton[i].setAlignment(Pos.BASELINE_LEFT);
                     skinPane.getChildren().add(skinButton[i]);
@@ -97,6 +99,8 @@ public class SkinController implements Initializable {
 //                });
             }
         }).start();
+        open.setStyle("-fx-border-color: #e2e2e2;" +
+                "-fx-border-width: 2.0;");
         open.setOnAction(oa -> {
             try {
                 java.awt.Desktop.getDesktop().open(new File(Util.getBaseDir(), "LclConfig/skin"));
