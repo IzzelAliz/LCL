@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -20,11 +21,8 @@ import me.kevinwalker.utils.Util;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Executors;
 
 public class Main extends Application {
     public static MusicPlayThread musicPlayThread;
@@ -42,7 +40,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Main.primaryStage = primaryStage;
         GuiBase mainGui = new GuiBase("Frame", primaryStage);
-        mainGui.getScene().setFill(Color.WHITE);
+        mainGui.getScene().setFill(Color.TRANSPARENT);
         mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
         mainGui.getStage().getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));
         mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
@@ -53,9 +51,9 @@ public class Main extends Application {
         });
         mainGui.getStage().setScene(mainGui.getScene());
         mainGui.getStage().show();
-        load("MainPage", "主界面", true, false);
-        load("Resources", "资源获取", false , false);
-        load("Author", "制作者", false, true);
+        load("MainPage", "主界面", true);
+        load("Resources", "资源获取", false);
+        load("Author", "制作者", false);
         /*
         //播放音乐
         bgm = new File(Main.getBaseDir(), "LclConfig/" + Config.instance.bgm);
@@ -70,16 +68,29 @@ public class Main extends Application {
         */
     }
 
-    private void load(String fxml, String buttonName, boolean showDefault, boolean last) {
+    private void load(String fxml, String buttonName, Image background, boolean showDefault) {
+        Parent parent = null;
+        try {
+            parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
+            panes.put(fxml, parent);
+            Button button = new Button(buttonName, new ImageView(background));
+            button.setPrefSize(200, 50);
+            button.setStyle("-fx-border-width: 0;");
+            InterfaceManager.addInterface(Container.create(fxml, button));
+            if (showDefault) FrameController.instance.pane.getChildren().add(getInstance(fxml));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void load(String fxml, String buttonName, boolean showDefault) {
         Parent parent = null;
         try {
             parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
             panes.put(fxml, parent);
             Button button = new Button(buttonName);
             button.setPrefSize(200, 50);
-            if (last)
-                button.setStyle("-fx-border-style: solid solid solid solid;");
-            else button.setStyle("-fx-border-style: solid solid none solid;");
+            button.setStyle("-fx-border-width: 0;");
             InterfaceManager.addInterface(Container.create(fxml, button));
             if (showDefault) FrameController.instance.pane.getChildren().add(getInstance(fxml));
         } catch (IOException e) {

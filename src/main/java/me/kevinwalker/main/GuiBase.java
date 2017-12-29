@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -32,22 +33,7 @@ class GuiBase {
             this.root = FXMLLoader.load(getClass().getResource("/fxml/" + fxmlName + ".fxml"));
         } catch (IOException e) {
             e.printStackTrace();
-        }/*
-        this.root.setOnMousePressed((MouseEvent event) -> {
-            event.consume();
-            xOffset = event.getSceneX();
-            yOffset = event.getSceneY();
-        });
-        this.root.setOnMouseDragged((MouseEvent event) -> {
-            event.consume();
-            stage.setX(event.getScreenX() - xOffset);
-            if (event.getScreenY() - yOffset < 0) {
-                stage.setY(0);
-            } else {
-                stage.setY(event.getScreenY() - yOffset);
-            }
-        });
-        */
+        }
         this.scene = new Scene(root, x, y);
     }
 
