@@ -53,7 +53,6 @@ public class Main extends Application {
         });
         mainGui.getStage().setScene(mainGui.getScene());
         mainGui.getStage().show();
-        load("MainPage", "主界面", true);
         load("MainPage", "主界面", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "MainPage.png")), true);
         load("Settings", "设置", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Settings.png")), false);
         load("ResourceManagement", "资源管理", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png")), false);
