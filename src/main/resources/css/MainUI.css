@@ -50,8 +50,8 @@
 }
 
 .scroll-pane {
-    -fx-background-color: rgba(255, 255, 255, 0.1);
-    -fx-background: rgba(255, 255, 255, 0.1)
+    -fx-background-color: rgba(255, 255, 255, 0);
+    -fx-background: rgba(255, 255, 255, 0)
 }
 
 #namebtn {
@@ -114,7 +114,7 @@
 }
 
 .button {
-    -fx-padding: 5.0 22.0 5.0 22.0;
+    -fx-padding: 3.0 12.0 3.0 12.0;
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2.0;
     -fx-background-color: transparent;

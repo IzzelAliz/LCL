@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="460.0" maxWidth="600.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.ui.controller.ResourceController">
+    <children>
+        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="600.0" spacing="20.0">
+            <children>
+                <Button fx:id="forumButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" text="Mod 发布" />
+            <Button fx:id="digestButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" text="仅精华" />
+            <Button fx:id="sort" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" text="默认排序" />
+            <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" spacing="5.0" style="-fx-font-family: &quot;微软雅黑&quot;; -fx-font-size: 11.0pt; -fx-text-fill: #FFFFFF;" styleClass="button">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="第" />
+                  <TextField fx:id="page" alignment="CENTER" prefWidth="40.0" promptText="N" style="-fx-text-fill: #FFFFFF; -fx-background-color: rgba(0,0,0,0);" text="1" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="页" />
+               </children>
+            </HBox>
+            <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" text="刷新" />
+            </children>
+            <VBox.margin>
+                <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+            </VBox.margin>
+        </HBox>
+        <ScrollPane fx:id="show" hbarPolicy="NEVER" prefHeight="410.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);" vbarPolicy="NEVER" />
+    </children>
+</VBox>

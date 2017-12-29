@@ -47,7 +47,7 @@ public class FrameController implements Initializable {
                 pane.getChildren().add(container.getPane());
             });
         });
-        Color color = ColorTranslated.Color2Contrary2(GetMainColor.getImagePixel(Skin.getBackgroundInputStream())).invert();
+        Color color = GetMainColor.getImagePixel(Skin.getBackgroundInputStream()).invert();
         titleText.setFill(color);
         username.setFill(color);
         l1.setStroke(color);

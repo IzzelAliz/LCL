@@ -54,6 +54,7 @@ public class Main extends Application {
         mainGui.getStage().setScene(mainGui.getScene());
         mainGui.getStage().show();
         load("MainPage", "主界面", true, false);
+        load("Resources", "资源获取", false , false);
         load("Author", "制作者", false, true);
         /*
         //播放音乐
