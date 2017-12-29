@@ -63,4 +63,7 @@
         </AnchorPane>
         <Pane fx:id="hover" focusTraversable="true" mouseTransparent="true" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0);" />
     </children>
+   <effect>
+      <DropShadow />
+   </effect>
 </Pane>

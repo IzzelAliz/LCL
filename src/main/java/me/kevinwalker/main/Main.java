@@ -2,12 +2,10 @@ package me.kevinwalker.main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -19,7 +17,6 @@ import me.kevinwalker.ui.Skin;
 import me.kevinwalker.ui.controller.FrameController;
 import me.kevinwalker.ui.controller.InterfaceManager;
 import me.kevinwalker.utils.Util;
-import me.kevinwalker.utils.io.ZipUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +29,6 @@ public class Main extends Application {
     private static File bgm;
     public static Stage primaryStage;
     public static Scene scene;
-    public static GuiBase mainGui;
 
     private static final Map<String, Node> panes = new HashMap<>();
 
@@ -43,16 +39,17 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Main.primaryStage = primaryStage;
-        Main.mainGui = new GuiBase("Frame", primaryStage);
-        mainGui.getScene().setFill(Color.WHITE);
-        Main.mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
-        Main.mainGui.getStage().getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));
-        Main.mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
-        Main.mainGui.getStage().setResizable(true);
-        Main.mainGui.getStage().setOnCloseRequest((e) -> {
+        GuiBase mainGui = new GuiBase("Frame", primaryStage);
+        mainGui.getScene().setFill(Color.TRANSPARENT);
+        mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
+        mainGui.getStage().getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));
+        mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
+        mainGui.getStage().setResizable(true);
+        mainGui.getStage().setOnCloseRequest((e) -> {
             Config.save();
             System.exit(0);
         });
+<<<<<<< HEAD
         Main.mainGui.getStage().setScene(mainGui.getScene());
         Main.mainGui.getStage().show();
         load("MainPage", "主界面", true);
@@ -60,6 +57,11 @@ public class Main extends Application {
 //        load("ResourceManagement", "设置", false, false);
         load("Skin", "皮肤", false);
         load("Author", "关于", false);
+=======
+        mainGui.getStage().setScene(mainGui.getScene());
+        mainGui.getStage().show();
+        load("MainPage", "主界面", true);
+>>>>>>> a28a864f070db7d9d11cf6ed6998bda9b931da9b
         load("Resources", "资源获取", false);
         load("Author", "制作者", false);
         /*
@@ -76,18 +78,36 @@ public class Main extends Application {
         */
     }
 
+<<<<<<< HEAD
+    private void load(String fxml, String buttonName, boolean showDefault) {
+=======
+    private void load(String fxml, String buttonName, Image background, boolean showDefault) {
+>>>>>>> a28a864f070db7d9d11cf6ed6998bda9b931da9b
+        Parent parent = null;
+        try {
+            parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
+            panes.put(fxml, parent);
+            Button button = new Button(buttonName, new ImageView(background));
+            button.setPrefSize(200, 50);
+<<<<<<< HEAD
+=======
+            button.setStyle("-fx-border-width: 0;");
+            InterfaceManager.addInterface(Container.create(fxml, button));
+            if (showDefault) FrameController.instance.pane.getChildren().add(getInstance(fxml));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void load(String fxml, String buttonName, boolean showDefault) {
         Parent parent = null;
         try {
             parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
             panes.put(fxml, parent);
-            ImageView img = new ImageView(new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), fxml + ".png")));
-            img.setFitWidth(30);
-            img.setFitHeight(30);
-            Button button = new Button(buttonName, img);
-            button.setContentDisplay(ContentDisplay.LEFT);
-            button.setAlignment(Pos.BASELINE_LEFT);
+            Button button = new Button(buttonName);
             button.setPrefSize(200, 50);
+            button.setStyle("-fx-border-width: 0;");
+>>>>>>> a28a864f070db7d9d11cf6ed6998bda9b931da9b
             InterfaceManager.addInterface(Container.create(fxml, button));
             if (showDefault) FrameController.instance.pane.getChildren().add(getInstance(fxml));
         } catch (IOException e) {
