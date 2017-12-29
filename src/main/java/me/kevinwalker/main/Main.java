@@ -57,7 +57,7 @@ public class Main extends Application {
         Main.mainGui.getStage().show();
         load("MainPage", "主界面", true, false);
         load("Setting", "用户", false, false);
-        load("ResourceManagement", "设置", false, false);
+//        load("ResourceManagement", "设置", false, false);
         load("Skin", "皮肤", false, false);
         load("Skin", "皮肤2", false, false);
         load("Author", "关于", false, false);
