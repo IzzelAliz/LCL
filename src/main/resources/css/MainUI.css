@@ -46,7 +46,7 @@
 }
 
 .scroll-pane.increment-button:hover, .scroll-pane .decrement-button:hover {
-    -fx-background-color: derive(gray, 100%);
+    -fx-background-color: derive(gray, 0%);
 }
 
 .scroll-pane {

@@ -25,7 +25,7 @@
         <Pane fx:id="pane" layoutX="200.0" layoutY="40.0" prefHeight="460.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);" stylesheets="/css/MainUI.css"/>
         <Pane fx:id="title" layoutX="200.0" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);">
             <children>
-                <Circle fill="#cc0000" layoutX="575.0" layoutY="20.0" onMouseClicked="#onExit" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button" />
+                <Circle fill="#cc0000" layoutX="575.0" layoutY="20.0" onMouseClicked="#onExit" radius="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button" />
                 <Text fx:id="titleText" fill="WHITE" layoutX="200.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LoginCraftLaunch" textAlignment="CENTER" y="2.5">
                     <font>
                         <Font size="24.0" />
@@ -36,7 +36,7 @@
                 </Text>
             </children>
         </Pane>
-        <Line fx:id="l1" endX="200.0" endY="600.0" startX="200.0" />
+        <Line fx:id="l1" endX="200.0" endY="500.0" startX="200.0" />
         <Line fx:id="l2" endX="800.0" endY="40.0" startX="200.0" startY="40.0" />
         <ScrollPane fitToWidth="true" layoutY="175.0" prefHeight="325.0" prefWidth="200.0" vbarPolicy="NEVER">
             <content>

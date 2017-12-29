@@ -71,6 +71,12 @@ public class FrameController implements Initializable {
         });
     }
 
+    /**
+     * 设置按钮图标
+     */
+    public static void setButtonImage(){
+    }
+
     @FXML
     void onExit() {
         Config.save();
