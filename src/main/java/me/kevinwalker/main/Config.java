@@ -21,6 +21,9 @@ public class Config {
 
     public String authType;
 
+    public boolean enableProxy = false;
+    public String proxyHost, proxyPort, proxyUser, proxyPassword;
+
     public static void load() {
         File fo = new File(Util.getBaseDir(), "/LcLConfig");
         if (!fo.exists()) fo.mkdir();

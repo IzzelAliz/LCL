@@ -19,9 +19,10 @@
 <Pane fx:id="base" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0);" stylesheets="/css/MainUI.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.ui.controller.FrameController">
     <children>
         <ImageView fx:id="background" fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
-         <effect>
-            <GaussianBlur radius="7.0" />
-         </effect></ImageView>
+            <effect>
+                <GaussianBlur radius="7.0" />
+            </effect>
+        </ImageView>
         <Pane fx:id="pane" layoutX="200.0" layoutY="40.0" prefHeight="460.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);" stylesheets="/css/MainUI.css" />
         <Pane fx:id="title" layoutX="200.0" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);">
             <children>
@@ -30,9 +31,9 @@
                     <font>
                         <Font size="24.0" />
                     </font>
-               <rotationAxis>
-                  <Point3D />
-               </rotationAxis>
+                    <rotationAxis>
+                        <Point3D />
+                    </rotationAxis>
                 </Text>
             </children>
         </Pane>
@@ -42,7 +43,10 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="325.0" prefWidth="200.0">
                     <children>
-                        <VBox fx:id="vertical" prefHeight="175.0" prefWidth="200.0" style="-fx-background-color: rgba(0,0,0,0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <VBox fx:id="vertical" prefHeight="175.0" prefWidth="200.0" style="-fx-background-color: rgba(0,0,0,0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding></VBox>
                     </children>
                 </AnchorPane>
             </content>
@@ -63,7 +67,7 @@
         </AnchorPane>
         <Pane fx:id="hover" focusTraversable="true" mouseTransparent="true" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0);" />
     </children>
-   <effect>
-      <DropShadow />
-   </effect>
+    <effect>
+        <DropShadow />
+    </effect>
 </Pane>

@@ -2,6 +2,7 @@ package me.kevinwalker.main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -59,6 +60,7 @@ public class Main extends Application {
         load("Author", "关于", false);
         load("Resources", "资源获取", false);
         load("Author", "制作者", false);
+        load("Settings", "设置", false);
         /*
         //播放音乐
         bgm = new File(Main.getBaseDir(), "LclConfig/" + Config.instance.bgm);
@@ -81,6 +83,7 @@ public class Main extends Application {
             Button button = new Button(buttonName, new ImageView(background));
             button.setPrefSize(200, 50);
             button.setStyle("-fx-border-width: 0;");
+            button.setAlignment(Pos.CENTER_LEFT);
             InterfaceManager.addInterface(Container.create(fxml, button));
             if (showDefault) FrameController.instance.pane.getChildren().add(getInstance(fxml));
         } catch (IOException e) {
@@ -96,6 +99,7 @@ public class Main extends Application {
             Button button = new Button(buttonName);
             button.setPrefSize(200, 50);
             button.setStyle("-fx-border-width: 0;");
+            button.setAlignment(Pos.CENTER_LEFT);
             InterfaceManager.addInterface(Container.create(fxml, button));
             if (showDefault) FrameController.instance.pane.getChildren().add(getInstance(fxml));
         } catch (IOException e) {
