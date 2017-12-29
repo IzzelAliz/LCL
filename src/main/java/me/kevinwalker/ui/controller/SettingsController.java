@@ -4,13 +4,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import me.kevinwalker.main.Apis;
 import me.kevinwalker.main.Config;
+import me.kevinwalker.utils.io.Updater;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,8 +22,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class SettingsController implements Initializable {
+    private static ExecutorService service = Executors.newFixedThreadPool(1);
 
     public Button enableProxy;
     public VBox proxySettingBox, settingPane;
@@ -27,6 +34,8 @@ public class SettingsController implements Initializable {
     public TextField proxyPort;
     public TextField proxyUser;
     public TextField proxyPassword;
+    public Button checkUpdate;
+    public Text versionInfo;
 
     public static void main(String[] args) {
         try {
@@ -75,6 +84,11 @@ public class SettingsController implements Initializable {
                 Config.instance.enableProxy = false;
             }
         });
+        versionInfo.setText("当前版本 " + Updater.currentVersion() + "/" + Updater.currentCommit());
+        checkUpdate.setOnMouseClicked((MouseEvent event) -> service.execute(() -> {
+            String v = Updater.checkUpdate();
+            Platform.runLater(() -> versionInfo.setText("最新版本 " + v));
+        }));
     }
 
 }

@@ -37,6 +37,8 @@
                   </HBox>
                </children>
             </VBox>
+            <Button fx:id="checkUpdate" mnemonicParsing="false" text="检查更新" textFill="WHITE" />
+            <Text fx:id="versionInfo" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="当前版本" />
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

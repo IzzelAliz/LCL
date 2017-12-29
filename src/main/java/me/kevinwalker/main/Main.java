@@ -55,8 +55,8 @@ public class Main extends Application {
         mainGui.getStage().show();
         load("MainPage", "主界面", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "MainPage.png")), true);
         load("Settings", "设置", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Settings.png")), false);
-        load("ResourceManagement", "资源管理", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png")), false);
-        load("ResourceManagement", "服务器信息", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ServerInformation.png")), false);
+        load("ResourceManagement", "资源管理", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "resourceManagementImg.png")), false);
+        load("ResourceManagement", "服务器信息", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "serverInformationImg.png")), false);
         load("Skin", "启动器皮肤", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Skin.png")), false);
         load("Resources", "资源获取", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "loginImg.png")), false);
         /*
