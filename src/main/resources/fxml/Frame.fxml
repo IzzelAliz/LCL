@@ -40,7 +40,7 @@
         <Line fx:id="l2" endX="800.0" endY="40.0" startX="200.0" startY="40.0" />
         <ScrollPane fitToWidth="true" layoutY="175.0" prefHeight="325.0" prefWidth="200.0" vbarPolicy="NEVER">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="325.0" prefWidth="200.0">
+                <AnchorPane fx:id="apane" minHeight="0.0" minWidth="0.0" prefHeight="325.0" prefWidth="200.0">
                     <children>
                         <VBox fx:id="vertical" prefHeight="175.0" prefWidth="200.0" style="-fx-background-color: rgba(0,0,0,0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>

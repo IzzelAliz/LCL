@@ -4,21 +4,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontSmoothingType;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextBoundsType;
+import me.kevinwalker.main.Config;
 import me.kevinwalker.utils.Util;
 import me.kevinwalker.utils.io.ZipUtils;
 import net.lingala.zip4j.io.ZipInputStream;
@@ -61,7 +53,7 @@ public class SkinController implements Initializable {
             skinPane.setPrefHeight(skinList.size() * 205);
             for (int i = 0; i < skinList.size(); i++) {
                 try {
-                    ZipInputStream inputStream = ZipUtils.getInputStream(new File(Util.getBaseDir(), "/LcLConfig/skin/" + skinList.get(i) + ".zip"), "MainPage.png");
+                    ZipInputStream inputStream = ZipUtils.getInputStream(new File(Util.getBaseDir(), "/LcLConfig/skin/" + skinList.get(i) + ".zip"), "preview.png");
                     ZipInputStream skinInputStream = ZipUtils.getInputStream(new File(Util.getBaseDir(), "/LcLConfig/skin/" + skinList.get(i) + ".zip"), "skin.json");
                     Reader reader = new InputStreamReader(skinInputStream, "UTF-8");
                     Gson json = new GsonBuilder().create();

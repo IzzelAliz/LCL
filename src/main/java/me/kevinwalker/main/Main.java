@@ -2,6 +2,7 @@ package me.kevinwalker.main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,6 +18,7 @@ import me.kevinwalker.ui.Skin;
 import me.kevinwalker.ui.controller.FrameController;
 import me.kevinwalker.ui.controller.InterfaceManager;
 import me.kevinwalker.utils.Util;
+import me.kevinwalker.utils.io.ZipUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,13 +54,12 @@ public class Main extends Application {
         mainGui.getStage().setScene(mainGui.getScene());
         mainGui.getStage().show();
         load("MainPage", "主界面", true);
-        load("Settings", "设置", false);
-        load("ResourceManagement", "资源管理", false);
-        load("ResourceManagement", "服务器信息", false);
-        load("Skin", "启动器皮肤", false);
-        load("Resources", "资源获取", false);
-        load("ResourceManagement", "更新", false);
-        load("Author", "关于", false);
+        load("MainPage", "主界面", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "MainPage.png")), true);
+        load("Settings", "设置", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Settings.png")), false);
+        load("ResourceManagement", "资源管理", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png")), false);
+        load("ResourceManagement", "服务器信息", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ServerInformation.png")), false);
+        load("Skin", "启动器皮肤", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Skin.png")), false);
+        load("Resources", "资源获取", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "loginImg.png")), false);
         /*
         //播放音乐
         bgm = new File(Main.getBaseDir(), "LclConfig/" + Config.instance.bgm);
@@ -78,7 +79,11 @@ public class Main extends Application {
         try {
             parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
             panes.put(fxml, parent);
-            Button button = new Button(buttonName, new ImageView(background));
+            ImageView imageView = new ImageView(background);
+            imageView.setFitHeight(30);
+            imageView.setFitWidth(30);
+            Button button = new Button(buttonName, imageView);
+            button.setAlignment(Pos.BASELINE_LEFT);
             button.setPrefSize(200, 50);
             button.setStyle("-fx-border-width: 0;");
             InterfaceManager.addInterface(Container.create(fxml, button));
@@ -94,6 +99,7 @@ public class Main extends Application {
             parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
             panes.put(fxml, parent);
             Button button = new Button(buttonName);
+            button.setAlignment(Pos.BASELINE_LEFT);
             button.setPrefSize(200, 50);
             button.setStyle("-fx-border-width: 0;");
             InterfaceManager.addInterface(Container.create(fxml, button));
