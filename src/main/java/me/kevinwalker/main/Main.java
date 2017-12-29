@@ -51,18 +51,18 @@ public class Main extends Application {
         });
         mainGui.getStage().setScene(mainGui.getScene());
         mainGui.getStage().show();
-        mainGui.getStage().setScene(mainGui.getScene());
-        mainGui.getStage().show();
         load("MainPage", "主界面", true);
-        load("Setting", "用户", false);
-        load("Skin", "皮肤", false);
-        load("Author", "关于", false);
+        load("Settings", "设置", false);
+        load("ResourceManagement", "资源管理", false);
+        load("ResourceManagement", "服务器信息", false);
+        load("Skin", "启动器皮肤", false);
         load("Resources", "资源获取", false);
-        load("Author", "制作者", false);
+        load("ResourceManagement", "更新", false);
+        load("Author", "关于", false);
         /*
         //播放音乐
         bgm = new File(Main.getBaseDir(), "LclConfig/" + Config.instance.bgm);
-        if (bgm.exists()) {
+        if (bgm.exists()) {s
             musicPlayThread = new MusicPlayThread(bgm.getPath());
         } else {
             Util.saveResource("css/music/bgm.mp3", new File(Main.getBaseDir(), "LclConfig/bgm.mp3"));
