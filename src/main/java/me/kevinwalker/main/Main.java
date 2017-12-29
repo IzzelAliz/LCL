@@ -40,7 +40,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Main.primaryStage = primaryStage;
         GuiBase mainGui = new GuiBase("Frame", primaryStage);
-        mainGui.getScene().setFill(Color.TRANSPARENT);
+        mainGui.getScene().setFill(Color.WHITE);
         mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
         mainGui.getStage().getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));
         mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
@@ -56,9 +56,6 @@ public class Main extends Application {
 //        load("ResourceManagement", "设置", false, false);
         load("Skin", "皮肤", false);
         load("Author", "关于", false);
-        mainGui.getStage().setScene(mainGui.getScene());
-        mainGui.getStage().show();
-        load("MainPage", "主界面", true);
         load("Resources", "资源获取", false);
         load("Author", "制作者", false);
         /*
