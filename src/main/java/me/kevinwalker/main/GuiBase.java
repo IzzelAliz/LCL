@@ -13,8 +13,6 @@ import java.io.IOException;
  * Created by KevinWalker on 2017/10/4.
  */
 class GuiBase {
-    private double xOffset = 0;
-    private double yOffset = 0;
     private Parent root;
     private Scene scene;
     private Stage stage;
