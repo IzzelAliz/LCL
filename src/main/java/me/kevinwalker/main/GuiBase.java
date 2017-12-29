@@ -12,8 +12,6 @@ import java.io.IOException;
  * Created by KevinWalker on 2017/10/4.
  */
 class GuiBase {
-    private double xOffset = 0;
-    private double yOffset = 0;
     private Parent root;
     private Scene scene;
     private Stage stage;
@@ -32,22 +30,7 @@ class GuiBase {
             this.root = FXMLLoader.load(getClass().getResource("/fxml/" + fxmlName + ".fxml"));
         } catch (IOException e) {
             e.printStackTrace();
-        }/*
-        this.root.setOnMousePressed((MouseEvent event) -> {
-            event.consume();
-            xOffset = event.getSceneX();
-            yOffset = event.getSceneY();
-        });
-        this.root.setOnMouseDragged((MouseEvent event) -> {
-            event.consume();
-            stage.setX(event.getScreenX() - xOffset);
-            if (event.getScreenY() - yOffset < 0) {
-                stage.setY(0);
-            } else {
-                stage.setY(event.getScreenY() - yOffset);
-            }
-        });
-        */
+        }
         this.scene = new Scene(root, x, y);
     }
 

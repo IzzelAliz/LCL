@@ -22,7 +22,7 @@
          <effect>
             <GaussianBlur radius="7.0" />
          </effect></ImageView>
-        <Pane fx:id="pane" layoutX="200.0" layoutY="40.0" prefHeight="460.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);" />
+        <Pane fx:id="pane" layoutX="200.0" layoutY="40.0" prefHeight="460.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);" stylesheets="/css/MainUI.css"/>
         <Pane fx:id="title" layoutX="200.0" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);">
             <children>
                 <Circle fill="#cc0000" layoutX="575.0" layoutY="20.0" onMouseClicked="#onExit" radius="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button" />

@@ -19,7 +19,11 @@ import java.util.List;
 
 public class McbbsParser {
 
-    public static enum PARAM {
+    public enum PARAM {
+        /**
+         * Mod版
+         */
+        FORUM_MOD("fid=45"),
         /**
          * 材质版
          */
@@ -29,29 +33,25 @@ public class McbbsParser {
          */
         FORUM_SKIN("fid=169"),
         /**
-         * Mod版
-         */
-        FORUM_MOD("fid=45"),
-        /**
          * 插件版
          */
         FORUM_PLUGIN("fid=138"),
+        /**
+         * 地图版
+         */
+        FORUM_MAP("fid=137"),
         /**
          * 页数，使用 page(int 页数) 方法
          */
         PAGE(""),
         /**
-         * 热度排序
-         */
-        FILTER_HEAT("filter=heat&orderby=heats"),
-        /**
          * 仅精华
          */
         FILTER_DIGEST("filter=digest&digest=1"),
         /**
-         * 一段时间的热度，貌似无效
+         * 热度排序
          */
-        FILTER_HOT("filter=hot"),
+        FILTER_HEAT("filter=heat&orderby=heats"),
         /**
          * 最新发帖
          */

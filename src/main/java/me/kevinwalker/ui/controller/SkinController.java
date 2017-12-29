@@ -61,11 +61,11 @@ public class SkinController implements Initializable {
             skinPane.setPrefHeight(skinList.size() * 205);
             for (int i = 0; i < skinList.size(); i++) {
                 try {
-                    ZipInputStream inputStream = ZipUtils.getInputStream(new File(Util.getBaseDir(), "/LcLConfig/skin/" + skinList.get(i) + ".zip"), "preview.png");
+                    ZipInputStream inputStream = ZipUtils.getInputStream(new File(Util.getBaseDir(), "/LcLConfig/skin/" + skinList.get(i) + ".zip"), "MainPage.png");
                     ZipInputStream skinInputStream = ZipUtils.getInputStream(new File(Util.getBaseDir(), "/LcLConfig/skin/" + skinList.get(i) + ".zip"), "skin.json");
                     Reader reader = new InputStreamReader(skinInputStream, "UTF-8");
                     Gson json = new GsonBuilder().create();
-                    skinText user = json.fromJson(reader, skinText.class);
+                    SkinText user = json.fromJson(reader, SkinText.class);
                     image[i] = new ImageView(new Image(inputStream));
                     image[i].setFitWidth(60);
                     image[i].setFitHeight(60);
@@ -126,7 +126,7 @@ public class SkinController implements Initializable {
         return result;
     }
 
-    public class skinText {
+    public class SkinText {
         private String text;
 
         public String getText() {

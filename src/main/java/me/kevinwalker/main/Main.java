@@ -24,17 +24,15 @@ import me.kevinwalker.utils.io.ZipUtils;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Executors;
 
 public class Main extends Application {
     public static MusicPlayThread musicPlayThread;
     private static File bgm;
     public static Stage primaryStage;
     public static Scene scene;
+    public static GuiBase mainGui;
 
     private static final Map<String, Node> panes = new HashMap<>();
 
@@ -45,24 +43,24 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Main.primaryStage = primaryStage;
-        GuiBase mainGui = new GuiBase("Frame", primaryStage);
+        Main.mainGui = new GuiBase("Frame", primaryStage);
         mainGui.getScene().setFill(Color.WHITE);
-        mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
-        mainGui.getStage().getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));
-        mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
-        mainGui.getStage().setResizable(true);
-        mainGui.getStage().setOnCloseRequest((e) -> {
+        Main.mainGui.getStage().setTitle("LoginCraftLaunch-0.0.1Demo");
+        Main.mainGui.getStage().getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));
+        Main.mainGui.getStage().initStyle(StageStyle.TRANSPARENT);
+        Main.mainGui.getStage().setResizable(true);
+        Main.mainGui.getStage().setOnCloseRequest((e) -> {
             Config.save();
             System.exit(0);
         });
-        mainGui.getStage().setScene(mainGui.getScene());
-        mainGui.getStage().show();
+        Main.mainGui.getStage().setScene(mainGui.getScene());
+        Main.mainGui.getStage().show();
         load("MainPage", "主界面", true, false);
         load("Setting", "用户", false, false);
-        load("ResourceManagement", "设置", false, false);
+//        load("ResourceManagement", "设置", false, false);
         load("Skin", "皮肤", false, false);
         load("Skin", "皮肤2", false, false);
-        load("Author", "制作者", false, true);
+        load("Author", "关于", false, true);
         /*
         //播放音乐
         bgm = new File(Main.getBaseDir(), "LclConfig/" + Config.instance.bgm);
@@ -82,10 +80,10 @@ public class Main extends Application {
         try {
             parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
             panes.put(fxml, parent);
-            ImageView img = new ImageView(new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "preview.png")));
+            ImageView img = new ImageView(new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), fxml + ".png")));
             img.setFitWidth(30);
             img.setFitHeight(30);
-            Button button = new Button(buttonName,img);
+            Button button = new Button(buttonName, img);
             button.setContentDisplay(ContentDisplay.LEFT);
             button.setAlignment(Pos.BASELINE_LEFT);
             button.setPrefSize(200, 50);
