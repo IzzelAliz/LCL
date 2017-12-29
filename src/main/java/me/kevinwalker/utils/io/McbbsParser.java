@@ -49,6 +49,10 @@ public class McbbsParser {
          */
         FILTER_DIGEST("filter=digest&digest=1"),
         /**
+         * 默认排序
+         */
+        DEFAULT("sortid=7"),
+        /**
          * 热度排序
          */
         FILTER_HEAT("filter=heat&orderby=heats"),
@@ -88,7 +92,7 @@ public class McbbsParser {
         }
     }
 
-    public static List<ThreadPost> parse(String[] param) {
+    public static List<ThreadPost> parse(String[] param) throws Exception {
         HttpClientBuilder builder = HttpClientBuilder.create();
         try (CloseableHttpClient client = builder.build()) {
             StringBuilder url = new StringBuilder("http://www.mcbbs.net/forum.php?");
@@ -108,54 +112,48 @@ public class McbbsParser {
                     return parseXml(html);
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return new ArrayList<>();
     }
 
-    private static List<ThreadPost> parseXml(String xml) {
+    private static List<ThreadPost> parseXml(String xml) throws Exception {
         List<ThreadPost> list = new ArrayList<>();
-        try {
-            Document document = Jsoup.parse(xml);
-            Elements htmle = document.select("html");
-            Document html = Jsoup.parse(htmle.toString());
-            Elements bodye = html.select("body");
-            Document body = Jsoup.parse(bodye.toString());
-            body.getElementsByClass("threadlist").forEach(div -> {
-                if (div == null) {
-                    System.out.println("0");
-                    return;
+        Document document = Jsoup.parse(xml);
+        Elements htmle = document.select("html");
+        Document html = Jsoup.parse(htmle.toString());
+        Elements bodye = html.select("body");
+        Document body = Jsoup.parse(bodye.toString());
+        body.getElementsByClass("threadlist").forEach(div -> {
+            if (div == null) {
+                System.out.println("0");
+                return;
+            }
+            div.select("ul").select("li").forEach(li -> {
+                ThreadPost tp = new ThreadPost();
+                tp.url = parseUrl(li.select("a").attr("href"));
+                tp.author = li.select("a").select("span").text().trim();
+                tp.title = li.select("a").text().trim();
+                tp.title = tp.title.substring(0, tp.title.length() - tp.author.length());
+                if (li.select("a").attr("style").contains("color: ")) {
+                    String style = li.select("a").attr("style");
+                    style = style.substring(style.indexOf("color: #") + "color: #".length());
+                    style = style.substring(0, style.indexOf(";"));
+                    tp.color = Color.web(style, 1.0D);
                 }
-                div.select("ul").select("li").forEach(li -> {
-                    ThreadPost tp = new ThreadPost();
-                    tp.url = parseUrl(li.select("a").attr("href"));
-                    tp.author = li.select("a").select("span").text().trim();
-                    tp.title = li.select("a").text().trim();
-                    tp.title = tp.title.substring(0, tp.title.length() - tp.author.length());
-                    if (li.select("a").attr("style").contains("color: ")) {
-                        String style = li.select("a").attr("style");
-                        style = style.substring(style.indexOf("color: #") + "color: #".length());
-                        style = style.substring(0, style.indexOf(";"));
-                        tp.color = Color.web(style, 1.0D);
+                li.getElementsByTag("span").forEach(span -> {
+                    if (span.attr("class").equals("num"))
+                        tp.reply = Integer.parseInt(span.text().trim());
+                    if (span.attr("class").equals("icon_tu")) tp.picture = true;
+                    if (span.attr("class").equals("icon_top")) {
+                        if (span.select("img").attr("src").contains("digest"))
+                            tp.digest = true;
+                        else tp.top = true;
                     }
-                    li.getElementsByTag("span").forEach(span -> {
-                        if (span.attr("class").equals("num"))
-                            tp.reply = Integer.parseInt(span.text().trim());
-                        if (span.attr("class").equals("icon_tu")) tp.picture = true;
-                        if (span.attr("class").equals("icon_top")) {
-                            if (span.select("img").attr("src").contains("digest"))
-                                tp.digest = true;
-                            else tp.top = true;
-                        }
-                    });
-                    if (!tp.top)
-                        list.add(tp);
                 });
+                if (!tp.top)
+                    list.add(tp);
             });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
         return list;
     }
 

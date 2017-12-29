@@ -23,12 +23,19 @@
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="页" />
                </children>
             </HBox>
-            <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" text="刷新" />
+            <Button fx:id="refresh" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" text="刷新" />
             </children>
             <VBox.margin>
                 <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
             </VBox.margin>
         </HBox>
-        <ScrollPane fx:id="show" hbarPolicy="NEVER" prefHeight="410.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);" vbarPolicy="NEVER" />
+        <ScrollPane hbarPolicy="NEVER" prefHeight="410.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);" vbarPolicy="NEVER">
+         <content>
+            <VBox fx:id="show" alignment="TOP_CENTER" prefHeight="410.0" prefWidth="600.0" spacing="5.0">
+               <padding>
+                  <Insets left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+         </content></ScrollPane>
     </children>
 </VBox>

@@ -60,6 +60,8 @@
     -fx-font-family: "微软雅黑";
     -fx-font-size: 11.0pt;
     -fx-text-fill: #FFFFFF;
+    -fx-border-width: 2;
+    -fx-border-color: #e2e2e2;
     -fx-background-insets: 0.0 0.0 0.0 0.0, 0.0, 1.0, 2.0;
 }
 

@@ -49,19 +49,14 @@ public class Main extends Application {
             Config.save();
             System.exit(0);
         });
-<<<<<<< HEAD
-        Main.mainGui.getStage().setScene(mainGui.getScene());
-        Main.mainGui.getStage().show();
-        load("MainPage", "主界面", true);
-        load("Setting", "用户", false);
-//        load("ResourceManagement", "设置", false, false);
-        load("Skin", "皮肤", false);
-        load("Author", "关于", false);
-=======
+        mainGui.getStage().setScene(mainGui.getScene());
+        mainGui.getStage().show();
         mainGui.getStage().setScene(mainGui.getScene());
         mainGui.getStage().show();
         load("MainPage", "主界面", true);
->>>>>>> a28a864f070db7d9d11cf6ed6998bda9b931da9b
+        load("Setting", "用户", false);
+        load("Skin", "皮肤", false);
+        load("Author", "关于", false);
         load("Resources", "资源获取", false);
         load("Author", "制作者", false);
         /*
@@ -78,19 +73,13 @@ public class Main extends Application {
         */
     }
 
-<<<<<<< HEAD
-    private void load(String fxml, String buttonName, boolean showDefault) {
-=======
     private void load(String fxml, String buttonName, Image background, boolean showDefault) {
->>>>>>> a28a864f070db7d9d11cf6ed6998bda9b931da9b
         Parent parent = null;
         try {
             parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
             panes.put(fxml, parent);
             Button button = new Button(buttonName, new ImageView(background));
             button.setPrefSize(200, 50);
-<<<<<<< HEAD
-=======
             button.setStyle("-fx-border-width: 0;");
             InterfaceManager.addInterface(Container.create(fxml, button));
             if (showDefault) FrameController.instance.pane.getChildren().add(getInstance(fxml));
@@ -107,7 +96,6 @@ public class Main extends Application {
             Button button = new Button(buttonName);
             button.setPrefSize(200, 50);
             button.setStyle("-fx-border-width: 0;");
->>>>>>> a28a864f070db7d9d11cf6ed6998bda9b931da9b
             InterfaceManager.addInterface(Container.create(fxml, button));
             if (showDefault) FrameController.instance.pane.getChildren().add(getInstance(fxml));
         } catch (IOException e) {
