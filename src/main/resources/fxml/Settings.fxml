@@ -12,6 +12,11 @@
    <content>
       <VBox fx:id="settingPane" prefHeight="458.0" prefWidth="600.0" spacing="10.0" style="-fx-font-family: &quot;Microsoft YaHei Mono&quot;; -fx-font-size: 16px; -fx-text-fill: #FFFFFF;">
          <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="启动器设置">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Text>
             <Button fx:id="enableProxy" mnemonicParsing="false" style="-fx-text-fill: #FFFFFF;" text="启用代理" />
             <VBox fx:id="proxySettingBox" prefHeight="100.0" prefWidth="560.0" spacing="10.0" style="-fx-background-color: rgba(0,0,0,0);">
                <children>
