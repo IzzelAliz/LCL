@@ -57,7 +57,11 @@ public class SettingsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (!Config.instance.enableProxy) {
-            enableProxy.setStyle("");
+            enableProxy.setStyle("-fx-opacity: 0.4;" +
+                    " -fx-background-color: #1d1d1d;" +
+                    " -fx-text-fill: #e2e2e2;" +
+                    " -fx-border-color: #778899;" +
+                    " -fx-border-width: 2.0;");
         }
         proxyHost.setText(Config.instance.proxyHost);
         proxyPort.setText(Config.instance.proxyPort);
@@ -68,14 +72,15 @@ public class SettingsController implements Initializable {
         enableProxy.setOnMouseClicked(event -> {
             if (!Config.instance.enableProxy) {
                 settingPane.getChildren().add(1, proxySettingBox);
+                enableProxy.setStyle("");
+                Config.instance.enableProxy = true;
+            } else {
+                settingPane.getChildren().remove(proxySettingBox);
                 enableProxy.setStyle("-fx-opacity: 0.4;" +
                         " -fx-background-color: #1d1d1d;" +
                         " -fx-text-fill: #e2e2e2;" +
                         " -fx-border-color: #778899;" +
-                        " -fx-border-width: 2.0;");                Config.instance.enableProxy = true;
-            } else {
-                settingPane.getChildren().remove(proxySettingBox);
-                enableProxy.setStyle("");
+                        " -fx-border-width: 2.0;");
                 Config.instance.enableProxy = false;
             }
         });
