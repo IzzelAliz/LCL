@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -38,7 +40,7 @@ public class SettingsController implements Initializable {
     public TextField proxyPort;
     public TextField proxyUser;
     public TextField proxyPassword;
-    public Button checkUpdate;
+    public Button checkUpdate, connect;
     public Text versionInfo;
     public ComboBox comboBox;
 
@@ -65,17 +67,6 @@ public class SettingsController implements Initializable {
                 "Http代理",
                 "Socks代理"
         );
-        Properties prop = System.getProperties();
-        // http代理服务器的地址与端口
-        prop.setProperty("http.proxyHost", "192.168.0.254");
-        prop.setProperty("http.proxyPort", "8080");
-
-        // socks代理服务器的地址与端口
-        prop.setProperty("socksProxyHost", "192.168.0.254");
-        prop.setProperty("socksProxyPort", "8000");
-
-        // 设置登陆到代理服务器的用户名和密码
-        Authenticator.setDefault(new MyAuthenticator("userName", "Password"));
 
         if (!Config.instance.enableProxy) {
             enableProxy.setStyle("-fx-opacity: 0.4;" +
@@ -110,6 +101,23 @@ public class SettingsController implements Initializable {
             String v = Updater.checkUpdate();
             Platform.runLater(() -> versionInfo.setText("最新版本 " + v));
         }));
+
+        comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (comboBox.getValue().equals("Http代理")) proxyPort.setText("80");
+            else if (comboBox.getValue().equals("Socks代理")) proxyPort.setText("1080");
+        });
+
+        connect.setOnMouseClicked((MouseEvent event) -> {
+            Properties prop = System.getProperties();
+            if (comboBox.getValue().equals("Http代理")) {
+                prop.setProperty("http.proxyHost", proxyHost.getText());
+                prop.setProperty("http.proxyPort", proxyPort.getText());
+            } else if (comboBox.getValue().equals("Socks代理")) {
+                prop.setProperty("socksProxyHost", proxyHost.getText());
+                prop.setProperty("socksProxyPort", proxyPort.getText());
+            }
+            Authenticator.setDefault(new MyAuthenticator(proxyUser.getText(), proxyPassword.getText()));
+        });
     }
 
     static class MyAuthenticator extends Authenticator {

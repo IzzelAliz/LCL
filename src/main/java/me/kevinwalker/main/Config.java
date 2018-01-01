@@ -17,11 +17,10 @@ public class Config {
 
     public String skin = "/LcLConfig/skin/default.zip";
 
-    public String bgm;
-
     public String authType;
 
     public boolean enableProxy = false;
+
     public String proxyHost, proxyPort, proxyUser, proxyPassword;
 
     public static void load() {
