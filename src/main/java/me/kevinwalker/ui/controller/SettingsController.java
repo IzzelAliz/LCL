@@ -44,25 +44,9 @@ public class SettingsController implements Initializable {
     public Text versionInfo;
     public ComboBox comboBox;
 
-    public static void main(String[] args) {
-        try {
-            URL url = new URL(Apis.UPDATE_URL);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.connect();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            JsonParser parser = new JsonParser();
-            JsonElement element = parser.parse(reader.readLine());
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            System.out.println(gson.toJson(element));
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         comboBox.getItems().addAll(
                 "Http代理",
                 "Socks代理"
