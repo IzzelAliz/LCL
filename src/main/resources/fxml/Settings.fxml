@@ -17,7 +17,13 @@
                   <Font size="21.0" />
                </font>
             </Text>
-            <Button fx:id="enableProxy" mnemonicParsing="false" style="-fx-text-fill: #FFFFFF;" text="启用代理" />
+            <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="560.0">
+               <children>
+                  <Button fx:id="enableProxy" mnemonicParsing="false" style="-fx-text-fill: #FFFFFF;" text="启用代理" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="代理方式：" />
+                  <ComboBox fx:id="comboBox" prefWidth="150.0" />
+               </children>
+            </HBox>
             <VBox fx:id="proxySettingBox" prefHeight="100.0" prefWidth="560.0" spacing="10.0" style="-fx-background-color: rgba(0,0,0,0);">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="560.0" spacing="10.0">

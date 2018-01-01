@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -19,8 +20,11 @@ import me.kevinwalker.utils.io.Updater;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.Authenticator;
 import java.net.HttpURLConnection;
+import java.net.PasswordAuthentication;
 import java.net.URL;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -36,6 +40,7 @@ public class SettingsController implements Initializable {
     public TextField proxyPassword;
     public Button checkUpdate;
     public Text versionInfo;
+    public ComboBox comboBox;
 
     public static void main(String[] args) {
         try {
@@ -56,6 +61,22 @@ public class SettingsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        comboBox.getItems().addAll(
+                "Http代理",
+                "Socks代理"
+        );
+        Properties prop = System.getProperties();
+        // http代理服务器的地址与端口
+        prop.setProperty("http.proxyHost", "192.168.0.254");
+        prop.setProperty("http.proxyPort", "8080");
+
+        // socks代理服务器的地址与端口
+        prop.setProperty("socksProxyHost", "192.168.0.254");
+        prop.setProperty("socksProxyPort", "8000");
+
+        // 设置登陆到代理服务器的用户名和密码
+        Authenticator.setDefault(new MyAuthenticator("userName", "Password"));
+
         if (!Config.instance.enableProxy) {
             enableProxy.setStyle("-fx-opacity: 0.4;" +
                     " -fx-background-color: #1d1d1d;" +
@@ -91,4 +112,17 @@ public class SettingsController implements Initializable {
         }));
     }
 
+    static class MyAuthenticator extends Authenticator {
+        private String user = "";
+        private String password = "";
+
+        public MyAuthenticator(String user, String password) {
+            this.user = user;
+            this.password = password;
+        }
+
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(user, password.toCharArray());
+        }
+    }
 }
