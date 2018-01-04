@@ -12,9 +12,28 @@
    <content>
       <VBox fx:id="settingPane" prefHeight="458.0" prefWidth="600.0" spacing="10.0" style="-fx-font-family: &quot;Microsoft YaHei Mono&quot;; -fx-font-size: 16px; -fx-text-fill: #FFFFFF;">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="启动器设置">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="启动器设置" wrappingWidth="125.0">
                <font>
-                  <Font size="21.0" />
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="-游戏设置-" wrappingWidth="77.84375">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <HBox alignment="CENTER_LEFT" prefHeight="6.0" prefWidth="560.0" spacing="10.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="JAVA路径">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Text>
+                  <TextField prefHeight="34.0" prefWidth="423.0" />
+               </children>
+            </HBox>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="-网络设置-">
+               <font>
+                  <Font size="16.0" />
                </font>
             </Text>
             <Button fx:id="enableProxy" mnemonicParsing="false" style="-fx-text-fill: #FFFFFF;" text="启用代理" />
@@ -22,27 +41,42 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="560.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="代理方式：" />
-                        <ComboBox fx:id="comboBox" prefWidth="150.0" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="代理方式：">
+                           <font>
+                              <Font size="13.0" />
+                           </font></Text>
+                        <ComboBox fx:id="comboBox" prefHeight="34.0" prefWidth="150.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="560.0" spacing="10.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="代理主机" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="代理主机">
+                           <font>
+                              <Font size="13.0" />
+                           </font></Text>
                         <TextField fx:id="proxyHost" prefHeight="30.0" prefWidth="518.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="6.0" prefWidth="560.0" spacing="10.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="代理端口" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="代理端口">
+                           <font>
+                              <Font size="13.0" />
+                           </font></Text>
                         <TextField fx:id="proxyPort" prefHeight="30.0" prefWidth="127.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="560.0" spacing="10.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="用户名" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="用户名">
+                           <font>
+                              <Font size="13.0" />
+                           </font></Text>
                         <TextField fx:id="proxyUser" />
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="密码" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="密码">
+                           <font>
+                              <Font size="13.0" />
+                           </font></Text>
                         <TextField fx:id="proxyPassword" />
                      </children>
                   </HBox>
@@ -50,7 +84,10 @@
                </children>
             </VBox>
             <Button fx:id="checkUpdate" mnemonicParsing="false" text="检查更新" textFill="WHITE" />
-            <Text fx:id="versionInfo" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="当前版本" />
+            <Text fx:id="versionInfo" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="当前版本">
+               <font>
+                  <Font size="13.0" />
+               </font></Text>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
