@@ -17,12 +17,14 @@ import me.kevinwalker.ui.Container;
 import me.kevinwalker.ui.Skin;
 import me.kevinwalker.ui.controller.FrameController;
 import me.kevinwalker.ui.controller.InterfaceManager;
+import me.kevinwalker.utils.ServerListPing;
 import me.kevinwalker.utils.Util;
 import me.kevinwalker.utils.io.ZipUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,18 +61,6 @@ public class Main extends Application {
         load("ResourceManagement", "服务器信息", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png")), false);
         load("Skin", "启动器皮肤", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Skin.png")), false);
         load("Resources", "资源获取", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "loginImg.png")), false);
-        /*
-        //播放音乐
-        bgm = new File(Main.getBaseDir(), "LclConfig/" + Config.instance.bgm);
-        if (bgm.exists()) {s
-            musicPlayThread = new MusicPlayThread(bgm.getPath());
-        } else {
-            Util.saveResource("css/music/bgm.mp3", new File(Main.getBaseDir(), "LclConfig/bgm.mp3"));
-            File musicFile = new File(Main.getBaseDir(), "LclConfig/bgm.mp3");
-            musicPlayThread = new MusicPlayThread(musicFile.getPath());
-        }
-        musicPlayThread.start();
-        */
     }
 
     private void load(String fxml, String buttonName, Image background, boolean showDefault) {
@@ -109,27 +99,32 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        //setupLogger();
+        setupLogger();
+//        ServerListPing slp = new ServerListPing();
+//        InetSocketAddress sadd0 = new InetSocketAddress("dx.mc11.icraft.cc", 37190);
+//        InetSocketAddress sadd1 = new InetSocketAddress("218.93.208.142", 10648);
+//        InetSocketAddress sadd2 = new InetSocketAddress("four.mengcraft.com", 13433);
+//        InetSocketAddress sadd3 = new InetSocketAddress("r2.suteidc.com", 26339);
+//        InetSocketAddress sadd = new InetSocketAddress("play.mcartoria.com", 25565);
+//
+//        slp.setAddress(sadd);
+//        ServerListPing.StatusResponse sr = null;
+//        try {
+//            sr = slp.fetchData();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("最大在线" + sr.getPlayers().getMax());
+//        System.out.println("在线" + sr.getPlayers().getOnline());
+//        if (sr.getPlayers().getSample() != null) {
+//            for (int i = 0; i < sr.getPlayers().getSample().size(); i++) {
+//                System.out.println("玩家" + i + ":" + sr.getPlayers().getSample().get(i).getName());
+//            }
+//        }
         Config.load();
         Locale.load();
         Skin.load();
         launch(args);
-        // ServerListPing slp = new ServerListPing();
-        // InetSocketAddress sadd0 = new InetSocketAddress("dx.mc11.icraft.cc", 37190);
-        // InetSocketAddress sadd1 = new InetSocketAddress("218.93.208.142", 10648);
-        // InetSocketAddress sadd2 = new InetSocketAddress("four.mengcraft.com", 13433);
-        // InetSocketAddress sadd3 = new InetSocketAddress("r2.suteidc.com", 26339);
-        // InetSocketAddress sadd = new InetSocketAddress("103.37.45.108", 7160);
-        //
-        // slp.setAddress(sadd);
-        // ServerListPing.StatusResponse sr = slp.fetchData();
-        // System.out.println("最大在线" + sr.getPlayers().getMax());
-        // System.out.println("在线" + sr.getPlayers().getOnline());
-        // if(sr.getPlayers().getSample()!= null) {
-        // for (int i = 0; i < sr.getPlayers().getSample().size(); i++) {
-        // System.out.println("玩家"+i+":"+sr.getPlayers().getSample().get(i).getName());
-        // }
-        // }
     }
 
     private static void setupLogger() {

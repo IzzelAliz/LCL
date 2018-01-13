@@ -119,7 +119,6 @@ public class ServerListPing {
         dataInputStream.readFully(in);  //read json string
         String json = new String(in);
 
-
         long now = System.currentTimeMillis();
         dataOutputStream.writeByte(0x09); //size of packet
         dataOutputStream.writeByte(0x01); //0x01 for ping
