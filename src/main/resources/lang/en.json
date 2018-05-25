@@ -1,0 +1,10 @@
+{
+  "MainPage":"MainPage",
+  "Settings":"Settings",
+  "ResourceManagement":"ResourceManagement",
+  "ServerData":"ServerData",
+  "Skin":"Skin",
+  "Resources":"Resources",
+  "HttpProxy":"HttpProxy",
+  "SocksProxy":"SocksProxy"
+}

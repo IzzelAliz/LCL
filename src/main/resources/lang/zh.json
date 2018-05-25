@@ -1,0 +1,10 @@
+{
+  "MainPage":"主界面",
+  "Settings":"设置",
+  "ResourceManagement":"资源管理",
+  "ServerData":"服务器信息",
+  "Skin":"启动器皮肤",
+  "Resources":"资源获取",
+  "HttpProxy":"Http代理",
+  "SocksProxy":"Socks代理"
+}

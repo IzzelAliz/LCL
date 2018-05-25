@@ -14,17 +14,15 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import me.kevinwalker.threads.MusicPlayThread;
 import me.kevinwalker.ui.Container;
+import me.kevinwalker.ui.InterfaceManager;
 import me.kevinwalker.ui.Skin;
 import me.kevinwalker.ui.controller.FrameController;
-import me.kevinwalker.ui.controller.InterfaceManager;
-import me.kevinwalker.utils.ServerListPing;
 import me.kevinwalker.utils.Util;
 import me.kevinwalker.utils.io.ZipUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,16 +53,16 @@ public class Main extends Application {
         });
         mainGui.getStage().setScene(mainGui.getScene());
         mainGui.getStage().show();
-        load("MainPage", "主界面", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "MainPage.png")), true);
-        load("Settings", "设置", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Settings.png")), false);
-        load("ResourceManagement", "资源管理", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png")), false);
-        load("ResourceManagement", "服务器信息", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png")), false);
-        load("Skin", "启动器皮肤", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Skin.png")), false);
-        load("Resources", "资源获取", new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "loginImg.png")), false);
+        load("MainPage", Locale.instance.MainPage, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "MainPage.png")), true);
+        load("Settings", Locale.instance.Settings, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Settings.png")), false);
+        load("ResourceManagement", Locale.instance.ResourceManagement, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png")), false);
+        load("ResourceManagement", Locale.instance.ServerData, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png")), false);
+        load("Skin", Locale.instance.Skin, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Skin.png")), false);
+        load("Resources", Locale.instance.Resources, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "loginImg.png")), false);
     }
 
     private void load(String fxml, String buttonName, Image background, boolean showDefault) {
-        Parent parent = null;
+        Parent parent;
         try {
             parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
             panes.put(fxml, parent);
@@ -99,7 +97,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        setupLogger();
+//        setupLogger();
 //        ServerListPing slp = new ServerListPing();
 //        InetSocketAddress sadd0 = new InetSocketAddress("dx.mc11.icraft.cc", 37190);
 //        InetSocketAddress sadd1 = new InetSocketAddress("218.93.208.142", 10648);

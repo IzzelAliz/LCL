@@ -4,21 +4,19 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import me.kevinwalker.main.Main;
 
-import java.io.IOException;
-
 public interface Container {
 
     Node getPane();
 
     Node getButton();
 
-    static Container create(String fxmlName) throws IOException {
+    static Container create(String fxmlName){
         Button button = new Button(fxmlName);
         button.setPrefSize(200, 50);
         return create(fxmlName, button);
     }
 
-    static Container create(String fxmlName, Node button) throws IOException {
+    static Container create(String fxmlName, Node button) {
         return new Impl(Main.getInstance(fxmlName), button);
     }
 

@@ -1,8 +1,9 @@
-package me.kevinwalker.ui.controller;
+package me.kevinwalker.ui;
 
 import javafx.scene.Node;
 import me.kevinwalker.ui.Container;
 import me.kevinwalker.ui.Transition;
+import me.kevinwalker.ui.controller.FrameController;
 
 import java.util.ArrayList;
 import java.util.List;

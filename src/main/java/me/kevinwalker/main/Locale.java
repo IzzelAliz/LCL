@@ -8,7 +8,19 @@ import java.util.List;
 
 public class Locale {
 
-    String skinName;
+    public static Locale instance;
+
+    //界面语言文件
+    public String MainPage;
+    public String Settings;
+    public String ResourceManagement;
+    public String ServerData;
+    public String Skin;
+    public String Resources;
+
+    //设置界面语言文件
+    public String HttpProxy;
+    public String SocksProxy;
 
     private static List<String> langs = new ArrayList<String>() {{
         add("zh");
@@ -18,8 +30,7 @@ public class Locale {
     public static void load() {
         if (!langs.contains(Config.instance.lang))
             Config.instance.lang = "zh";
-        Locale locale = new Gson().fromJson(Files.toString(Locale.class.getResourceAsStream("/lang/" +
-                Config.instance.lang + ".json"), "utf-8"), Locale.class);
+        instance = new Gson().fromJson(Files.toString(Locale.class.getResourceAsStream("/lang/" + Config.instance.lang + ".json"), "utf-8"), Locale.class);
     }
 
 }

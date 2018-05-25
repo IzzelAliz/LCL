@@ -1,29 +1,20 @@
 package me.kevinwalker.ui.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import me.kevinwalker.main.Apis;
 import me.kevinwalker.main.Config;
+import me.kevinwalker.main.Locale;
 import me.kevinwalker.utils.io.Updater;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Authenticator;
-import java.net.HttpURLConnection;
 import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.util.Properties;
@@ -46,10 +37,11 @@ public class SettingsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setLocale(settingPane.getChildren());
 
         comboBox.getItems().addAll(
-                "Http代理",
-                "Socks代理"
+                Locale.instance.HttpProxy,
+                Locale.instance.SocksProxy
         );
 
         if (!Config.instance.enableProxy) {
@@ -67,7 +59,7 @@ public class SettingsController implements Initializable {
             settingPane.getChildren().remove(proxySettingBox);
         enableProxy.setOnMouseClicked(event -> {
             if (!Config.instance.enableProxy) {
-                settingPane.getChildren().add(1, proxySettingBox);
+                settingPane.getChildren().add(5, proxySettingBox);
                 enableProxy.setStyle("");
                 Config.instance.enableProxy = true;
             } else {
@@ -87,20 +79,29 @@ public class SettingsController implements Initializable {
         }));
 
         comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (comboBox.getValue().equals("Http代理")) proxyPort.setText("80");
-            else if (comboBox.getValue().equals("Socks代理")) proxyPort.setText("1080");
+            if (comboBox.getValue().equals(Locale.instance.HttpProxy)) proxyPort.setText("80");
+            else if (comboBox.getValue().equals(Locale.instance.SocksProxy)) proxyPort.setText("1080");
         });
 
         connect.setOnMouseClicked((MouseEvent event) -> {
             Properties prop = System.getProperties();
-            if (comboBox.getValue().equals("Http代理")) {
+            if (comboBox.getValue().equals(Locale.instance.HttpProxy)) {
                 prop.setProperty("http.proxyHost", proxyHost.getText());
                 prop.setProperty("http.proxyPort", proxyPort.getText());
-            } else if (comboBox.getValue().equals("Socks代理")) {
+            } else if (comboBox.getValue().equals(Locale.instance.SocksProxy)) {
                 prop.setProperty("socksProxyHost", proxyHost.getText());
                 prop.setProperty("socksProxyPort", proxyPort.getText());
             }
             Authenticator.setDefault(new MyAuthenticator(proxyUser.getText(), proxyPassword.getText()));
+        });
+    }
+
+    /**
+     * 设置语言
+     * @param nodeList 控件的List
+     */
+    private static void setLocale(ObservableList<Node> nodeList){
+        nodeList.forEach(node ->{
         });
     }
 

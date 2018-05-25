@@ -13,6 +13,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import me.kevinwalker.main.Config;
 import me.kevinwalker.main.Main;
+import me.kevinwalker.ui.InterfaceManager;
 import me.kevinwalker.ui.Skin;
 import me.kevinwalker.utils.ColorTranslated;
 import me.kevinwalker.utils.Util;
@@ -104,25 +105,10 @@ public class FrameController implements Initializable {
     }
 
     public class GuiColor {
-        private String rad;
-        private String green;
-        private String blue;
+        private String author;
         private String colorText;
-
         public String getColorText() {
             return colorText;
-        }
-
-        public String getRad() {
-            return rad;
-        }
-
-        public String getGreen() {
-            return green;
-        }
-
-        public String getBlue() {
-            return blue;
         }
     }
 }
