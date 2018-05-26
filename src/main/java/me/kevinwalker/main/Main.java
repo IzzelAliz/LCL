@@ -66,6 +66,7 @@ public class Main extends Application {
         try {
             parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
             panes.put(fxml, parent);
+            FrameController.instance.apane.setPrefHeight(panes.size()*50+100);
             ImageView imageView = new ImageView(background);
             imageView.setFitHeight(30);
             imageView.setFitWidth(30);
@@ -85,6 +86,7 @@ public class Main extends Application {
         try {
             parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
             panes.put(fxml, parent);
+            FrameController.instance.apane.setPrefHeight(panes.size()*50+100);
             Button button = new Button(buttonName);
             button.setAlignment(Pos.BASELINE_LEFT);
             button.setPrefSize(200, 50);
@@ -123,6 +125,7 @@ public class Main extends Application {
         Locale.load();
         Skin.load();
         launch(args);
+        setupLogger();
     }
 
     private static void setupLogger() {

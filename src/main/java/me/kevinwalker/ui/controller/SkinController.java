@@ -50,7 +50,7 @@ public class SkinController implements Initializable {
             skinList = getFileList(new File(Util.getBaseDir(), "LclConfig/skin"));
             Button skinButton[] = new Button[skinList.size()];
             ImageView[] image = new ImageView[skinList.size()];
-            skinPane.setPrefHeight(skinList.size() * 205);
+            skinPane.setPrefHeight(skinList.size()/2 * 80+160);
             for (int i = 0; i < skinList.size(); i++) {
                 try {
                     ZipInputStream inputStream = ZipUtils.getInputStream(new File(Util.getBaseDir(), "/LcLConfig/skin/" + skinList.get(i) + ".zip"), "preview.png");
@@ -64,11 +64,11 @@ public class SkinController implements Initializable {
                     skinButton[i] = new Button(skinList.get(i), image[i]);
                     skinButton[i].setStyle("-fx-border-color: #e2e2e2;" +
                             "-fx-border-width: 2.0;");
-                    skinButton[i].setPrefSize(215, 80);
-                    skinButton[i].setMinSize(215, 80);
-                    skinButton[i].setMaxSize(215, 80);
+                    skinButton[i].setPrefSize(250, 80);
+                    skinButton[i].setMinSize(250, 80);
+                    skinButton[i].setMaxSize(250, 80);
                     if (this.list) skinButton[i].setLayoutX(5);
-                    else skinButton[i].setLayoutX(15 + 215);
+                    else skinButton[i].setLayoutX(35 + 250);
                     if (this.list) skinButton[i].setLayoutY((i - i / 2) * (80 + 5));
                     else skinButton[i].setLayoutY(((i - 1) - (i - 1) / 2) * (80 + 5));
                     skinButton[i].setContentDisplay(ContentDisplay.LEFT);
@@ -80,15 +80,19 @@ public class SkinController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-//                int num = i;
-//                skinButton[i].setOnMouseClicked(oa -> {
+                final int num = i;
+                skinButton[i].setOnMouseClicked(oa -> {
+                    Object obj=oa.getSource();
+                    if(obj==skinButton[num]){
+                        System.out.println("当前点击的按钮"+num);
+                    }
 //                    Config.instance.skin = ((Text) ((VBox) skinButton[num].getChildren().get(1))
 //                            .getChildren().get(0)).getText();
 //                    Config.save();
 //                    Main.mainGui = new GuiBase("LoginCraftLaunch", Main.primaryStage, 800, 530);
 //                    Transition.lollipopTransition(skinButton[num], Main.mainGui, oa.getSceneX(), oa.getSceneY(),
 //                            1500);
-//                });
+                });
             }
         }).start();
         open.setStyle("-fx-border-color: #e2e2e2;" +
