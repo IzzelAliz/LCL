@@ -88,11 +88,11 @@ public class SettingsController implements Initializable {
             Config.save();
         });
 
-        VersionInfo.setText("当前版本 " + Updater.currentVersion() + "/" + Updater.currentCommit());
-        checkUpdate.setOnMouseClicked((MouseEvent event) -> service.execute(() -> {
-            String v = Updater.checkUpdate();
-            Platform.runLater(() -> VersionInfo.setText("最新版本 " + v));
-        }));
+//        VersionInfo.setText("当前版本 " + Updater.currentVersion() + "/" + Updater.currentCommit());
+//        checkUpdate.setOnMouseClicked((MouseEvent event) -> service.execute(() -> {
+//            String v = Updater.checkUpdate();
+//            Platform.runLater(() -> VersionInfo.setText("最新版本 " + v));
+//        }));
 
         comboBoxProxy.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (comboBoxProxy.getValue().equals(Locale.instance.HttpProxy)) proxyPort.setText("80");
