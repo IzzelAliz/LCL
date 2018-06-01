@@ -1,1 +1,11 @@
-{"background":"background.png","lang":"zh","name":"Welcome~","skin":"/LcLConfig/skin/default.zip","bgm":"bgm.mp3"}
+{
+  "lang": "zh",
+  "name": "Admin",
+  "skin": "/LcLConfig/skin/skin.zip",
+  "javaPath": "C:\\Program Files\\Java\\jre1.8.0_131\\bin\\javaw.exe",
+  "enableProxy": false,
+  "proxyMode": "http",
+  "proxyHost": "192.168.1.1",
+  "proxyPort": "80",
+  "proxyUser": "Administrator"
+}

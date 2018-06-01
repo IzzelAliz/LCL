@@ -17,11 +17,13 @@ public class Config {
 
     public String skin = "/LcLConfig/skin/default.zip";
 
+    public String javaPath ;
+
     public String authType;
 
     public boolean enableProxy = false;
 
-    public String proxyHost, proxyPort, proxyUser, proxyPassword;
+    public String proxyMode,proxyHost, proxyPort, proxyUser;
 
     public static void load() {
         File fo = new File(Util.getBaseDir(), "/LcLConfig");

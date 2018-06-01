@@ -6,5 +6,22 @@
   "Skin":"启动器皮肤",
   "Resources":"资源获取",
   "HttpProxy":"Http代理",
-  "SocksProxy":"Socks代理"
+  "SocksProxy":"Socks代理",
+  "Setting":"——设置——",
+  "LaunchSetting":"-启动器设置-",
+  "GameSettings":"-游戏设置-",
+  "Language":"语言",
+  "PlayerName":"玩家名称",
+  "JavaPath":"Java路径",
+  "NetworkSetting":"-网络设置-",
+  "ProxyMode":"代理方式",
+  "ProxyHost":"代理主机",
+  "ProxyPort":"代理端口",
+  "ProxyUserName":"用户名",
+  "ProxyPassword":"密码",
+  "chooeFile":"浏览",
+  "connect":"连接",
+  "checkUpdate":"更新",
+  "Error":"错误",
+  "ErrorMessage":"请完善信息!"
 }

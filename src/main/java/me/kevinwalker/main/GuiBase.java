@@ -3,8 +3,6 @@ package me.kevinwalker.main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -12,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by KevinWalker on 2017/10/4.
  */
-class GuiBase {
+public class GuiBase {
     private Parent root;
     private Scene scene;
     private Stage stage;

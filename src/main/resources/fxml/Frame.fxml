@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.GaussianBlur?>
@@ -38,7 +39,7 @@
         </Pane>
         <Line fx:id="l1" endX="200.0" endY="500.0" startX="200.0" />
         <Line fx:id="l2" endX="800.0" endY="40.0" startX="200.0" startY="40.0" />
-        <ScrollPane fitToWidth="true" layoutY="175.0" prefHeight="325.0" prefWidth="200.0">
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutY="175.0" prefHeight="325.0" prefWidth="200.0">
             <content>
                 <AnchorPane fx:id="apane" minHeight="0.0" minWidth="0.0" prefHeight="325.0" prefWidth="198.0">
                     <children>
@@ -57,11 +58,11 @@
                         <Image url="@../css/images/LCL.png" />
                     </image>
                 </ImageView>
-                <Text fx:id="username" fill="WHITE" layoutX="64.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="用户名">
-                    <font>
-                        <Font size="24.0" />
-                    </font>
-                </Text>
+            <Label fx:id="username" alignment="CENTER" text="用户名" textFill="WHITE" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
         <Pane fx:id="hover" focusTraversable="true" mouseTransparent="true" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0);" />

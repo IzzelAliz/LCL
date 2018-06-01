@@ -6,5 +6,22 @@
   "Skin":"Skin",
   "Resources":"Resources",
   "HttpProxy":"HttpProxy",
-  "SocksProxy":"SocksProxy"
+  "SocksProxy":"SocksProxy",
+  "Setting":"——Setting——",
+  "LaunchSetting":"-LaunchSetting-",
+  "GameSettings":"-GameSettings-",
+  "Language":"Language",
+  "PlayerName":"PlayerName",
+  "JavaPath":"JavaPath",
+  "NetworkSetting":"-NetworkSetting-",
+  "ProxyMode":"ProxyMode",
+  "ProxyHost":"ProxyHost",
+  "ProxyPort":"ProxyPort",
+  "ProxyUserName":"UserName",
+  "ProxyPassword":"Password",
+  "chooeFile":"Browse",
+  "connect":"Link",
+  "checkUpdate":"Update",
+  "Error":"Error",
+  "ErrorMessage":"Please perfect the information!"
 }

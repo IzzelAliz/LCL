@@ -12,17 +12,22 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import me.kevinwalker.threads.ImageLoadThread;
 import me.kevinwalker.threads.MusicPlayThread;
 import me.kevinwalker.ui.Container;
 import me.kevinwalker.ui.InterfaceManager;
 import me.kevinwalker.ui.Skin;
 import me.kevinwalker.ui.controller.FrameController;
+import me.kevinwalker.ui.controller.ResourceController;
 import me.kevinwalker.utils.Util;
 import me.kevinwalker.utils.io.ZipUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,37 +61,48 @@ public class Main extends Application {
         load("MainPage", Locale.instance.MainPage, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "MainPage.png")), true);
         load("Settings", Locale.instance.Settings, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Settings.png")), false);
         load("ResourceManagement", Locale.instance.ResourceManagement, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png")), false);
-        load("ResourceManagement", Locale.instance.ServerData, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png")), false);
+        load("ResourceManagement", Locale.instance.ServerData, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ServerInformation.png")), false);
         load("Skin", Locale.instance.Skin, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Skin.png")), false);
         load("Resources", Locale.instance.Resources, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "loginImg.png")), false);
+        ResourceController.instance.fetch();
     }
 
-    private void load(String fxml, String buttonName, Image background, boolean showDefault) {
+    public static void load(String fxml, String buttonName, Image background, boolean showDefault) {
         Parent parent;
         try {
             parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
             panes.put(fxml, parent);
-            FrameController.instance.apane.setPrefHeight(panes.size()*50+100);
+            FrameController.instance.apane.setPrefHeight(panes.size() * 50 + 100);
             ImageView imageView = new ImageView(background);
             imageView.setFitHeight(30);
             imageView.setFitWidth(30);
             Button button = new Button(buttonName, imageView);
             button.setAlignment(Pos.BASELINE_LEFT);
             button.setPrefSize(200, 50);
-            button.setStyle("-fx-border-width: 0;");
+            button.setStyle("-fx-border-style: solid;" +
+                    "-fx-border-width: 0px 0px 0px 10px;" +
+                    "-fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);");
+
+            if (showDefault)
+                button.setStyle("-fx-border-style: solid;" +
+                        "-fx-border-width: 0px 0px 0px 10px;" +
+                        "-fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(255, 255, 255, 0.7);");
             InterfaceManager.addInterface(Container.create(fxml, button));
-            if (showDefault) FrameController.instance.pane.getChildren().add(getInstance(fxml));
+
+            if (showDefault)
+                FrameController.instance.pane.getChildren().add(getInstance(fxml));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void load(String fxml, String buttonName, boolean showDefault) {
+    public static void load(String fxml, String buttonName, boolean showDefault) {
         Parent parent = null;
         try {
             parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
             panes.put(fxml, parent);
-            FrameController.instance.apane.setPrefHeight(panes.size()*50+100);
+            FrameController.instance.apane.setPrefHeight(panes.size() * 50 + 100);
             Button button = new Button(buttonName);
             button.setAlignment(Pos.BASELINE_LEFT);
             button.setPrefSize(200, 50);
@@ -121,11 +137,15 @@ public class Main extends Application {
 //                System.out.println("玩家" + i + ":" + sr.getPlayers().getSample().get(i).getName());
 //            }
 //        }
+
+        if (isOnLine())
+            new ImageLoadThread().start();
+
         Config.load();
         Locale.load();
         Skin.load();
-        launch(args);
         setupLogger();
+        launch(args);
     }
 
     private static void setupLogger() {
@@ -140,5 +160,22 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean isOnLine() {
+        URL url = null;
+        try {
+            url = new URL("https://www.baidu.com/");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        int timeOut = 3000;
+        boolean status = false;
+        try {
+            status = InetAddress.getByName(url.getHost()).isReachable(timeOut);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return status;
     }
 }

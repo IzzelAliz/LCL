@@ -28,6 +28,7 @@ import java.util.ResourceBundle;
  * Created by KevinWalker on 2017/10/7.
  */
 public class SkinController implements Initializable {
+    public int i = 1;
     List<String> skinList;
     private boolean list = true;
 
@@ -84,7 +85,7 @@ public class SkinController implements Initializable {
                 skinButton[i].setOnMouseClicked(oa -> {
                     Object obj=oa.getSource();
                     if(obj==skinButton[num]){
-                        System.out.println("当前点击的按钮"+num);
+                        FrameController.instance.setSkin("/LcLConfig/skin/"+skinList.get(num)+".zip");
                     }
 //                    Config.instance.skin = ((Text) ((VBox) skinButton[num].getChildren().get(1))
 //                            .getChildren().get(0)).getText();

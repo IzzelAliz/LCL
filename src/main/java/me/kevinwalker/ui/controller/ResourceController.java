@@ -23,7 +23,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ResourceController implements Initializable {
-    private static ResourceController instance;
+    public static ResourceController instance;
     private static ExecutorService service = Executors.newFixedThreadPool(2);
 
     private boolean digestDisable = true;
@@ -65,7 +65,7 @@ public class ResourceController implements Initializable {
         refresh.setOnMouseClicked(event -> fetch());
     }
 
-    private void fetch() {
+    public void fetch() {
         service.execute(() -> {
             try {
                 String forum = McbbsParser.PARAM.values()[forumIndex].value();

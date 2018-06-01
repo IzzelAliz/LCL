@@ -21,10 +21,6 @@ public class Skin {
 
     private static Image background;
 
-    public static InputStream getBackgroundInputStream() {
-        return ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "background.png");
-    }
-
     public static Image getBackground() {
         return background;
     }

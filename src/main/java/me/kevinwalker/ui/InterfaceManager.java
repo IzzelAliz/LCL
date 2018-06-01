@@ -23,6 +23,15 @@ public class InterfaceManager {
                 return;
             blocked = true;
             FrameController.instance.pane.getChildren().add(container.getPane());
+            InterfaceManager.containers.forEach(obj -> {
+                obj.getButton().setStyle("-fx-border-style: solid;" +
+                        "-fx-border-width: 0px 0px 0px 10px;" +
+                        "-fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);");
+            });
+            container.getButton().setStyle("-fx-border-style: solid;" +
+                    "-fx-border-width: 0px 0px 0px 10px;" +
+                    "-fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(255, 255, 255, 0.7);");
+
             Transition.playRandomPair(container.getPane(), event1 -> {
                     },
                     current, event1 -> {

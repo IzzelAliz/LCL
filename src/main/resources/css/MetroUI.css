@@ -35,12 +35,12 @@
 }
 
 .scroll-bar .track{
-    -fx-background-color:#f0f0f0;
+    -fx-background-color:rgba(240,240,240,1);
     -fx-background-insets: 0;
 }
 
 .scroll-bar .thumb{
-    -fx-background-color: #cdcdcd;
+    -fx-background-color: rgba(205,205,205,1);
     -fx-border-width: 0;
     -fx-background-radius: 0;
     -fx-background-insets: 0;

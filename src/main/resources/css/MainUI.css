@@ -9,13 +9,17 @@
     -fx-border-radius: 25;
 }
 
+.scroll-bar{
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+
 .scroll-bar .track {
-    -fx-background-color: rgba(0,0,0,0);
+    -fx-background-color: rgba(0, 0, 0, 0);
     -fx-background-insets: 0;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #cdcdcd;
+    -fx-background-color: rgba(205, 205, 205, 0.7);;
     -fx-border-width: 0;
     -fx-background-radius: 0;
     -fx-background-insets: 0;
@@ -23,12 +27,12 @@
 
 .scroll-bar .thumb:hover,
 .scroll-bar .thumb:pressed {
-    -fx-background-color: #a6a6a6;
+    -fx-background-color: rgba(166,166,166, 0.9);;
 }
 
 .scroll-bar .increment-button,
 .scroll-bar .decrement-button {
-    -fx-background-color: rgba(0,0,0,0);
+    -fx-background-color: rgba(0, 0, 0, 0.2);
     -fx-padding: 4px 2px;
     -fx-border-width: 0;
     -fx-background-insets: 0;
@@ -74,8 +78,8 @@
 }
 
 .button:pressed, .button:default:hover:pressed, #imageview:pressed {
-    -fx-background-color: #F8F8FF;
-    -fx-text-fill: #1d1d1d;
+    -fx-background-color: rgba(150,150,150,0.7);
+    -fx-text-fill: #FFFFFF;
     -fx-border-color: #e2e2e2;
     -fx-border-width: 1.0;
     -fx-scale-x: 0.98;
@@ -92,8 +96,39 @@
 }
 
 .text-field {
-    -fx-background-color: rgba(0,0,0,0);
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-text-fill: rgba(255, 255, 255, 1);
     -fx-border-style: solid;
     -fx-border-width: 0px 0px 2px 0px;
-    -fx-border-color: rgba(0,0,0,0) rgba(0,0,0,0) rgba(255,255,255,0.5) rgba(0,0,0,0);
+    -fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(255, 255, 255, 0.5) rgba(0, 0, 0, 0);
+}
+
+.combo-box{
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-text-fill: #FFFFFF;
+    -fx-border-color: rgba(255, 255, 255, 1);
+}
+
+.list-cell{
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-text-fill: #FFFFFF;
+}
+
+.list-view{
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-text-fill: #FFFFFF;
+}
+
+.list-view:hover{
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-text-fill: #FFFFFF;
+}
+
+.combo-box:hover {
+    -fx-background-color: rgba(58.0, 58.0, 58.0, 0.24);
+    -fx-text-fill: #FFFFFF;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+    -fx-scale-z: 1.03;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
 }
