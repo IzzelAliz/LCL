@@ -30,6 +30,7 @@ public class Locale {
     public String GameSettings;
     public String PlayerName;
     public String JavaPath;
+    public String GamePath;
     public String NetworkSetting;
     public String ProxyMode;
     public String ProxyHost;
@@ -37,6 +38,8 @@ public class Locale {
     public String ProxyUserName;
     public String ProxyPassword;
     public String LaunchSetting;
+    public String MaxMemory;
+    public String PhysicalMemory;
 
     //弹窗界面语言
     public String Error;

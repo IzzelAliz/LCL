@@ -12,7 +12,9 @@
   "GameSettings":"-GameSettings-",
   "Language":"Language",
   "PlayerName":"PlayerName",
+  "MaxMemory":"MaxMemory",
   "JavaPath":"JavaPath",
+  "GamePath":"GamePath",
   "NetworkSetting":"-NetworkSetting-",
   "ProxyMode":"ProxyMode",
   "ProxyHost":"ProxyHost",
@@ -22,6 +24,7 @@
   "chooeFile":"Browse",
   "connect":"Link",
   "checkUpdate":"Update",
+  "PhysicalMemory":"PhysicalMemory",
   "Error":"Error",
-  "ErrorMessage":"Please perfect the information!"
+  "ErrorMessage":"Please check the information!"
 }

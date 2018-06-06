@@ -21,6 +21,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 界面切换的过渡效果
+ */
 public class Transition {
     private static Random random = new Random();
     private static ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);

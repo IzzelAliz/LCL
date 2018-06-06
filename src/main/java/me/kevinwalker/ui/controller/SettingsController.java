@@ -1,23 +1,25 @@
 package me.kevinwalker.ui.controller;
 
+import com.sun.management.OperatingSystemMXBean;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import me.kevinwalker.main.Config;
 import me.kevinwalker.main.Locale;
 import me.kevinwalker.main.Main;
 import me.kevinwalker.ui.Popup;
+import me.kevinwalker.utils.Util;
 import me.kevinwalker.utils.io.Updater;
 
 import java.io.File;
+import java.lang.management.ManagementFactory;
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.net.URL;
@@ -25,6 +27,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Pattern;
 
 public class SettingsController implements Initializable {
     public static SettingsController instance;
@@ -34,10 +37,10 @@ public class SettingsController implements Initializable {
 
     public Text Setting;
     public Text GameSettings, LaunchSetting, NetworkSetting;
-    public Text PlayerName, JavaPath, Language, ProxyMode, ProxyHost, ProxyPort, ProxyUserName, ProxyPassword;
+    public Text PlayerName, GamePath, JavaPath, Language, ProxyMode, ProxyHost, ProxyPort, ProxyUserName, ProxyPassword, PhysicalMemory, MaxMemory;
 
-    public TextField name;
-    public TextField javaPath;
+    public TextField name, maxMemory;
+    public TextField gamePath, javaPath;
     public TextField proxyHost, proxyPort, proxyUser, proxyPassword;
 
     public ComboBox comboBoxLanguage, comboBoxProxy;
@@ -45,14 +48,19 @@ public class SettingsController implements Initializable {
     public Text VersionInfo;
 
     public Button checkUpdate, connect, LanguageButton;
-    public Button chooeFile;
+    public Button chooeFile, chooeFile1;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
         setLocale();
         javaPath.setText(Config.instance.javaPath);
+        gamePath.setText(Config.instance.gamePath);
         name.setText(Config.instance.name);
+        maxMemory.setText(Config.instance.maxMemory);
+        OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory
+                .getOperatingSystemMXBean();
+        PhysicalMemory.setText(Locale.instance.PhysicalMemory + ":" + String.valueOf(osmxb.getTotalPhysicalMemorySize() / (1024 * 1024)) + "MB");
 
         comboBoxLanguage.getItems().addAll("中文简体", "English");
 
@@ -86,13 +94,24 @@ public class SettingsController implements Initializable {
             javaPath.setText(file.getPath());
             Config.instance.javaPath = file.getPath();
             Config.save();
+
         });
 
-//        VersionInfo.setText("当前版本 " + Updater.currentVersion() + "/" + Updater.currentCommit());
-//        checkUpdate.setOnMouseClicked((MouseEvent event) -> service.execute(() -> {
-//            String v = Updater.checkUpdate();
-//            Platform.runLater(() -> VersionInfo.setText("最新版本 " + v));
-//        }));
+        chooeFile1.setOnAction(oa -> {
+            DirectoryChooser folderChooser = new DirectoryChooser();
+            folderChooser.setTitle(Locale.instance.GamePath);
+            folderChooser.setInitialDirectory(Util.getBaseDir());
+            File selectedFile = folderChooser.showDialog(Main.primaryStage);
+            gamePath.setText(selectedFile.getPath());
+            Config.instance.gamePath = selectedFile.getPath();
+            Config.save();
+        });
+
+        VersionInfo.setText("当前版本 " + Updater.currentVersion() + "/" + Updater.currentCommit());
+        checkUpdate.setOnMouseClicked((MouseEvent event) -> service.execute(() -> {
+            String v = Updater.checkUpdate();
+            Platform.runLater(() -> VersionInfo.setText("最新版本 " + v));
+        }));
 
         comboBoxProxy.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (comboBoxProxy.getValue().equals(Locale.instance.HttpProxy)) proxyPort.setText("80");
@@ -143,9 +162,26 @@ public class SettingsController implements Initializable {
 
         name.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
-                Config.instance.name = name.getText();
-                FrameController.instance.username.setText(name.getText());
-                Config.save();
+                if (name.getText() != null&& !name.getText().equals("") && Pattern.compile("^[A-Za-z][A-Za-z1-9_-]+$").matcher(name.getText()).matches()) {
+                    Config.instance.name = name.getText();
+                    FrameController.instance.username.setText(name.getText());
+                    Config.save();
+                } else {
+                    new Popup().display(Locale.instance.Error, Locale.instance.ErrorMessage);
+                    name.setText("Administrator");
+                }
+            }
+        });
+
+        maxMemory.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                if (maxMemory.getText() != null&& !maxMemory.getText().equals("") && Pattern.compile("^[0-9]*$").matcher(maxMemory.getText()).matches()) {
+                    Config.instance.maxMemory = maxMemory.getText();
+                    Config.save();
+                }else{
+                    new Popup().display(Locale.instance.Error, Locale.instance.ErrorMessage);
+                    maxMemory.setText("1024");
+                }
             }
         });
     }
@@ -155,6 +191,7 @@ public class SettingsController implements Initializable {
      */
     public void setLocale() {
         chooeFile.setText(Locale.instance.chooeFile);
+        chooeFile1.setText(Locale.instance.chooeFile);
         connect.setText(Locale.instance.connect);
         checkUpdate.setText(Locale.instance.checkUpdate);
         Language.setText(Locale.instance.Language);
@@ -163,12 +200,14 @@ public class SettingsController implements Initializable {
         GameSettings.setText(Locale.instance.GameSettings);
         NetworkSetting.setText(Locale.instance.NetworkSetting);
         PlayerName.setText(Locale.instance.PlayerName);
+        GamePath.setText(Locale.instance.GamePath);
         JavaPath.setText(Locale.instance.JavaPath);
         ProxyMode.setText(Locale.instance.ProxyMode);
         ProxyHost.setText(Locale.instance.ProxyHost);
         ProxyPort.setText(Locale.instance.ProxyPort);
         ProxyUserName.setText(Locale.instance.ProxyUserName);
         ProxyPassword.setText(Locale.instance.ProxyPassword);
+        MaxMemory.setText(Locale.instance.MaxMemory);
 
         if (Config.instance.proxyMode == null) comboBoxProxy.setValue(null);
         else if (Config.instance.proxyMode.equals("http"))

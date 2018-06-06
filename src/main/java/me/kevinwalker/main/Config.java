@@ -13,17 +13,17 @@ public class Config {
 
     public String background, lang = java.util.Locale.getDefault().getLanguage();
 
-    public String name;
+    public String name,maxMemory;
 
     public String skin = "/LcLConfig/skin/default.zip";
 
-    public String javaPath ;
+    public String javaPath, gamePath;
 
     public String authType;
 
     public boolean enableProxy = false;
 
-    public String proxyMode,proxyHost, proxyPort, proxyUser;
+    public String proxyMode, proxyHost, proxyPort, proxyUser;
 
     public static void load() {
         File fo = new File(Util.getBaseDir(), "/LcLConfig");

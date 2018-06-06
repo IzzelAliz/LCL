@@ -17,6 +17,7 @@ import me.kevinwalker.main.Config;
 import me.kevinwalker.main.Locale;
 import me.kevinwalker.main.Main;
 import me.kevinwalker.ui.InterfaceManager;
+import me.kevinwalker.ui.Popup;
 import me.kevinwalker.ui.Skin;
 import me.kevinwalker.utils.ColorTranslated;
 import me.kevinwalker.utils.Util;
@@ -74,8 +75,8 @@ public class FrameController implements Initializable {
         try (ZipInputStream skinInputStream = ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "skin.json")) {
             Reader reader = new InputStreamReader(skinInputStream, "UTF-8");
             Gson json = new GsonBuilder().create();
-            GuiColor user = json.fromJson(reader, GuiColor.class);
-            awtColor = ColorTranslated.toColorFromString(user.getColorText());
+            SkinData user = json.fromJson(reader, SkinData.class);
+            awtColor = ColorTranslated.toColorFromString(user.colorText);
             color = Color.rgb(awtColor.getRed(), awtColor.getGreen(), awtColor.getBlue(), 0.8);
         } catch (IOException e) {
             e.printStackTrace();
@@ -110,47 +111,50 @@ public class FrameController implements Initializable {
      */
     public void setSkin(String skinPath) {
         Config.instance.skin = skinPath;
+        Skin.load();
 
-        Color color = null;
-        java.awt.Color awtColor = null;
-
-        try (ZipInputStream skinInputStream = ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "skin.json")) {
+        try (ZipInputStream skinInputStream = ZipUtils.getInputStream(new File(Util.getBaseDir(), skinPath), "skin.json")) {
             Reader reader = new InputStreamReader(skinInputStream, "UTF-8");
             Gson json = new GsonBuilder().create();
-            GuiColor user = json.fromJson(reader, GuiColor.class);
-            awtColor = ColorTranslated.toColorFromString(user.getColorText());
-            color = Color.rgb(awtColor.getRed(), awtColor.getGreen(), awtColor.getBlue(), 0.8);
-        } catch (IOException e) {
+            SkinData user = json.fromJson(reader, SkinData.class);
+            java.awt.Color awtColor = ColorTranslated.toColorFromString(user.colorText);
+            java.awt.Color awtTitleColor = ColorTranslated.toColorFromString(user.colorTitle);
+            Color color = Color.rgb(awtColor.getRed(), awtColor.getGreen(), awtColor.getBlue(), 0.8);
+            titleText.setFill(color);
+            username.setStyle("-fx-text-fill: rgba(" + awtColor.getRed() + "," + awtColor.getGreen() + "," + awtColor.getBlue() + ");");
+            l1.setStroke(color);
+            l2.setStroke(color);
+
+            background.setImage(Skin.getBackground());
+            background.setFitHeight(500);
+            background.setFitWidth(800);
+
+            InterfaceManager.containers.clear();
+            vertical.getChildren().clear();
+            pane.getChildren().clear();
+            InterfaceManager.containers.forEach(container -> vertical.getChildren().add(container.getButton()));
+            InterfaceManager.containers.forEach(container -> {
+                container.getButton().setOnMouseClicked(event -> {
+                    pane.getChildren().clear();
+                    pane.getChildren().add(container.getPane());
+                });
+            });
+
+
+            Main.load("MainPage", Locale.instance.MainPage, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "MainPage.png")), awtTitleColor, true);
+            Main.load("Settings", Locale.instance.Settings, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Settings.png")), awtTitleColor, false);
+            Main.load("ResourceManagement", Locale.instance.ResourceManagement, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png")), awtTitleColor, false);
+            Main.load("ResourceManagement", Locale.instance.ServerData, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ServerInformation.png")), awtTitleColor, false);
+            Main.load("Skin", Locale.instance.Skin, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Skin.png")), awtTitleColor, false);
+            Main.load("Resources", Locale.instance.Resources, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "loginImg.png")), awtTitleColor, false);
+
+            Config.instance.skin = skinPath;
+            SkinController.clickButton = true;
+        } catch (Exception e) {
+            SkinController.clickButton = false;
+            new Popup().display(Locale.instance.Error, e.toString());
             e.printStackTrace();
         }
-        titleText.setFill(color);
-        username.setStyle("-fx-text-fill: rgba(" + awtColor.getRed() + "," + awtColor.getGreen() + "," + awtColor.getBlue() + ",0.8);");
-        l1.setStroke(color);
-        l2.setStroke(color);
-
-        Skin.load();
-        background.setImage(Skin.getBackground());
-        background.setFitHeight(500);
-        background.setFitWidth(800);
-
-        InterfaceManager.containers.clear();
-        vertical.getChildren().clear();
-        pane.getChildren().clear();
-        InterfaceManager.containers.forEach(container -> vertical.getChildren().add(container.getButton()));
-        InterfaceManager.containers.forEach(container -> {
-            container.getButton().setOnMouseClicked(event -> {
-                pane.getChildren().clear();
-                pane.getChildren().add(container.getPane());
-            });
-        });
-
-
-        Main.load("MainPage", Locale.instance.MainPage, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "MainPage.png")), true);
-        Main.load("Settings", Locale.instance.Settings, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Settings.png")), false);
-        Main.load("ResourceManagement", Locale.instance.ResourceManagement, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png")), false);
-        Main.load("ResourceManagement", Locale.instance.ServerData, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ServerInformation.png")), false);
-        Main.load("Skin", Locale.instance.Skin, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Skin.png")), false);
-        Main.load("Resources", Locale.instance.Resources, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "loginImg.png")), false);
 
     }
 
@@ -160,12 +164,10 @@ public class FrameController implements Initializable {
         System.exit(0);
     }
 
-    public class GuiColor {
-        private String author;
-        private String colorText;
-
-        public String getColorText() {
-            return colorText;
-        }
+    public class SkinData {
+        public String author;
+        public String colorText;
+        public String colorTitle;
+        public String message;
     }
 }

@@ -104,13 +104,18 @@
 }
 
 .combo-box{
-    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-color: rgba(0, 0, 0, 0.2);
     -fx-text-fill: #FFFFFF;
     -fx-border-color: rgba(255, 255, 255, 1);
 }
 
 .list-cell{
-    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-text-fill: #FFFFFF;
+}
+
+.list-cell:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.8);
     -fx-text-fill: #FFFFFF;
 }
 

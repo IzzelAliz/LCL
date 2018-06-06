@@ -8,6 +8,9 @@ import me.kevinwalker.main.GuiBase;
 import me.kevinwalker.main.Main;
 import me.kevinwalker.ui.controller.PopupController;
 
+/**
+ * 这是弹出窗口
+ */
 public class Popup {
     public void display(String title, String message) {
         Stage window = new Stage();
@@ -15,11 +18,11 @@ public class Popup {
         window.getIcons().add(new Image(Main.class.getResourceAsStream("/css/images/LCL.png")));
         window.initModality(Modality.APPLICATION_MODAL);
         window.setResizable(false);
-        window.setMinWidth(300);
-        window.setMinHeight(150);
+        window.setMinWidth(350);
+        window.setMinHeight(200);
         GuiBase guiBase = null;
         try {
-            guiBase = new GuiBase("Popup",window,300,150);
+            guiBase = new GuiBase("Popup",window,350,200);
         } catch (Exception e) {
             e.printStackTrace();
         }

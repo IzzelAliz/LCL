@@ -1,6 +1,7 @@
 package me.kevinwalker.ui;
 
 import javafx.scene.Node;
+import me.kevinwalker.main.Main;
 import me.kevinwalker.ui.Container;
 import me.kevinwalker.ui.Transition;
 import me.kevinwalker.ui.controller.FrameController;
@@ -30,7 +31,7 @@ public class InterfaceManager {
             });
             container.getButton().setStyle("-fx-border-style: solid;" +
                     "-fx-border-width: 0px 0px 0px 10px;" +
-                    "-fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(255, 255, 255, 0.7);");
+                    "-fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(" + Main.awtColor.getRed() + "," + Main.awtColor.getGreen() + "," + Main.awtColor.getBlue()+");");
 
             Transition.playRandomPair(container.getPane(), event1 -> {
                     },

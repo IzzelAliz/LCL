@@ -7,14 +7,14 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="150.0" maxWidth="300.0" minHeight="150.0" minWidth="300.0" prefHeight="150.0" prefWidth="300.0" stylesheets="/css/MainUI.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.ui.controller.PopupController">
+<AnchorPane maxHeight="200.0" maxWidth="350.0" minHeight="200.0" minWidth="350.0" prefHeight="200.0" prefWidth="350.0" stylesheets="/css/MainUI.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.ui.controller.PopupController">
    <children>
-      <Label fx:id="message" alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="27.0" prefHeight="65.0" prefWidth="191.0" text="这是一个测试" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="27.0">
+      <Label fx:id="message" alignment="CENTER" contentDisplay="CENTER" layoutY="88.0" prefHeight="52.0" prefWidth="350.0" text="测试" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="88.0">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Line layoutX="337.0" layoutY="98.0" startX="-400.0" stroke="WHITE" AnchorPane.leftAnchor="-63.5" AnchorPane.topAnchor="97.5" />
-      <Button fx:id="cancel" layoutX="106.0" layoutY="106.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="89.0" text="确定" />
-      <ImageView fx:id="error" fitHeight="73.0" fitWidth="72.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="63.0" AnchorPane.topAnchor="14.0" />
+      <Line layoutX="337.0" layoutY="98.0" startX="-450.0" stroke="WHITE" AnchorPane.leftAnchor="-63.5" AnchorPane.topAnchor="140.0" />
+      <Button fx:id="cancel" layoutX="131.0" layoutY="157.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="89.0" text="确定" />
+      <ImageView fx:id="error" fitHeight="90.0" fitWidth="90.0" layoutX="130.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>
