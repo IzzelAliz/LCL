@@ -13,7 +13,7 @@ public class Config {
 
     public String background, lang = java.util.Locale.getDefault().getLanguage();
 
-    public String name,maxMemory;
+    public String name, maxMemory;
 
     public String skin = "/LcLConfig/skin/default.zip";
 

@@ -26,5 +26,13 @@
   "checkUpdate":"Update",
   "PhysicalMemory":"PhysicalMemory",
   "Error":"Error",
-  "ErrorMessage":"Please check the information!"
+  "ErrorMessage":"Please check the information!",
+  "config":"Config",
+  "crashReports":"CrashReports",
+  "logs":"Logs",
+  "mods":"Mods",
+  "resourcepacks":"ResourcePacks",
+  "saves":"Saves",
+  "screenshots":"ScreenShots",
+  "shaderpacks":"ShaderPacks"
 }

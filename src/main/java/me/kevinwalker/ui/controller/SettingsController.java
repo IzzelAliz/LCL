@@ -2,12 +2,16 @@ package me.kevinwalker.ui.controller;
 
 import com.sun.management.OperatingSystemMXBean;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -33,7 +37,7 @@ public class SettingsController implements Initializable {
     public static SettingsController instance;
     private static ExecutorService service = Executors.newFixedThreadPool(1);
 
-    public ScrollPane settingPane;
+    public VBox settingPane;
 
     public Text Setting;
     public Text GameSettings, LaunchSetting, NetworkSetting;
@@ -94,7 +98,6 @@ public class SettingsController implements Initializable {
             javaPath.setText(file.getPath());
             Config.instance.javaPath = file.getPath();
             Config.save();
-
         });
 
         chooeFile1.setOnAction(oa -> {
@@ -162,7 +165,7 @@ public class SettingsController implements Initializable {
 
         name.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
-                if (name.getText() != null&& !name.getText().equals("") && Pattern.compile("^[A-Za-z][A-Za-z1-9_-]+$").matcher(name.getText()).matches()) {
+                if (name.getText() != null && !name.getText().equals("") && Pattern.compile("^[A-Za-z][A-Za-z1-9_-]+$").matcher(name.getText()).matches()) {
                     Config.instance.name = name.getText();
                     FrameController.instance.username.setText(name.getText());
                     Config.save();
@@ -175,15 +178,35 @@ public class SettingsController implements Initializable {
 
         maxMemory.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
-                if (maxMemory.getText() != null&& !maxMemory.getText().equals("") && Pattern.compile("^[0-9]*$").matcher(maxMemory.getText()).matches()) {
+                if (maxMemory.getText() != null && !maxMemory.getText().equals("") && Pattern.compile("^[0-9]*$").matcher(maxMemory.getText()).matches()) {
                     Config.instance.maxMemory = maxMemory.getText();
                     Config.save();
-                }else{
+                } else {
                     new Popup().display(Locale.instance.Error, Locale.instance.ErrorMessage);
                     maxMemory.setText("1024");
                 }
             }
         });
+        setGuiColor(settingPane.getChildren(), Main.awtTextColor);
+    }
+
+    private void setGuiColor(ObservableList<Node> list, java.awt.Color awtColor) {
+        for (Node node : list) {
+            node.setStyle("-fx-text-fill: rgba(" + awtColor.getRed() + "," + awtColor.getGreen() + "," + awtColor.getBlue() + ",1);");
+            if (node instanceof Text) {
+                ((Text) node).setFill(Color.rgb(awtColor.getRed(), awtColor.getGreen(), awtColor.getBlue()));
+            }else if(node instanceof Button){
+                node.setStyle("-fx-text-fill: rgba(255,255,255,1);");
+            } else if (node instanceof TextField) {
+                node.setStyle("-fx-text-fill: rgba(" + awtColor.getRed() + "," + awtColor.getGreen() + "," + awtColor.getBlue() + ",1);" +
+                        "-fx-border-color: rgba(0, 0, 0, 0) " +
+                        "rgba(0, 0, 0, 0)" +
+                        "rgba(" + awtColor.getRed() + "," + awtColor.getGreen() + "," + awtColor.getBlue() + ")" +
+                        "rgba(0, 0, 0, 0);");
+            } else if (node instanceof Pane) {
+                setGuiColor(((Pane) node).getChildren(), awtColor);
+            }
+        }
     }
 
     /**

@@ -33,15 +33,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Main extends Application {
     public static MusicPlayThread musicPlayThread;
     private static File bgm;
     public static Stage primaryStage;
     public static Scene scene;
-    public static java.awt.Color awtColor = null;
+    public static java.awt.Color awtTitleColor = null;
+    public static java.awt.Color awtTextColor = null;
 
-    private static final Map<String, Node> panes = new HashMap<>();
+    private static Map<String, Node> panes = new HashMap<>();
 
     public static Node getInstance(String name) {
         return panes.get(name);
@@ -64,33 +66,34 @@ public class Main extends Application {
         mainGui.getStage().show();
 
         try (ZipInputStream skinInputStream = ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "skin.json")) {
+            assert skinInputStream != null;
             Reader reader = new InputStreamReader(skinInputStream, "UTF-8");
             Gson json = new GsonBuilder().create();
             FrameController.SkinData user = json.fromJson(reader, FrameController.SkinData.class);
-            Main.awtColor = ColorTranslated.toColorFromString(user.colorTitle);
-            load("MainPage", Locale.instance.MainPage, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "MainPage.png")), awtColor, true);
-            load("Settings", Locale.instance.Settings, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Settings.png")), awtColor, false);
-            load("ResourceManagement", Locale.instance.ResourceManagement, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png")), awtColor, false);
-            load("ResourceManagement", Locale.instance.ServerData, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ServerInformation.png")), awtColor, false);
-            load("Skin", Locale.instance.Skin, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Skin.png")), awtColor, false);
-            load("Resources", Locale.instance.Resources, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "loginImg.png")), awtColor, false);
+            Main.awtTextColor = ColorTranslated.toColorFromString(user.colorText);
+            Main.awtTitleColor = ColorTranslated.toColorFromString(user.colorTitle);
+            load("MainPage", Locale.instance.MainPage, new Image(Objects.requireNonNull(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "MainPage.png"))), true);
+            load("Settings", Locale.instance.Settings, new Image(Objects.requireNonNull(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Settings.png"))), false);
+            load("ResourceManagement", Locale.instance.ResourceManagement, new Image(Objects.requireNonNull(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png"))), false);
+            load("ResourceManagement", Locale.instance.ServerData, new Image(Objects.requireNonNull(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ServerInformation.png"))), false);
+            load("Skin", Locale.instance.Skin, new Image(Objects.requireNonNull(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Skin.png"))), false);
+            load("Resources", Locale.instance.Resources, new Image(Objects.requireNonNull(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "loginImg.png"))), false);
             ResourceController.instance.fetch();
         } catch (Exception e) {
             Config.instance.skin = "/LcLConfig/skin/default.zip";
-            awtColor = new java.awt.Color(255, 255, 255);
+            awtTextColor = new java.awt.Color(255, 255, 255);
             new Popup().display(Locale.instance.Error, e.toString());
-            load("MainPage", Locale.instance.MainPage, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "MainPage.png")), awtColor, true);
-            load("Settings", Locale.instance.Settings, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Settings.png")), awtColor, false);
-            load("ResourceManagement", Locale.instance.ResourceManagement, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png")), awtColor, false);
-            load("ResourceManagement", Locale.instance.ServerData, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ServerInformation.png")), awtColor, false);
-            load("Skin", Locale.instance.Skin, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Skin.png")), awtColor, false);
-            load("Resources", Locale.instance.Resources, new Image(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "loginImg.png")), awtColor, false);
+            load("MainPage", Locale.instance.MainPage, new Image(Objects.requireNonNull(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "MainPage.png"))), true);
+            load("Settings", Locale.instance.Settings, new Image(Objects.requireNonNull(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Settings.png"))), false);
+            load("ResourceManagement", Locale.instance.ResourceManagement, new Image(Objects.requireNonNull(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ResourceManagement.png"))), false);
+            load("ResourceManagement", Locale.instance.ServerData, new Image(Objects.requireNonNull(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "ServerInformation.png"))), false);
+            load("Skin", Locale.instance.Skin, new Image(Objects.requireNonNull(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "Skin.png"))), false);
+            load("Resources", Locale.instance.Resources, new Image(Objects.requireNonNull(ZipUtils.getInputStream(new File(Util.getBaseDir(), Config.instance.skin), "loginImg.png"))), false);
             ResourceController.instance.fetch();
         }
-
     }
 
-    public static void load(String fxml, String buttonName, Image background, java.awt.Color color, boolean showDefault) {
+    public static void load(String fxml, String buttonName, Image background, boolean showDefault) {
         Parent parent;
         try {
             parent = FXMLLoader.load(Main.class.getResource("/fxml/" + fxml + ".fxml"));
@@ -103,14 +106,19 @@ public class Main extends Application {
             button.setAlignment(Pos.BASELINE_LEFT);
             button.setPrefSize(200, 50);
             button.setStyle("-fx-border-style: solid;" +
+                    "-fx-background-color: transparent;" +
+                    "-fx-font-size:18;" +
                     "-fx-border-width: 0px 0px 0px 10px;" +
-                    "-fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);");
+                    "-fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);" +
+                    "-fx-text-fill: rgba(" + Main.awtTextColor.getRed() + "," + Main.awtTextColor.getGreen() + "," + Main.awtTextColor.getBlue() + ",1);");
 
             if (showDefault) {
-                Main.awtColor = color;
                 button.setStyle("-fx-border-style: solid;" +
+                        "-fx-background-color: transparent;" +
+                        "-fx-font-size:18;" +
                         "-fx-border-width: 0px 0px 0px 10px;" +
-                        "-fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(" + color.getRed() + "," + color.getGreen() + "," + color.getBlue() + ");");
+                        "-fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(" + Main.awtTitleColor.getRed() + "," + Main.awtTitleColor.getGreen() + "," + Main.awtTitleColor.getBlue() + ");" +
+                        "-fx-text-fill: rgba(" + Main.awtTextColor.getRed() + "," + Main.awtTextColor.getGreen() + "," + Main.awtTextColor.getBlue() + ",0.8);");
             }
             InterfaceManager.addInterface(Container.create(fxml, button));
 
@@ -139,7 +147,7 @@ public class Main extends Application {
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 //        setupLogger();
 //        ServerListPing slp = new ServerListPing();
 //        InetSocketAddress sadd0 = new InetSocketAddress("dx.mc11.icraft.cc", 37190);
@@ -198,6 +206,7 @@ public class Main extends Application {
         int timeOut = 3000;
         boolean status = false;
         try {
+            assert url != null;
             status = InetAddress.getByName(url.getHost()).isReachable(timeOut);
         } catch (IOException e) {
             e.printStackTrace();

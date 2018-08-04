@@ -26,5 +26,13 @@
   "checkUpdate":"更新",
   "PhysicalMemory":"物理内存",
   "Error":"错误",
-  "ErrorMessage":"请检查输入的信息!"
+  "ErrorMessage":"请检查输入的信息!",
+  "config":"配置文件",
+  "crashReports":"报错",
+  "logs":"日志",
+  "mods":"Mod",
+  "resourcepacks":"材质包",
+  "saves":"地图",
+  "screenshots":"截图",
+  "shaderpacks":"光影包"
 }

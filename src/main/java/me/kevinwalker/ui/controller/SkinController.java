@@ -31,10 +31,10 @@ import java.util.ResourceBundle;
  * Created by KevinWalker on 2017/10/7.
  */
 public class SkinController implements Initializable {
-    public int i = 1;
+    public static SkinController instance;
     List<String> skinList;
-    private static boolean list = true;
-    public static boolean clickButton = true;
+    private boolean list = true;
+    private boolean clickButton = true;
 
     @FXML
     AnchorPane skinPane;
@@ -43,6 +43,9 @@ public class SkinController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        instance=this;
+        list=true;
+        clickButton=true;
         guisettings();
     }
 
@@ -55,7 +58,7 @@ public class SkinController implements Initializable {
             skinList = getFileList(new File(Util.getBaseDir(), "LclConfig/skin"));
             Button skinButton[] = new Button[skinList.size()];
             ImageView[] image = new ImageView[skinList.size()];
-            skinPane.setPrefHeight(skinList.size() / 2 * 135 + 160);
+            skinPane.setPrefHeight(skinList.size() / 2 * 135 + 250);
 
             Button button = new Button("←");
             Button useSkinButton = new Button("使用");
@@ -134,14 +137,14 @@ public class SkinController implements Initializable {
                                 title.setText(skinList.get(num));
                                 message.setText(skinData.message);
 
-                                Animation.playTranslateTransition(800, 0, 165 - b.getLayoutX(), 0, 80 - b.getLayoutY(), b).play();
-                                Animation.playTranslateTransition(800, 0, 692, 0, 0, message).play();
-                                Animation.playTranslateTransition(800, 0, 0, 0, 300, button).play();
-                                Animation.playTranslateTransition(800, 0, -600, 0, 0, useSkinButton).play();
-                                Animation.playFadeTransition(1000, 0f, 1.0f, title).play();
-                                Animation.playFadeTransition(1000, 0f, 1.0f, author).play();
-                                Animation.playFadeTransition(1000, 0f, 1.0f, button).play();
-                                Animation.playFadeTransition(1000, 0f, 1.0f, message).play();
+                                Animation.playTranslateTransition(700, 0, 165 - b.getLayoutX(), 0, 80 - b.getLayoutY(), b).play();
+                                Animation.playTranslateTransition(700, 0, 692, 0, 0, message).play();
+                                Animation.playTranslateTransition(700, 0, 0, 0, 300, button).play();
+                                Animation.playTranslateTransition(700, 0, -600, 0, 0, useSkinButton).play();
+                                Animation.playFadeTransition(900, 0f, 1.0f, title).play();
+                                Animation.playFadeTransition(900, 0f, 1.0f, author).play();
+                                Animation.playFadeTransition(900, 0f, 1.0f, button).play();
+                                Animation.playFadeTransition(900, 0f, 1.0f, message).play();
 
                                 button.setOnMouseClicked(exit -> {
                                     clickButton = true;

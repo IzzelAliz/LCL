@@ -136,6 +136,7 @@ public class ServerListPing {
         long pingtime = dataInputStream.readLong(); //read response
 
         StatusResponse response = gson.fromJson(json, StatusResponse.class);
+
         response.setTime((int) (now - pingtime));
 
         dataOutputStream.close();

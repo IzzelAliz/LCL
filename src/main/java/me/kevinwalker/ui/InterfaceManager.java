@@ -26,12 +26,18 @@ public class InterfaceManager {
             FrameController.instance.pane.getChildren().add(container.getPane());
             InterfaceManager.containers.forEach(obj -> {
                 obj.getButton().setStyle("-fx-border-style: solid;" +
+                        "-fx-background-color: transparent;" +
+                        "-fx-font-size:18;" +
                         "-fx-border-width: 0px 0px 0px 10px;" +
-                        "-fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);");
+                        "-fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);" +
+                        "-fx-text-fill: rgba(" + Main.awtTextColor.getRed() + "," + Main.awtTextColor.getGreen() + "," + Main.awtTextColor.getBlue() + ",1);");
             });
             container.getButton().setStyle("-fx-border-style: solid;" +
+                    "-fx-background-color: transparent;" +
+                    "-fx-font-size:18;" +
                     "-fx-border-width: 0px 0px 0px 10px;" +
-                    "-fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(" + Main.awtColor.getRed() + "," + Main.awtColor.getGreen() + "," + Main.awtColor.getBlue()+");");
+                    "-fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(" + Main.awtTitleColor.getRed() + "," + Main.awtTitleColor.getGreen() + "," + Main.awtTitleColor.getBlue()+");" +
+                    "-fx-text-fill: rgba(" + Main.awtTextColor.getRed() + "," + Main.awtTextColor.getGreen() + "," + Main.awtTextColor.getBlue() + ",0.8);");
 
             Transition.playRandomPair(container.getPane(), event1 -> {
                     },

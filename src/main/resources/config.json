@@ -1,8 +1,10 @@
 {
   "lang": "zh",
-  "name": "Admin",
-  "skin": "/LcLConfig/skin/skin.zip",
+  "name": "Administrator",
+  "maxMemory": "1024",
+  "skin": "/LcLConfig/skin/default.zip",
   "javaPath": "C:\\Program Files\\Java\\jre1.8.0_131\\bin\\javaw.exe",
+  "gamePath": "E:\\work\\LCL\\target\\.minecraft",
   "enableProxy": false,
   "proxyMode": "http",
   "proxyHost": "192.168.1.1",

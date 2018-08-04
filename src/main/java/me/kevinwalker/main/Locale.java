@@ -41,6 +41,16 @@ public class Locale {
     public String MaxMemory;
     public String PhysicalMemory;
 
+    //资源管理界面语言
+    public String config;
+    public String crashReports;
+    public String logs;
+    public String mods;
+    public String resourcepacks;
+    public String saves;
+    public String screenshots;
+    public String shaderpacks;
+
     //弹窗界面语言
     public String Error;
     public String ErrorMessage;

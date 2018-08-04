@@ -11,25 +11,25 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane fx:id="settingPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="600.0" styleClass="scroll-bar" stylesheets="/css/MainUI.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.ui.controller.SettingsController">
+<ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="600.0" styleClass="scroll-bar" stylesheets="/css/MainUI.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.ui.controller.SettingsController">
    <content>
-      <VBox prefHeight="458.0" prefWidth="600.0" spacing="10.0" style="-fx-font-family: &quot;Microsoft YaHei Mono&quot;; -fx-font-size: 16px; -fx-text-fill: #FFFFFF;">
+      <VBox fx:id="settingPane" prefHeight="458.0" prefWidth="600.0" spacing="10.0" style="-fx-font-family: &quot;Microsoft YaHei Mono&quot;; -fx-font-size: 16px; -fx-text-fill: #FFFFFF;">
          <children>
-            <Text fx:id="Setting" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Setting" wrappingWidth="547.0">
+            <Text fx:id="Setting" strokeType="OUTSIDE" strokeWidth="0.0" text="Setting" wrappingWidth="547.0">
                <font>
-                  <Font size="25.0" />
+                  <Font size="30.0" />
                </font>
             </Text>
-            <Text fx:id="GameSettings" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="-GameSettings-" wrappingWidth="166.84375">
+            <Text fx:id="GameSettings" strokeType="OUTSIDE" strokeWidth="0.0" text="-GameSettings-" wrappingWidth="166.84375">
                <font>
-                  <Font size="16.0" />
+                  <Font size="20.0" />
                </font>
             </Text>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text fx:id="PlayerName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PlayerPath" wrappingWidth="89.0">
+                  <Text fx:id="PlayerName" strokeType="OUTSIDE" strokeWidth="0.0" text="PlayerPath" wrappingWidth="89.0">
                      <font>
-                        <Font size="13.0" />
+                        <Font size="14.5" />
                      </font>
                   </Text>
                   <TextField fx:id="name" prefHeight="34.0" prefWidth="189.0" />
@@ -37,9 +37,9 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text fx:id="MaxMemory" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="MaxMemory" wrappingWidth="89.0">
+                  <Text fx:id="MaxMemory" strokeType="OUTSIDE" strokeWidth="0.0" text="MaxMemory" wrappingWidth="89.0">
                      <font>
-                        <Font size="13.0" />
+                        <Font size="14.5" />
                      </font>
                   </Text>
                   <TextField fx:id="maxMemory" prefHeight="34.0" prefWidth="189.0" />
@@ -52,9 +52,9 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="6.0" prefWidth="560.0" spacing="10.0">
                <children>
-                  <Text fx:id="GamePath" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GamePath" wrappingWidth="79.0">
+                  <Text fx:id="GamePath" strokeType="OUTSIDE" strokeWidth="0.0" text="GamePath" wrappingWidth="79.0">
                      <font>
-                        <Font size="13.0" />
+                        <Font size="14.5" />
                      </font>
                   </Text>
                   <TextField fx:id="gamePath" prefHeight="34.0" prefWidth="414.0" />
@@ -63,24 +63,24 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="6.0" prefWidth="560.0" spacing="10.0">
                <children>
-                  <Text fx:id="JavaPath" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="JavaPath" wrappingWidth="79.0">
+                  <Text fx:id="JavaPath" strokeType="OUTSIDE" strokeWidth="0.0" text="JavaPath" wrappingWidth="79.0">
                      <font>
-                        <Font size="13.0" />
+                        <Font size="14.5" />
                      </font></Text>
                   <TextField fx:id="javaPath" prefHeight="34.0" prefWidth="414.0" />
                   <Button fx:id="chooeFile" mnemonicParsing="false" prefHeight="34.0" prefWidth="127.0" text="Browse" />
                </children>
             </HBox>
-            <Text fx:id="LaunchSetting" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="-LaunchSetting-" wrappingWidth="166.84375">
+            <Text fx:id="LaunchSetting" strokeType="OUTSIDE" strokeWidth="0.0" text="-LaunchSetting-" wrappingWidth="166.84375">
                <font>
-                  <Font size="16.0" />
+                  <Font size="20.0" />
                </font>
             </Text>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text fx:id="Language" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Language" wrappingWidth="91.0">
+                  <Text fx:id="Language" strokeType="OUTSIDE" strokeWidth="0.0" text="Language" wrappingWidth="91.0">
                      <font>
-                        <Font size="13.0" />
+                        <Font size="14.5" />
                      </font>
                   </Text>
                   <ComboBox fx:id="comboBoxLanguage" prefHeight="34.0" prefWidth="150.0" />
@@ -91,33 +91,33 @@
                   </Button>
                </children>
             </HBox>
-            <Text fx:id="NetworkSetting" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="-NetworkSetting-">
+            <Text fx:id="NetworkSetting" strokeType="OUTSIDE" strokeWidth="0.0" text="-NetworkSetting-">
                <font>
-                  <Font size="16.0" />
+                  <Font size="20.0" />
                </font>
             </Text>
             <VBox prefHeight="213.0" prefWidth="560.0" spacing="10.0" style="-fx-background-color: rgba(0,0,0,0);">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="560.0">
                      <children>
-                        <Text fx:id="ProxyMode" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="ProxyMode" wrappingWidth="91.0">
+                        <Text fx:id="ProxyMode" strokeType="OUTSIDE" strokeWidth="0.0" text="ProxyMode" wrappingWidth="91.0">
                            <font>
-                              <Font size="13.0" />
+                              <Font size="14.5" />
                            </font></Text>
                         <ComboBox fx:id="comboBoxProxy" prefHeight="34.0" prefWidth="150.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="560.0" spacing="10.0">
                      <children>
-                        <Text fx:id="ProxyHost" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="ProxyHost" wrappingWidth="79.0">
+                        <Text fx:id="ProxyHost" strokeType="OUTSIDE" strokeWidth="0.0" text="ProxyHost" wrappingWidth="79.0">
                            <font>
-                              <Font size="13.0" />
+                              <Font size="14.5" />
                            </font>
                         </Text>
                         <TextField fx:id="proxyHost" />
-                        <Text fx:id="ProxyPort" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="ProxyPort" wrappingWidth="79.0">
+                        <Text fx:id="ProxyPort" strokeType="OUTSIDE" strokeWidth="0.0" text="ProxyPort" wrappingWidth="79.0">
                            <font>
-                              <Font size="13.0" />
+                              <Font size="14.5" />
                            </font>
                         </Text>
                         <TextField fx:id="proxyPort" />
@@ -125,14 +125,14 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="560.0" spacing="10.0">
                      <children>
-                        <Text fx:id="ProxyUserName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="UserName" wrappingWidth="79.0">
+                        <Text fx:id="ProxyUserName" strokeType="OUTSIDE" strokeWidth="0.0" text="UserName" wrappingWidth="79.0">
                            <font>
-                              <Font size="13.0" />
+                              <Font size="14.5" />
                            </font></Text>
                         <TextField fx:id="proxyUser" />
-                        <Text fx:id="ProxyPassword" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="79.0">
+                        <Text fx:id="ProxyPassword" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="79.0">
                            <font>
-                              <Font size="13.0" />
+                              <Font size="14.5" />
                            </font></Text>
                         <PasswordField fx:id="proxyPassword" />
                      </children>

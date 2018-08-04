@@ -59,7 +59,7 @@
 
 .button {
     -fx-padding: 3.0 12.0 3.0 12.0;
-    -fx-background-color: transparent;
+    -fx-background-color: rgba(0,0,0,0.5);
     -fx-font-family: "微软雅黑";
     -fx-font-size: 16px;
     -fx-text-fill: #FFFFFF;
@@ -69,11 +69,8 @@
 }
 
 .button:hover {
-    -fx-background-color: rgba(58.0, 58.0, 58.0, 0.24);
+    -fx-background-color: rgba(210, 210, 210, 0.44);
     -fx-text-fill: #FFFFFF;
-    -fx-scale-x: 1.03;
-    -fx-scale-y: 1.03;
-    -fx-scale-z: 1.03;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
 }
 

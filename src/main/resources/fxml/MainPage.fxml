@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="460.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.ui.controller.MainPageController" />
+
+<AnchorPane prefHeight="460.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.ui.controller.MainPageController">
+   <children>
+      <ImageView fx:id="background" fitHeight="460.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

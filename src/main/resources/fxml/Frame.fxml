@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -18,11 +17,11 @@
 
 <Pane fx:id="base" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0);" stylesheets="/css/MainUI.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kevinwalker.ui.controller.FrameController">
     <children>
-        <ImageView fx:id="background" fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
-            <effect>
-                <GaussianBlur radius="7.0" />
-            </effect>
-        </ImageView>
+      <ImageView fx:id="mainBackground" fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <effect>
+            <GaussianBlur radius="0.0" />
+         </effect>
+      </ImageView>
         <Pane fx:id="pane" layoutX="200.0" layoutY="40.0" prefHeight="460.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);" stylesheets="/css/MainUI.css" />
         <Pane fx:id="title" layoutX="200.0" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0);">
             <children>
@@ -39,14 +38,15 @@
         </Pane>
         <Line fx:id="l1" endX="200.0" endY="500.0" startX="200.0" />
         <Line fx:id="l2" endX="800.0" endY="40.0" startX="200.0" startY="40.0" />
+      <Line fx:id="l3" endY="500.0" />
+      <Line fx:id="l4" endX="800.0" endY="500.0" startX="800.0" />
+      <Line fx:id="l5" endX="800.0" />
+      <Line fx:id="l6" endX="800.0" endY="500.0" startY="500.0" />
         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutY="175.0" prefHeight="325.0" prefWidth="200.0">
             <content>
                 <AnchorPane fx:id="apane" minHeight="0.0" minWidth="0.0" prefHeight="325.0" prefWidth="198.0">
                     <children>
-                        <VBox fx:id="vertical" prefHeight="175.0" prefWidth="200.0" style="-fx-background-color: rgba(0,0,0,0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding></VBox>
+                        <VBox fx:id="vertical" prefHeight="175.0" prefWidth="200.0" style="-fx-background-color: rgba(0,0,0,0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
             </content>
